@@ -24,14 +24,19 @@ const features = [
   { title: t('features.i18n.title'), desc: t('features.i18n.desc'), emoji: '🌍' },
 ];
 
+// Uygulamadaki gerçek kategoriler — ikonlar public/, renkler uygulamanın
+// veritabanındaki pin_color değerleriyle birebir aynı.
 const categories = [
-  { key: 'kultur', label: t('categories.kultur'), color: 'bg-pin-kultur', emoji: '🏛️' },
-  { key: 'gastronomi', label: t('categories.gastronomi'), color: 'bg-pin-gastronomi', emoji: '🍜' },
-  { key: 'manzara', label: t('categories.manzara'), color: 'bg-pin-manzara', emoji: '🌅' },
-  { key: 'doga', label: t('categories.doga'), color: 'bg-pin-doga', emoji: '🌿' },
-  { key: 'zanaat', label: t('categories.zanaat'), color: 'bg-pin-zanaat', emoji: '🎨' },
-  { key: 'gece', label: t('categories.gece'), color: 'bg-pin-gece', emoji: '🌙' },
-  { key: 'sakli', label: t('categories.sakli'), color: 'bg-pin-sakli', emoji: '💎' },
+  { label: t('categories.gastronomy'), color: '#E2725B', icon: '/gastronomy.svg' },
+  { label: t('categories.scenery'), color: '#F4A261', icon: '/scenery.svg' },
+  { label: t('categories.nature'), color: '#2A9D8F', icon: '/nature.svg' },
+  { label: t('categories.craft'), color: '#A0522D', icon: '/craft.svg' },
+  { label: t('categories.nightlife'), color: '#6A0DAD', icon: '/nightlife.svg' },
+  { label: t('categories.hidden'), color: '#3D5A80', icon: '/hidden.svg' },
+  { label: t('categories.heritage'), color: '#B08968', icon: '/famous.svg' },
+  { label: t('categories.adventure'), color: '#D62828', icon: '/adventure.svg' },
+  { label: t('categories.movie'), color: '#264653', icon: '/movie.svg' },
+  { label: t('categories.holyroute'), color: '#8D99AE', icon: '/holyroute.svg' },
 ];
 
 const faqs = [
@@ -40,6 +45,7 @@ const faqs = [
   { q: t('faq.q3'), a: t('faq.a3') },
   { q: t('faq.q4'), a: t('faq.a4') },
   { q: t('faq.q5'), a: t('faq.a5') },
+  { q: t('faq.q6'), a: t('faq.a6') },
 ];
 ---
 
@@ -72,6 +78,12 @@ const faqs = [
       <div class="mt-8">
         <Waitlist locale={locale} />
         <p class="mt-3 text-sm text-white/50">{t('hero.social_proof')}</p>
+        <p
+          class="mx-auto mt-4 inline-flex max-w-md items-start gap-2 rounded-2xl border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-left text-sm font-medium text-amber-200 lg:mx-0"
+        >
+          <span aria-hidden="true">🏅</span>
+          {t('waitlist.first100')}
+        </p>
       </div>
     </div>
 
@@ -140,12 +152,12 @@ const faqs = [
       {
         categories.map((c) => (
           <li
-            class:list={[
-              'flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm',
-              c.color,
-            ]}
+            class="flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4 text-sm font-semibold text-white shadow-sm"
+            style={`background-color: ${c.color}`}
           >
-            <span aria-hidden="true">{c.emoji}</span>
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white">
+              <img src={c.icon} alt="" width="20" height="20" loading="lazy" />
+            </span>
             {c.label}
           </li>
         ))
@@ -161,6 +173,12 @@ const faqs = [
       {t('waitlist.title')}
     </h2>
     <p class="mx-auto mt-4 max-w-xl text-lg text-white/75">{t('waitlist.subtitle')}</p>
+    <p
+      class="mx-auto mt-5 inline-flex items-start gap-2 rounded-2xl border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-left text-sm font-medium text-amber-200"
+    >
+      <span aria-hidden="true">🏅</span>
+      {t('waitlist.first100')}
+    </p>
     <div class="mt-8">
       <Waitlist locale={locale} />
     </div>

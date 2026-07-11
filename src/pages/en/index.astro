@@ -20,7 +20,7 @@ const appLd = {
 const faqLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: ([1, 2, 3, 4, 5] as const).map((i) => ({
+  mainEntity: ([1, 2, 3, 4, 5, 6] as const).map((i) => ({
     '@type': 'Question',
     name: t(`faq.q${i}`),
     acceptedAnswer: { '@type': 'Answer', text: t(`faq.a${i}`) },

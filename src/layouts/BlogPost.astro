@@ -9,6 +9,7 @@ import {
   postPath,
   postLocale,
   findTranslation,
+  getPublishedPosts,
   readingMinutes,
   formatDate,
 } from '../lib/blog';
@@ -28,6 +29,14 @@ if (translation) translations[postLocale(translation)] = postPath(translation);
 
 const blogHome = localePath(locale, '/blog');
 const minutes = readingMinutes(post.body);
+
+// İlgili yazılar — okuyucuyu sitede tutar: önce ortak etiketli, sonra en yeni.
+const sharedTags = (p: BlogPost) =>
+  p.data.tags.filter((tag) => post.data.tags.includes(tag)).length;
+const related = (await getPublishedPosts(locale))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => sharedTags(b) - sharedTags(a) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 
 const postingLd = {
   '@context': 'https://schema.org',
@@ -96,7 +105,7 @@ const breadcrumbLd = {
     </div>
 
     {/* Yazı altı dönüşüm CTA'sı — blog trafiğini uygulama kullanıcısına çevirir */}
-    <aside class="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
+    <aside class="mx-auto max-w-3xl px-4 pb-12 sm:px-6">
       <div class="rounded-3xl bg-navy p-8 text-center sm:p-10">
         <h2 class="text-2xl font-extrabold tracking-tight text-white">{t('blog.cta.title')}</h2>
         <p class="mx-auto mt-3 max-w-lg text-white/75">{t('blog.cta.desc')}</p>
@@ -105,5 +114,29 @@ const breadcrumbLd = {
         </div>
       </div>
     </aside>
+
+    {/* İlgili yazılar — okuyucuyu bir sonraki rehbere taşır */}
+    {
+      related.length > 0 && (
+        <nav class="mx-auto max-w-3xl px-4 pb-16 sm:px-6" aria-label={t('blog.related')}>
+          <h2 class="text-xl font-extrabold tracking-tight text-navy">{t('blog.related')}</h2>
+          <div class="mt-5 grid gap-4 sm:grid-cols-3">
+            {related.map((p) => (
+              <a
+                href={postPath(p)}
+                class="group rounded-2xl bg-canvas p-5 ring-1 ring-navy/5 transition-shadow hover:shadow-md"
+              >
+                <h3 class="font-bold leading-snug text-navy group-hover:text-coral-dark">
+                  {p.data.title}
+                </h3>
+                <p class="mt-2 text-sm text-ink-mid">
+                  {readingMinutes(p.body)} {t('blog.minread')}
+                </p>
+              </a>
+            ))}
+          </div>
+        </nav>
+      )
+    }
   </article>
 </Base>

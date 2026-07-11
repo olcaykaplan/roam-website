@@ -34,7 +34,7 @@ export const ui = {
     'how.subtitle': 'Üç adımda şehir kâşifi ol.',
     'how.step1.title': 'Haritayı aç',
     'how.step1.desc':
-      'Çevrendeki görevleri haritada gör: kültür, gastronomi, manzara, doğa, zanaat, gece ve saklı noktalar.',
+      'Çevrendeki görevleri haritada gör: gastronomiden maceraya, film mekânlarından saklı köşelere 10 kategori.',
     'how.step2.title': 'Göreve git',
     'how.step2.desc':
       'Seçtiğin görevin konumuna git. Her görev, şehrin bir hikâyesini ya da saklı bir köşesini gösterir.',
@@ -51,24 +51,29 @@ export const ui = {
     'features.badges.title': 'Puan, rozet ve koleksiyonlar',
     'features.badges.desc':
       'Her tamamlanan görev puan kazandırır. Rozetleri aç, şehir koleksiyonlarını tamamla.',
-    'features.categories.title': '7 keşif kategorisi',
+    'features.categories.title': '10 keşif kategorisi',
     'features.categories.desc':
-      'Kültürden gastronomiye, saklı noktalardan gece hayatına — ilgi alanına göre keşfet.',
+      'Gastronomiden maceraya, kutsal rotalardan film mekânlarına — ilgi alanına göre keşfet.',
     'features.i18n.title': '4 dilde kullanılabilir',
     'features.i18n.desc': 'Türkçe, İngilizce, İspanyolca ve Almanca desteğiyle her gezgine uygun.',
 
     'categories.title': 'Görev kategorileri',
-    'categories.kultur': 'Kültür',
-    'categories.gastronomi': 'Gastronomi',
-    'categories.manzara': 'Manzara',
-    'categories.doga': 'Doğa',
-    'categories.zanaat': 'Zanaat',
-    'categories.gece': 'Gece',
-    'categories.sakli': 'Saklı',
+    'categories.gastronomy': 'Gastronomi',
+    'categories.scenery': 'Manzara',
+    'categories.nature': 'Doğa',
+    'categories.craft': 'Zanaat',
+    'categories.nightlife': 'Gece Hayatı',
+    'categories.hidden': 'Saklı Köşeler',
+    'categories.heritage': 'Miras',
+    'categories.adventure': 'Macera',
+    'categories.movie': 'Film',
+    'categories.holyroute': 'Kutsal Rota',
 
     'waitlist.title': 'Lansmandan ilk sen haberdar ol',
     'waitlist.subtitle':
       'Roam yakında App Store ve Google Play’de. E-postanı bırak, çıkar çıkmaz haber verelim — spam yok, sadece lansman haberi.',
+    'waitlist.first100':
+      'Uygulamadaki ilk 100 kişiye özel Sadakat Rozeti — başka hiç kimseye verilmeyecek.',
     'waitlist.placeholder': 'E-posta adresin',
     'waitlist.button': 'Listeye katıl',
     'waitlist.success': 'Harika! Listedesin — lansmanda haber vereceğiz. 🎉',
@@ -92,6 +97,9 @@ export const ui = {
     'faq.q5': 'Konum verilerim ne için kullanılıyor?',
     'faq.a5':
       'Konumun yalnızca yakınındaki görevleri göstermek ve check-in doğrulamak için kullanılır. Detaylar için gizlilik politikamıza bakabilirsin.',
+    'faq.q6': 'Sadakat Rozeti nedir?',
+    'faq.a6':
+      'Roam’a katılan ilk 100 kişi, profilinde ömür boyu taşıyacağı özel Sadakat Rozeti’ni kazanır. Bu rozet yalnızca ilk 100 kullanıcıya verilir; sonradan hiçbir şekilde kazanılamaz. Erken haberdar olmak için bekleme listesine katıl.',
 
     'blog.title': 'Roam Blog — Şehir Keşif Rehberleri',
     'blog.description':
@@ -105,6 +113,7 @@ export const ui = {
     'blog.cta.title': 'Bu rotayı oyuna çevir',
     'blog.cta.desc':
       'Roam ile bu yerler birer göreve dönüşüyor: git, check-in yap, rozet kazan. Lansman için bekleme listesine katıl.',
+    'blog.related': 'Keşfe devam et',
 
     'footer.tagline': 'Şehri keşfet, görevleri tamamla.',
     'footer.privacy': 'Gizlilik Politikası',
@@ -140,7 +149,7 @@ export const ui = {
     'how.subtitle': 'Become a city explorer in three steps.',
     'how.step1.title': 'Open the map',
     'how.step1.desc':
-      'See quests around you: culture, food, viewpoints, nature, crafts, nightlife and hidden gems.',
+      'See quests around you: 10 categories, from food to adventure, movie locations to hidden gems.',
     'how.step2.title': 'Walk to the quest',
     'how.step2.desc':
       'Head to the quest location. Every quest reveals a story or a hidden corner of the city.',
@@ -157,24 +166,29 @@ export const ui = {
     'features.badges.title': 'Points, badges & collections',
     'features.badges.desc':
       'Every completed quest earns points. Unlock badges and complete city collections.',
-    'features.categories.title': '7 exploration categories',
+    'features.categories.title': '10 exploration categories',
     'features.categories.desc':
-      'From culture to food, hidden gems to nightlife — explore what you love.',
+      'From food to adventure, holy routes to movie locations — explore what you love.',
     'features.i18n.title': 'Available in 4 languages',
     'features.i18n.desc': 'Turkish, English, Spanish and German — ready for every traveler.',
 
     'categories.title': 'Quest categories',
-    'categories.kultur': 'Culture',
-    'categories.gastronomi': 'Food',
-    'categories.manzara': 'Views',
-    'categories.doga': 'Nature',
-    'categories.zanaat': 'Crafts',
-    'categories.gece': 'Nightlife',
-    'categories.sakli': 'Hidden',
+    'categories.gastronomy': 'Gastronomy',
+    'categories.scenery': 'Scenery',
+    'categories.nature': 'Nature',
+    'categories.craft': 'Craft',
+    'categories.nightlife': 'Nightlife',
+    'categories.hidden': 'Hidden Gems',
+    'categories.heritage': 'Heritage',
+    'categories.adventure': 'Adventure',
+    'categories.movie': 'Movie',
+    'categories.holyroute': 'Holy Route',
 
     'waitlist.title': 'Be the first to know at launch',
     'waitlist.subtitle':
       'Roam is coming soon to the App Store and Google Play. Leave your email and we’ll ping you the moment it’s live — no spam, launch news only.',
+    'waitlist.first100':
+      'The first 100 people in the app earn an exclusive Loyalty Badge — it will never be given to anyone else.',
     'waitlist.placeholder': 'Your email address',
     'waitlist.button': 'Join the waitlist',
     'waitlist.success': 'Awesome! You’re on the list — we’ll let you know at launch. 🎉',
@@ -197,6 +211,9 @@ export const ui = {
     'faq.q5': 'How is my location data used?',
     'faq.a5':
       'Your location is only used to show nearby quests and verify check-ins. See our privacy policy for details.',
+    'faq.q6': 'What is the Loyalty Badge?',
+    'faq.a6':
+      'The first 100 people to join Roam earn an exclusive Loyalty Badge they keep on their profile forever. Only the first 100 users will ever get it — it can never be earned afterwards. Join the waitlist to be early.',
 
     'blog.title': 'Roam Blog — City Exploration Guides',
     'blog.description':
@@ -210,6 +227,7 @@ export const ui = {
     'blog.cta.title': 'Turn this route into a game',
     'blog.cta.desc':
       'With Roam these places become quests: go there, check in, earn badges. Join the waitlist for launch.',
+    'blog.related': 'Keep exploring',
 
     'footer.tagline': 'Explore the city, complete quests.',
     'footer.privacy': 'Privacy Policy',
