@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogIndex from '../../components/BlogIndex.astro';
+import { useTranslations } from '../../i18n/ui';
+import { getPublishedPosts } from '../../lib/blog';
+
+const locale = 'tr' as const;
+const t = useTranslations(locale);
+const posts = await getPublishedPosts(locale);
+---
+
+<Base
+  locale={locale}
+  title={t('blog.title')}
+  description={t('blog.description')}
+  translations={{ tr: '/blog', en: '/en/blog' }}
+>
+  <BlogIndex locale={locale} posts={posts} />
+</Base>

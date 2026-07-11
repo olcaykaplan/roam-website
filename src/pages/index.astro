@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Landing from '../components/Landing.astro';
+import { SITE_NAME } from '../consts.js';
+import { useTranslations } from '../i18n/ui';
+
+const locale = 'tr' as const;
+const t = useTranslations(locale);
+
+// Uygulama şeması — Google'da zengin sonuç (app kartı) için.
+const appLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: SITE_NAME,
+  operatingSystem: 'iOS, Android',
+  applicationCategory: 'TravelApplication',
+  description: t('meta.description'),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
+};
+
+// SSS şeması — Google'da açılır SSS zengin sonucu için.
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: ([1, 2, 3, 4, 5] as const).map((i) => ({
+    '@type': 'Question',
+    name: t(`faq.q${i}`),
+    acceptedAnswer: { '@type': 'Answer', text: t(`faq.a${i}`) },
+  })),
+};
+---
+
+<Base
+  locale={locale}
+  title={t('meta.title')}
+  description={t('meta.description')}
+  translations={{ tr: '/', en: '/en' }}
+  jsonLd={[appLd, faqLd]}
+>
+  <Landing locale={locale} />
+</Base>

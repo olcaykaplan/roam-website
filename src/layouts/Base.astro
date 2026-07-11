@@ -1,0 +1,126 @@
+---
+// Tüm sayfaların temel iskeleti + SEO head.
+// Canonical, hreflang, Open Graph, Twitter Card, JSON-LD ve RSS discovery
+// tek yerden üretilir; sayfalar sadece props geçer.
+import '../styles/global.css';
+import { SITE_NAME, OG_IMAGE, SOCIAL } from '../consts.js';
+import { type Locale, defaultLocale, useTranslations, localePath } from '../i18n/ui';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Bu sayfanın diğer dillerdeki karşılıkları (hreflang). Örn: { tr: '/', en: '/en' } */
+  translations?: Partial<Record<Locale, string>>;
+  /** og:type — blog yazılarında 'article' */
+  ogType?: 'website' | 'article';
+  /** Sayfaya özel og görseli (public/ altına göre yol) */
+  ogImage?: string;
+  /** Sayfaya özel ek JSON-LD blokları */
+  jsonLd?: Record<string, unknown>[];
+  /** Arama motorlarından gizle (ör. 404) */
+  noindex?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description,
+  translations,
+  ogType = 'website',
+  ogImage = OG_IMAGE,
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+// Kuruluş şeması — her sayfada; sosyal profiller doldukça sameAs'e girer.
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: Astro.site?.toString(),
+  logo: new URL('/logo.png', Astro.site).toString(),
+  sameAs: Object.values(SOCIAL).filter(Boolean),
+};
+
+const allJsonLd = [organizationLd, ...jsonLd];
+---
+
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {/* hreflang — dil varyantları + x-default (varsayılan dil: TR) */}
+    {
+      translations &&
+        Object.entries(translations).map(([lang, path]) => (
+          <link rel="alternate" hreflang={lang} href={new URL(path, Astro.site)} />
+        ))
+    }
+    {
+      translations?.[defaultLocale] && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(translations[defaultLocale]!, Astro.site)}
+        />
+      )
+    }
+
+    {/* Open Graph */}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={locale === 'tr' ? 'tr_TR' : 'en_US'} />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE_NAME} Blog (TR)`}
+      href={new URL('/rss.xml', Astro.site)}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE_NAME} Blog (EN)`}
+      href={new URL('/en/rss.xml', Astro.site)}
+    />
+
+    {/* Yapılandırılmış veri (JSON-LD) */}
+    {allJsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header locale={locale} translations={translations} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

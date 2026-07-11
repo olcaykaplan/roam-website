@@ -1,0 +1,56 @@
+---
+import { SITE_NAME, CONTACT_EMAIL, SOCIAL } from '../consts.js';
+import { type Locale, useTranslations, localePath } from '../i18n/ui';
+import Logo from './Logo.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+
+const privacyPath = locale === 'tr' ? '/gizlilik' : '/en/privacy';
+
+const socials = [
+  { name: 'Instagram', href: SOCIAL.instagram },
+  { name: 'X', href: SOCIAL.x },
+  { name: 'TikTok', href: SOCIAL.tiktok },
+].filter((s) => s.href);
+---
+
+<footer class="border-t border-navy/5 bg-canvas">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+      <div>
+        <a href={localePath(locale)} class="flex items-center gap-2">
+          <Logo class="h-7 w-7" />
+          <span class="text-lg font-extrabold tracking-tight text-navy">{SITE_NAME}</span>
+        </a>
+        <p class="mt-2 text-sm text-ink-mid">{t('footer.tagline')}</p>
+      </div>
+
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="Alt menü">
+        <a href={localePath(locale, '/blog')} class="text-ink-mid hover:text-navy">
+          {t('footer.blog')}
+        </a>
+        <a href={privacyPath} class="text-ink-mid hover:text-navy">{t('footer.privacy')}</a>
+        <a href={`mailto:${CONTACT_EMAIL}`} class="text-ink-mid hover:text-navy">
+          {t('footer.contact')}
+        </a>
+        {
+          socials.map((s) => (
+            <a href={s.href} rel="me noopener" target="_blank" class="text-ink-mid hover:text-navy">
+              {s.name}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <p class="mt-8 text-xs text-ink-dim">
+      © {year} {SITE_NAME}. {t('footer.rights')}
+    </p>
+  </div>
+</footer>

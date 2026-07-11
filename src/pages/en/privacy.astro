@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, CONTACT_EMAIL } from '../../consts.js';
+
+const locale = 'en' as const;
+const title = `Privacy Policy — ${SITE_NAME}`;
+const description =
+  'Privacy policy for the Roam mobile app and website: what data we collect, why, how we store it, and your rights.';
+const updated = 'July 11, 2026';
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  translations={{ tr: '/gizlilik', en: '/en/privacy' }}
+>
+  <section class="bg-white py-14">
+    <div
+      class="prose prose-lg mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-extrabold prose-headings:text-navy prose-a:text-coral-dark"
+    >
+      <h1>Privacy Policy</h1>
+      <p><em>Last updated: {updated}</em></p>
+
+      <p>
+        This policy explains what data is collected, why, and how it is protected when you use the
+        <strong>{SITE_NAME}</strong> mobile app and website.
+      </p>
+
+      <h2>Data we collect</h2>
+      <ul>
+        <li>
+          <strong>Account information:</strong> your email address or Google sign-in details when
+          you register. Authentication runs on Supabase.
+        </li>
+        <li>
+          <strong>Location data:</strong> used only while the app is open, to show nearby quests
+          and verify check-ins. Your location history is never used for advertising or sold to
+          third parties.
+        </li>
+        <li>
+          <strong>Profile content:</strong> your profile photo and records of your quest
+          completions.
+        </li>
+        <li>
+          <strong>Usage analytics:</strong> anonymized usage events (PostHog, EU servers) and crash
+          reports (Sentry) to improve the app.
+        </li>
+        <li>
+          <strong>Waitlist:</strong> if you join the waitlist on our website we store only your
+          email address and language preference, used solely for the launch announcement.
+        </li>
+      </ul>
+
+      <h2>How we use your data</h2>
+      <ul>
+        <li>To provide core app features (map, quests, points and badges),</li>
+        <li>To detect and fix bugs and improve the experience,</li>
+        <li>To email you about launch and major updates, if you opted in.</li>
+      </ul>
+      <p>We <strong>do not sell</strong> your data or share it with ad networks.</p>
+
+      <h2>Storage & security</h2>
+      <p>
+        Your data is stored on Supabase (PostgreSQL) with access controls (row-level security).
+        All transfers are encrypted with TLS.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        To delete your account and associated data, or to access or correct your data, contact us
+        at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Your rights under GDPR and
+        applicable local laws are reserved.
+      </p>
+
+      <h2>Children’s privacy</h2>
+      <p>{SITE_NAME} is not directed at children under 13.</p>
+
+      <h2>Changes</h2>
+      <p>
+        We will publish any material changes to this policy on this page. Questions:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </div>
+  </section>
+</Base>

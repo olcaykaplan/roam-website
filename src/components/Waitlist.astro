@@ -1,0 +1,121 @@
+---
+// Bekleme listesi formu — e-postaları doğrudan Roam'un mevcut Supabase projesindeki
+// `waitlist` tablosuna yazar (anon key + yalnızca-INSERT RLS politikası; SELECT yok,
+// yani liste dışarıdan okunamaz). Üçüncü parti form servisi = 0, ek maliyet = 0.
+import { type Locale, useTranslations } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** Kompakt varyant (blog altı CTA'da) */
+  compact?: boolean;
+}
+
+const { locale, compact = false } = Astro.props;
+const t = useTranslations(locale);
+
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
+---
+
+<form
+  class="waitlist-form mx-auto w-full max-w-md"
+  data-supabase-url={SUPABASE_URL}
+  data-supabase-key={SUPABASE_ANON_KEY}
+  data-locale={locale}
+  data-msg-success={t('waitlist.success')}
+  data-msg-duplicate={t('waitlist.duplicate')}
+  data-msg-invalid={t('waitlist.invalid')}
+  data-msg-error={t('waitlist.error')}
+  novalidate
+>
+  <div class:list={['flex gap-2', compact ? 'flex-col sm:flex-row' : 'flex-col sm:flex-row']}>
+    <label class="sr-only" for={`waitlist-email-${compact ? 'compact' : 'hero'}`}>
+      {t('waitlist.placeholder')}
+    </label>
+    <input
+      id={`waitlist-email-${compact ? 'compact' : 'hero'}`}
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      inputmode="email"
+      placeholder={t('waitlist.placeholder')}
+      class="h-12 flex-1 rounded-full border border-navy/15 bg-white px-5 text-base text-ink placeholder:text-ink-dim focus:border-coral"
+    />
+    {/* Honeypot — botlar doldurur, insanlar görmez */}
+    <input
+      type="text"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+      class="absolute -left-[9999px] h-0 w-0 opacity-0"
+    />
+    <button
+      type="submit"
+      class="h-12 shrink-0 rounded-full bg-coral px-6 text-base font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark disabled:opacity-60"
+    >
+      {t('waitlist.button')}
+    </button>
+  </div>
+  <p class="waitlist-msg mt-3 hidden text-center text-sm font-medium" role="status"></p>
+</form>
+
+<script>
+  // Tüm waitlist formlarını bağla (sayfada 1+ olabilir).
+  for (const form of document.querySelectorAll<HTMLFormElement>('.waitlist-form')) {
+    const msg = form.querySelector<HTMLParagraphElement>('.waitlist-msg')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const d = form.dataset;
+
+    function show(text: string, ok: boolean) {
+      msg.textContent = text;
+      msg.classList.remove('hidden', 'text-green-700', 'text-coral-dark');
+      msg.classList.add(ok ? 'text-green-700' : 'text-coral-dark');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot doluysa sessizce "başarılı" göster (bot).
+      const honeypot = form.querySelector<HTMLInputElement>('input[name=website]')!;
+      if (honeypot.value) {
+        show(d.msgSuccess!, true);
+        return;
+      }
+
+      const email = form.querySelector<HTMLInputElement>('input[name=email]')!.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        show(d.msgInvalid!, false);
+        return;
+      }
+
+      button.disabled = true;
+      try {
+        const res = await fetch(`${d.supabaseUrl}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: d.supabaseKey!,
+            Authorization: `Bearer ${d.supabaseKey}`,
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify({ email, locale: d.locale, source: 'website' }),
+        });
+
+        if (res.status === 201) {
+          show(d.msgSuccess!, true);
+          form.querySelector<HTMLInputElement>('input[name=email]')!.value = '';
+        } else if (res.status === 409) {
+          show(d.msgDuplicate!, true); // zaten kayıtlı — dostça mesaj
+        } else {
+          show(d.msgError!, false);
+        }
+      } catch {
+        show(d.msgError!, false);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>

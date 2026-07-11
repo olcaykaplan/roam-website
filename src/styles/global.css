@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Roam marka paleti — mobil uygulamanın constants/tokens.js dosyasıyla senkron.
+   Kaynak: coral #f2644a · navy #152638 · canvas #F4F6F8 */
+@theme {
+  --color-coral: #f2644a;
+  --color-coral-dark: #d9503a;
+  --color-coral-light: #fde9e4;
+
+  --color-navy: #152638;
+  --color-navy-800: #1b2e42;
+  --color-navy-700: #223a52;
+
+  --color-ink: #152638;
+  --color-ink-mid: #4a5a70;
+  --color-ink-dim: #8592a3;
+
+  --color-canvas: #f4f6f8;
+  --color-surface-2: #edf0f4;
+
+  --color-gold: #f59e0b;
+
+  /* Görev kategori pin renkleri (uygulamadaki haritayla birebir aynı) */
+  --color-pin-kultur: #dda85a;
+  --color-pin-gastronomi: #ff5165;
+  --color-pin-manzara: #3db8f0;
+  --color-pin-doga: #52c472;
+  --color-pin-zanaat: #ffb82e;
+  --color-pin-gece: #9b72f0;
+  --color-pin-sakli: #ff4b7d;
+
+  /* Sistem fontu: sıfır ek istek → daha hızlı LCP, daha iyi Core Web Vitals */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink font-sans antialiased;
+}
+
+/* Klavye kullanıcıları için görünür odak halkası (erişilebilirlik) */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-coral;
+}

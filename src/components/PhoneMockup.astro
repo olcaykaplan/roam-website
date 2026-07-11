@@ -1,0 +1,82 @@
+---
+// CSS/SVG ile çizilmiş telefon mockup'ı — uygulamanın harita ekranını stilize eder.
+// Gerçek ekran görüntüleri hazır olunca <img> ile değiştirilebilir.
+---
+
+<div class="relative mx-auto w-64 sm:w-72" aria-hidden="true">
+  {/* Telefon çerçevesi */}
+  <div class="rounded-[2.5rem] border-[10px] border-navy bg-navy shadow-2xl shadow-navy/30">
+    <div class="relative overflow-hidden rounded-[1.9rem] bg-canvas">
+      {/* Çentik */}
+      <div class="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-navy"></div>
+
+      {/* Stilize harita */}
+      <svg viewBox="0 0 280 560" class="block w-full" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="560" fill="#eef2f5"></rect>
+        {/* Sokaklar */}
+        <g stroke="#ffffff" stroke-width="10" stroke-linecap="round">
+          <path d="M-10 120 H290"></path>
+          <path d="M-10 260 H290"></path>
+          <path d="M-10 420 H290"></path>
+          <path d="M70 -10 V570"></path>
+          <path d="M200 -10 V570"></path>
+          <path d="M-10 500 Q140 440 290 500" fill="none"></path>
+        </g>
+        <g stroke="#ffffff" stroke-width="5" stroke-linecap="round">
+          <path d="M-10 190 H290"></path>
+          <path d="M135 -10 V570"></path>
+          <path d="M-10 340 H290"></path>
+        </g>
+        {/* Park & su */}
+        <circle cx="45" cy="330" r="34" fill="#d3ecd9"></circle>
+        <path d="M280 0 L210 0 Q240 80 280 90 Z" fill="#cfe6f5"></path>
+
+        {/* Görev pinleri (kategori renkleri) */}
+        <g>
+          <circle cx="70" cy="120" r="13" fill="#dda85a"></circle>
+          <circle cx="70" cy="120" r="5" fill="#fff"></circle>
+          <circle cx="200" cy="190" r="13" fill="#ff5165"></circle>
+          <circle cx="200" cy="190" r="5" fill="#fff"></circle>
+          <circle cx="135" cy="340" r="13" fill="#3db8f0"></circle>
+          <circle cx="135" cy="340" r="5" fill="#fff"></circle>
+          <circle cx="45" cy="330" r="13" fill="#52c472"></circle>
+          <circle cx="45" cy="330" r="5" fill="#fff"></circle>
+          <circle cx="200" cy="470" r="13" fill="#9b72f0"></circle>
+          <circle cx="200" cy="470" r="5" fill="#fff"></circle>
+        </g>
+
+        {/* Kullanıcı konumu */}
+        <circle cx="135" cy="260" r="22" fill="#f2644a" opacity="0.15"></circle>
+        <circle cx="135" cy="260" r="9" fill="#f2644a" stroke="#fff" stroke-width="3"></circle>
+      </svg>
+
+      {/* Görev kartı */}
+      <div class="absolute inset-x-3 bottom-3 rounded-2xl bg-white p-3 shadow-lg">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-coral-light text-lg">
+            🏛️
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="h-2.5 w-3/4 rounded-full bg-navy/80"></div>
+            <div class="mt-1.5 h-2 w-1/2 rounded-full bg-ink-dim/40"></div>
+          </div>
+          <div class="shrink-0 rounded-full bg-gold/15 px-2 py-1 text-xs font-bold text-gold">
+            +50
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Yüzen rozet */}
+  <div
+    class="absolute -right-6 top-16 flex h-14 w-14 rotate-6 items-center justify-center rounded-2xl bg-white text-2xl shadow-xl"
+  >
+    🏅
+  </div>
+  <div
+    class="absolute -left-7 bottom-28 flex h-12 w-12 -rotate-6 items-center justify-center rounded-2xl bg-white text-xl shadow-xl"
+  >
+    📍
+  </div>
+</div>

@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_NAME, CONTACT_EMAIL } from '../consts.js';
+
+const locale = 'tr' as const;
+const title = `Gizlilik Politikası — ${SITE_NAME}`;
+const description =
+  'Roam mobil uygulaması ve web sitesinin gizlilik politikası: hangi verileri neden topladığımız, nasıl sakladığımız ve haklarınız.';
+const updated = '11 Temmuz 2026';
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  translations={{ tr: '/gizlilik', en: '/en/privacy' }}
+>
+  <section class="bg-white py-14">
+    <div
+      class="prose prose-lg mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-extrabold prose-headings:text-navy prose-a:text-coral-dark"
+    >
+      <h1>Gizlilik Politikası</h1>
+      <p><em>Son güncelleme: {updated}</em></p>
+
+      <p>
+        Bu politika, <strong>{SITE_NAME}</strong> mobil uygulamasını ve
+        web sitesini kullandığınızda hangi verilerin, neden toplandığını ve nasıl korunduğunu
+        açıklar.
+      </p>
+
+      <h2>Topladığımız veriler</h2>
+      <ul>
+        <li>
+          <strong>Hesap bilgileri:</strong> Kayıt olurken e-posta adresiniz veya Google hesabınızla
+          giriş bilgileriniz. Kimlik doğrulama altyapımız Supabase üzerinde çalışır.
+        </li>
+        <li>
+          <strong>Konum verisi:</strong> Yalnızca uygulama açıkken, yakınınızdaki görevleri
+          göstermek ve görev tamamlama (check-in) doğrulamak için kullanılır. Konum geçmişiniz
+          reklam amacıyla kullanılmaz ve üçüncü taraflara satılmaz.
+        </li>
+        <li>
+          <strong>Profil içerikleri:</strong> Yüklediğiniz profil fotoğrafı ve görev
+          tamamlamalarınıza ait kayıtlar.
+        </li>
+        <li>
+          <strong>Kullanım analitiği:</strong> Uygulamayı geliştirmek için anonimleştirilmiş
+          kullanım olayları (PostHog, AB sunucuları) ve hata kayıtları (Sentry) toplarız.
+        </li>
+        <li>
+          <strong>Bekleme listesi:</strong> Web sitesinde bekleme listesine katılırsanız yalnızca
+          e-posta adresinizi ve dil tercihinizi saklarız; yalnızca lansman duyurusu için kullanılır.
+        </li>
+      </ul>
+
+      <h2>Verilerinizi nasıl kullanıyoruz?</h2>
+      <ul>
+        <li>Uygulamanın temel işlevlerini (harita, görevler, puan ve rozetler) sunmak,</li>
+        <li>Hataları tespit edip düzeltmek ve deneyimi iyileştirmek,</li>
+        <li>İzin verdiyseniz lansman ve önemli güncellemeler hakkında e-posta göndermek.</li>
+      </ul>
+      <p>Verilerinizi <strong>satmayız</strong> ve reklam ağlarıyla paylaşmayız.</p>
+
+      <h2>Saklama ve güvenlik</h2>
+      <p>
+        Verileriniz Supabase (PostgreSQL) altyapısında, erişim kontrolü (satır seviyesi güvenlik)
+        ile saklanır. Aktarımlar TLS ile şifrelenir.
+      </p>
+
+      <h2>Haklarınız</h2>
+      <p>
+        Hesabınızı ve ilişkili verilerinizi silmeyi, verilerinize erişmeyi veya düzeltilmesini
+        istemek için bize <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> adresinden
+        ulaşabilirsiniz. KVKK ve GDPR kapsamındaki haklarınız saklıdır.
+      </p>
+
+      <h2>Çocukların gizliliği</h2>
+      <p>{SITE_NAME}, 13 yaşın altındaki çocuklara yönelik değildir.</p>
+
+      <h2>Değişiklikler</h2>
+      <p>
+        Bu politikada yapılacak önemli değişiklikleri bu sayfada yayımlarız. Sorularınız için:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </div>
+  </section>
+</Base>

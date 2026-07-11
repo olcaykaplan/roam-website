@@ -1,0 +1,109 @@
+---
+// Blog yazısı şablonu — BlogPosting + Breadcrumb JSON-LD, hreflang, alt CTA.
+import Base from './Base.astro';
+import Waitlist from '../components/Waitlist.astro';
+import { SITE_NAME } from '../consts.js';
+import { type Locale, useTranslations, localePath, defaultLocale } from '../i18n/ui';
+import {
+  type BlogPost,
+  postPath,
+  postLocale,
+  findTranslation,
+  readingMinutes,
+  formatDate,
+} from '../lib/blog';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const locale: Locale = postLocale(post);
+const t = useTranslations(locale);
+
+const translation = await findTranslation(post);
+// hreflang çiftleri: her dil kendi yoluna; çeviri yoksa yalnız kendisi.
+const translations: Partial<Record<Locale, string>> = { [locale]: postPath(post) };
+if (translation) translations[postLocale(translation)] = postPath(translation);
+
+const blogHome = localePath(locale, '/blog');
+const minutes = readingMinutes(post.body);
+
+const postingLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+  inLanguage: locale,
+  author: { '@type': 'Organization', name: post.data.author },
+  publisher: { '@type': 'Organization', name: SITE_NAME },
+  mainEntityOfPage: new URL(postPath(post), Astro.site).toString(),
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: SITE_NAME,
+      item: new URL(localePath(locale), Astro.site).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: new URL(blogHome, Astro.site).toString(),
+    },
+    { '@type': 'ListItem', position: 3, name: post.data.title },
+  ],
+};
+---
+
+<Base
+  locale={locale}
+  title={`${post.data.title} — ${SITE_NAME} Blog`}
+  description={post.data.description}
+  translations={translation || locale === defaultLocale ? translations : undefined}
+  ogType="article"
+  jsonLd={[postingLd, breadcrumbLd]}
+>
+  <article class="bg-white">
+    <header class="bg-navy py-14">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6">
+        <a href={blogHome} class="text-sm font-medium text-white/60 hover:text-white">
+          {t('blog.backtoblog')}
+        </a>
+        <h1 class="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-4 text-sm text-white/60">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {formatDate(post.data.pubDate, locale)}
+          </time>
+          {' · '}{minutes} {t('blog.minread')}{' · '}{post.data.author}
+        </p>
+      </div>
+    </header>
+
+    <div
+      class="prose prose-lg mx-auto max-w-3xl px-4 py-12 sm:px-6 prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-navy prose-a:text-coral-dark prose-strong:text-navy"
+    >
+      <slot />
+    </div>
+
+    {/* Yazı altı dönüşüm CTA'sı — blog trafiğini uygulama kullanıcısına çevirir */}
+    <aside class="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
+      <div class="rounded-3xl bg-navy p-8 text-center sm:p-10">
+        <h2 class="text-2xl font-extrabold tracking-tight text-white">{t('blog.cta.title')}</h2>
+        <p class="mx-auto mt-3 max-w-lg text-white/75">{t('blog.cta.desc')}</p>
+        <div class="mt-6">
+          <Waitlist locale={locale} compact />
+        </div>
+      </div>
+    </aside>
+  </article>
+</Base>
