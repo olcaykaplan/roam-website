@@ -1,11 +1,11 @@
 ---
 import { SITE_NAME } from '../consts.js';
-import { type Locale, useTranslations, localePath, defaultLocale } from '../i18n/ui';
+import { type Locale, locales, localeNames, useTranslations, localePath } from '../i18n/ui';
 import Logo from './Logo.astro';
 
 interface Props {
   locale: Locale;
-  /** Dil değiştiricinin hedefi — sayfanın diğer dildeki karşılığı */
+  /** Dil değiştiricinin hedefi — sayfanın diğer dillerdeki karşılıkları */
   translations?: Partial<Record<Locale, string>>;
 }
 
@@ -15,9 +15,10 @@ const t = useTranslations(locale);
 const home = localePath(locale);
 const blog = localePath(locale, '/blog');
 
-// Dil değiştirici: çevirisi olan sayfada karşılığa, yoksa diğer dilin ana sayfasına
-const otherLocale: Locale = locale === 'tr' ? 'en' : 'tr';
-const switchHref = translations?.[otherLocale] ?? localePath(otherLocale);
+// Dil değiştirici: çevirisi olan sayfada karşılığa, yoksa o dilin ana sayfasına
+const languageLinks = locales
+  .filter((l) => l !== locale)
+  .map((l) => ({ code: l, name: localeNames[l], href: translations?.[l] ?? localePath(l) }));
 
 const nav = [
   { href: `${home}#ozellikler`, label: t('nav.features') },
@@ -48,13 +49,33 @@ const nav = [
     </nav>
 
     <div class="flex items-center gap-3">
-      <a
-        href={switchHref}
-        class="rounded-full border border-navy/10 px-3 py-1.5 text-xs font-semibold text-ink-mid transition-colors hover:border-navy/30 hover:text-navy"
-        aria-label={t('lang.switch')}
-      >
-        {t('lang.switch')}
-      </a>
+      <details class="group relative">
+        <summary
+          class="flex cursor-pointer list-none items-center gap-1 rounded-full border border-navy/10 px-3 py-1.5 text-xs font-semibold text-ink-mid transition-colors hover:border-navy/30 hover:text-navy [&::-webkit-details-marker]:hidden"
+          aria-label={localeNames[locale]}
+        >
+          {locale.toUpperCase()}
+          <span class="text-[0.6rem] transition-transform group-open:rotate-180" aria-hidden="true">
+            ▾
+          </span>
+        </summary>
+        <ul
+          class="absolute right-0 z-50 mt-2 w-32 overflow-hidden rounded-2xl border border-navy/10 bg-white py-1 shadow-lg"
+        >
+          {
+            languageLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="block px-4 py-2 text-sm font-medium text-ink-mid hover:bg-canvas hover:text-navy"
+                >
+                  {l.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
       <a
         href={`${home}#katil`}
         class="hidden rounded-full bg-coral px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark sm:inline-block"

@@ -10,16 +10,16 @@ export default defineConfig({
   trailingSlash: 'ignore',
   i18n: {
     defaultLocale: 'tr',
-    locales: ['tr', 'en'],
+    locales: ['tr', 'en', 'es', 'de'],
     routing: {
-      prefixDefaultLocale: false, // TR kök dizinde (/), EN /en/ altında
+      prefixDefaultLocale: false, // TR kök dizinde (/), diğer diller /en/, /es/, /de/ altında
     },
   },
   integrations: [
     sitemap({
       i18n: {
         defaultLocale: 'tr',
-        locales: { tr: 'tr', en: 'en' },
+        locales: { tr: 'tr', en: 'en', es: 'es', de: 'de' },
       },
     }),
   ],

@@ -13,7 +13,7 @@ const posts = await getPublishedPosts(locale);
   locale={locale}
   title={t('blog.title')}
   description={t('blog.description')}
-  translations={{ tr: '/blog', en: '/en/blog' }}
+  translations={{ tr: '/blog', en: '/en/blog', es: '/es/blog', de: '/de/blog' }}
 >
   <BlogIndex locale={locale} posts={posts} />
 </Base>

@@ -4,7 +4,7 @@ import BlogIndex from '../../../components/BlogIndex.astro';
 import { useTranslations } from '../../../i18n/ui';
 import { getPublishedPosts } from '../../../lib/blog';
 
-const locale = 'en' as const;
+const locale = 'es' as const;
 const t = useTranslations(locale);
 const posts = await getPublishedPosts(locale);
 ---

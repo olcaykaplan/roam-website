@@ -13,7 +13,7 @@ npm run dev            # http://localhost:4321
 
 ## En sık yapılacak iş: blog yazısı yayınlamak
 
-`src/content/blog/tr/` (veya `en/`) klasörüne bir `.md` dosyası ekle, push'la. Bitti.
+`src/content/blog/tr/` (veya `en/`, `es/`, `de/`) klasörüne bir `.md` dosyası ekle, push'la. Bitti.
 Ayrıntı: **[docs/BLOG-REHBERI.md](docs/BLOG-REHBERI.md)**
 
 ## Dokümanlar
@@ -27,7 +27,7 @@ Ayrıntı: **[docs/BLOG-REHBERI.md](docs/BLOG-REHBERI.md)**
 
 ## Mimari özet
 
-- **TR varsayılan dil** (`/`), EN `/en/` altında; hreflang etiketleri otomatik.
+- **TR varsayılan dil** (`/`); EN `/en/`, ES `/es/`, DE `/de/` altında; hreflang etiketleri otomatik.
 - Domain/marka **tek dosyadan** yönetilir: `src/consts.js`.
 - Bekleme listesi formu, mobil uygulamanın Supabase projesindeki `waitlist`
   tablosuna yazar (migration: `roam/supabase/migrations/20260711000017_website_waitlist.sql`).

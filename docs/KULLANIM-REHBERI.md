@@ -17,9 +17,9 @@ Somut olarak sitede şunlar var:
 
 | Parça | Açıklama |
 | --- | --- |
-| Ana sayfa (TR + EN) | Uygulama tanıtımı, telefon mockup'ı, SSS, waitlist formu |
-| Blog | 3 Türkçe + 2 İngilizce yazıyla açıldı; yenisini eklemek tek `.md` dosyası |
-| Gizlilik sayfası | TR `/gizlilik`, EN `/en/privacy` |
+| Ana sayfa (TR/EN/ES/DE) | Uygulama tanıtımı, telefon mockup'ı, SSS, waitlist formu |
+| Blog | 3 TR + 2 EN + 2 ES + 2 DE yazıyla açıldı; yenisini eklemek tek `.md` dosyası |
+| Gizlilik sayfası | `/gizlilik`, `/en/privacy`, `/es/privacidad`, `/de/datenschutz` |
 | Waitlist formu | E-postaları Supabase'deki `waitlist` tablosuna yazar |
 | SEO altyapısı | canonical, hreflang, JSON-LD, sitemap, robots.txt, RSS — hepsi otomatik |
 | 404 sayfası | Kayıp linkler için |
@@ -42,7 +42,7 @@ Somut olarak sitede şunlar var:
 | **Astro 7** | Site üretici (framework) | Sayfaları build anında düz HTML'e çevirir → site çok hızlı, SEO için ideal, sunucu gerektirmez |
 | **Tailwind CSS 4** | Tasarım/stil | CSS dosyalarıyla boğuşmadan hızlı ve tutarlı tasarım |
 | **Astro Content Collections** | Blog sistemi | Yazılar `.md` dosyası; panel yok, veritabanı yok, her şey git'te |
-| **Astro i18n** | Çok dillilik | TR kökte (`/`), EN `/en/` altında; hreflang etiketleri otomatik |
+| **Astro i18n** | Çok dillilik | TR kökte (`/`); EN, ES ve DE kendi önekinde; hreflang otomatik |
 | **@astrojs/sitemap + rss** | SEO | Sitemap ve RSS her build'de kendiliğinden üretilir |
 | **Supabase** | Waitlist veritabanı | Mobil uygulama zaten Supabase kullanıyor; aynı projeye tek tablo eklendi, ekstra maliyet yok |
 | **Cloudflare Pages** | Barındırma (hosting) | Tamamen ücretsiz, sınırsız trafik; her `git push` sonrası otomatik yayınlar |
@@ -78,7 +78,7 @@ yeniler. Durdurmak için terminalde `Ctrl+C`.
 
 ### B) Blog yazısı yayınlamak (en sık yapacağın iş)
 
-1. `src/content/blog/tr/` içine `yazi-slugi.md` dosyası aç (EN yazı için `en/`).
+1. `src/content/blog/tr/` içine `yazi-slugi.md` dosyası aç (diğer diller için `en/`, `es/`, `de/`).
 2. En üste frontmatter (başlık, açıklama, tarih), altına Markdown ile yazını yaz.
 3. Kaydet, push'la:
 
@@ -97,7 +97,7 @@ Bu listeyi yalnızca sen görebilirsin; sitedeki anon anahtar sadece kayıt ekle
 
 ### D) Sitede metin/tasarım değişikliği
 
-- Metinlerin çoğu **iki dilde** şuradadır: [src/i18n/ui.ts](../src/i18n/ui.ts)
+- Metinlerin çoğu **dört dilde (TR/EN/ES/DE)** şuradadır: [src/i18n/ui.ts](../src/i18n/ui.ts)
 - Ana sayfa bölümleri: [src/components/Landing.astro](../src/components/Landing.astro)
 - Marka/iletişim/mağaza linkleri — **tek dosya**: [src/consts.js](../src/consts.js)
 

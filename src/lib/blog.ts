@@ -1,16 +1,17 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { type Locale, localePath } from '../i18n/ui';
+import { type Locale, locales, defaultLocale, localePath } from '../i18n/ui';
 
 export type BlogPost = CollectionEntry<'blog'>;
 
-/** Yazının dili — dosya yolundan (tr/... veya en/...) türetilir. */
+/** Yazının dili — dosya yolundan (tr/..., en/..., es/..., de/...) türetilir. */
 export function postLocale(post: BlogPost): Locale {
-  return post.id.startsWith('en/') ? 'en' : 'tr';
+  const prefix = post.id.split('/')[0] as Locale;
+  return locales.includes(prefix) ? prefix : defaultLocale;
 }
 
 /** URL slug'ı: id'den dil önekini at. Örn 'tr/istanbul-rotasi' → 'istanbul-rotasi' */
 export function postSlug(post: BlogPost): string {
-  return post.id.replace(/^(tr|en)\//, '');
+  return post.id.replace(new RegExp(`^(${locales.join('|')})/`), '');
 }
 
 /** Yazının tam yolu. TR: /blog/slug — EN: /en/blog/slug */
@@ -27,12 +28,18 @@ export async function getPublishedPosts(locale: Locale): Promise<BlogPost[]> {
   return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
-/** translationKey üzerinden yazının diğer dildeki karşılığını bulur (hreflang için). */
-export async function findTranslation(post: BlogPost): Promise<BlogPost | undefined> {
-  if (!post.data.translationKey) return undefined;
-  const other: Locale = postLocale(post) === 'tr' ? 'en' : 'tr';
-  const candidates = await getPublishedPosts(other);
-  return candidates.find((p) => p.data.translationKey === post.data.translationKey);
+/** translationKey üzerinden yazının diğer dillerdeki karşılıklarını bulur (hreflang için). */
+export async function findTranslations(post: BlogPost): Promise<BlogPost[]> {
+  if (!post.data.translationKey) return [];
+  const own = postLocale(post);
+  const all = await getCollection(
+    'blog',
+    (p) =>
+      !p.data.draft &&
+      p.data.translationKey === post.data.translationKey &&
+      postLocale(p) !== own,
+  );
+  return all;
 }
 
 /** Kaba okuma süresi (dk) — 200 kelime/dk. */
@@ -42,8 +49,15 @@ export function readingMinutes(body: string | undefined): number {
 }
 
 /** Tarihi locale'e göre biçimlendirir. */
+const dateLocales: Record<Locale, string> = {
+  tr: 'tr-TR',
+  en: 'en-US',
+  es: 'es-ES',
+  de: 'de-DE',
+};
+
 export function formatDate(date: Date, locale: Locale): string {
-  return date.toLocaleDateString(locale === 'tr' ? 'tr-TR' : 'en-US', {
+  return date.toLocaleDateString(dateLocales[locale], {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

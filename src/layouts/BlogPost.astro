@@ -8,7 +8,7 @@ import {
   type BlogPost,
   postPath,
   postLocale,
-  findTranslation,
+  findTranslations,
   getPublishedPosts,
   readingMinutes,
   formatDate,
@@ -22,10 +22,12 @@ const { post } = Astro.props;
 const locale: Locale = postLocale(post);
 const t = useTranslations(locale);
 
-const translation = await findTranslation(post);
-// hreflang çiftleri: her dil kendi yoluna; çeviri yoksa yalnız kendisi.
+// hreflang: her dil kendi yoluna; çevirisi olan tüm diller listeye girer.
 const translations: Partial<Record<Locale, string>> = { [locale]: postPath(post) };
-if (translation) translations[postLocale(translation)] = postPath(translation);
+for (const tr of await findTranslations(post)) {
+  translations[postLocale(tr)] = postPath(tr);
+}
+const hasTranslation = Object.keys(translations).length > 1;
 
 const blogHome = localePath(locale, '/blog');
 const minutes = readingMinutes(post.body);
@@ -76,7 +78,7 @@ const breadcrumbLd = {
   locale={locale}
   title={`${post.data.title} — ${SITE_NAME} Blog`}
   description={post.data.description}
-  translations={translation || locale === defaultLocale ? translations : undefined}
+  translations={hasTranslation || locale === defaultLocale ? translations : undefined}
   ogType="article"
   jsonLd={[postingLd, breadcrumbLd]}
 >

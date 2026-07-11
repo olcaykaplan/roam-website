@@ -44,6 +44,6 @@ No equipment needed; a phone and comfortable shoes will do. The principle is sim
 2. Pick one and walk to its location,
 3. Check in while you're there and collect your reward.
 
-We're building this experience with [Roam](/en): location-based quests across 7 categories — from culture and food to viewpoints and hidden gems — plus points, badges and city collections. Coming soon to the App Store and Google Play; [join the waitlist](/en#katil) and we'll tell you the day it ships.
+We're building this experience with [Roam](/en): location-based quests across 10 categories — from food and heritage to viewpoints and hidden gems — plus points, badges and city collections. Coming soon to the App Store and Google Play; [join the waitlist](/en#katil) and we'll tell you the day it ships.
 
 Looking for your first route? Start with [one day in Istanbul: a 12-stop walking itinerary](/en/blog/one-day-in-istanbul-walking-route).

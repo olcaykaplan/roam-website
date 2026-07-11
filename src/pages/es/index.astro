@@ -4,7 +4,7 @@ import Landing from '../../components/Landing.astro';
 import { SITE_NAME } from '../../consts.js';
 import { useTranslations } from '../../i18n/ui';
 
-const locale = 'en' as const;
+const locale = 'es' as const;
 const t = useTranslations(locale);
 
 const appLd = {
@@ -14,7 +14,7 @@ const appLd = {
   operatingSystem: 'iOS, Android',
   applicationCategory: 'TravelApplication',
   description: t('meta.description'),
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
 };
 
 const faqLd = {

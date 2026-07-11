@@ -11,7 +11,13 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const year = new Date().getFullYear();
 
-const privacyPath = locale === 'tr' ? '/gizlilik' : '/en/privacy';
+const privacyPaths: Record<Locale, string> = {
+  tr: '/gizlilik',
+  en: '/en/privacy',
+  es: '/es/privacidad',
+  de: '/de/datenschutz',
+};
+const privacyPath = privacyPaths[locale];
 
 const socials = [
   { name: 'Instagram', href: SOCIAL.instagram },

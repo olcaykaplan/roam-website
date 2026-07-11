@@ -1,9 +1,17 @@
 // Arayüz metinleri — TR varsayılan dil, EN /en/ altında.
 // Blog İÇERİKLERİ burada değil, src/content/blog/{tr,en}/ altında Markdown olarak durur.
 
-export const locales = ['tr', 'en'] as const;
+export const locales = ['tr', 'en', 'es', 'de'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'tr';
+
+/** Dil değiştiricide gösterilen yerel adlar. */
+export const localeNames: Record<Locale, string> = {
+  tr: 'Türkçe',
+  en: 'English',
+  es: 'Español',
+  de: 'Deutsch',
+};
 
 /** Locale'e göre URL öneki: TR kökte, EN /en altında. */
 export function localePath(locale: Locale, path = '/'): string {
@@ -124,8 +132,6 @@ export const ui = {
     'notfound.title': 'Sayfa bulunamadı',
     'notfound.desc': 'Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.',
     'notfound.home': 'Ana sayfaya dön',
-
-    'lang.switch': 'English',
   },
   en: {
     'meta.title': 'Roam — Explore the City, Complete Quests',
@@ -238,8 +244,230 @@ export const ui = {
     'notfound.title': 'Page not found',
     'notfound.desc': 'The page you’re looking for may have moved or never existed.',
     'notfound.home': 'Back to home',
+  },
+  es: {
+    'meta.title': 'Roam — Explora la Ciudad, Completa Misiones',
+    'meta.description':
+      'Roam es una app móvil que convierte la exploración urbana en un juego. Encuentra misiones en el mapa, camina hasta el lugar, haz check-in — gana puntos, insignias y colecciones. ¡Únete a la lista de espera!',
 
-    'lang.switch': 'Türkçe',
+    'nav.features': 'Funciones',
+    'nav.how': 'Cómo Funciona',
+    'nav.faq': 'FAQ',
+    'nav.blog': 'Blog',
+    'nav.join': 'Únete',
+
+    'hero.badge': 'Muy pronto en iOS y Android',
+    'hero.title': 'Explora la ciudad, completa misiones, colecciona recuerdos.',
+    'hero.subtitle':
+      'Roam es una app móvil que convierte la exploración urbana en un juego. Mira las misiones en el mapa, camina hasta el lugar, haz check-in — gana puntos, insignias y colecciones.',
+    'hero.cta': 'Únete a la lista de espera',
+    'hero.social_proof': 'Sé de los primeros en probarla en el lanzamiento.',
+
+    'how.title': 'Cómo funciona',
+    'how.subtitle': 'Conviértete en explorador urbano en tres pasos.',
+    'how.step1.title': 'Abre el mapa',
+    'how.step1.desc':
+      'Descubre las misiones a tu alrededor: 10 categorías, de la gastronomía a la aventura, de localizaciones de cine a rincones ocultos.',
+    'how.step2.title': 'Ve a la misión',
+    'how.step2.desc':
+      'Dirígete al lugar de la misión. Cada misión revela una historia o un rincón oculto de la ciudad.',
+    'how.step3.title': 'Haz check-in y gana',
+    'how.step3.desc':
+      'Haz check-in en el lugar; suma puntos, desbloquea insignias y amplía tu colección.',
+
+    'features.title': 'Funciones que convierten el viaje en juego',
+    'features.subtitle':
+      'No es una guía turística — es un juego de exploración. Para quienes quieren conocer la ciudad de verdad.',
+    'features.map.title': 'Mapa de misiones geolocalizado',
+    'features.map.desc':
+      'Las misiones están ligadas a lugares reales. Descubre lo que tienes cerca y traza tu propia ruta.',
+    'features.badges.title': 'Puntos, insignias y colecciones',
+    'features.badges.desc':
+      'Cada misión completada suma puntos. Desbloquea insignias y completa colecciones de ciudades.',
+    'features.categories.title': '10 categorías de exploración',
+    'features.categories.desc':
+      'De la gastronomía a la aventura, de rutas sagradas a localizaciones de cine — explora lo que te gusta.',
+    'features.i18n.title': 'Disponible en 4 idiomas',
+    'features.i18n.desc': 'Turco, inglés, español y alemán — lista para cualquier viajero.',
+
+    'categories.title': 'Categorías de misiones',
+    'categories.gastronomy': 'Gastronomía',
+    'categories.scenery': 'Paisajes',
+    'categories.nature': 'Naturaleza',
+    'categories.craft': 'Artesanía',
+    'categories.nightlife': 'Vida Nocturna',
+    'categories.hidden': 'Rincones Ocultos',
+    'categories.heritage': 'Patrimonio',
+    'categories.adventure': 'Aventura',
+    'categories.movie': 'Cine',
+    'categories.holyroute': 'Ruta Sagrada',
+
+    'waitlist.title': 'Entérate del lanzamiento antes que nadie',
+    'waitlist.subtitle':
+      'Roam llegará muy pronto al App Store y Google Play. Deja tu correo y te avisaremos en cuanto esté disponible — sin spam, solo la noticia del lanzamiento.',
+    'waitlist.first100':
+      'Las primeras 100 personas en la app ganan una Insignia de Lealtad exclusiva — nunca se dará a nadie más.',
+    'waitlist.placeholder': 'Tu correo electrónico',
+    'waitlist.button': 'Unirme a la lista',
+    'waitlist.success': '¡Genial! Estás en la lista — te avisaremos en el lanzamiento. 🎉',
+    'waitlist.duplicate': 'Este correo ya está en la lista. ¡Hasta pronto! 👋',
+    'waitlist.invalid': 'Introduce un correo electrónico válido.',
+    'waitlist.error': 'Algo salió mal. Inténtalo de nuevo.',
+
+    'faq.title': 'Preguntas frecuentes',
+    'faq.q1': '¿Roam es gratis?',
+    'faq.a1': 'Sí. Descargar Roam y completar misiones será gratis.',
+    'faq.q2': '¿En qué plataformas saldrá?',
+    'faq.a2':
+      'Roam se lanzará en iOS (App Store) y Android (Google Play) al mismo tiempo. Únete a la lista de espera y te avisaremos el día que salga.',
+    'faq.q3': '¿En qué ciudades hay misiones?',
+    'faq.a3':
+      'Empezamos por las grandes ciudades de Türkiye; nuevas ciudades y países se añaden rápidamente. La red de misiones crece cada semana.',
+    'faq.q4': '¿Para quién está diseñada Roam?',
+    'faq.a4':
+      'Para quienes quieren conocer más a fondo su ciudad y para viajeros que quieren salirse de la ruta turística.',
+    'faq.q5': '¿Para qué se usan mis datos de ubicación?',
+    'faq.a5':
+      'Tu ubicación solo se usa para mostrar misiones cercanas y verificar los check-ins. Consulta nuestra política de privacidad para más detalles.',
+    'faq.q6': '¿Qué es la Insignia de Lealtad?',
+    'faq.a6':
+      'Las primeras 100 personas en unirse a Roam ganan una Insignia de Lealtad exclusiva que lucirán en su perfil para siempre. Solo la recibirán los primeros 100 usuarios; después no podrá conseguirse de ninguna manera. Únete a la lista de espera para llegar pronto.',
+
+    'blog.title': 'Roam Blog — Guías de Exploración Urbana',
+    'blog.description':
+      'Rutas a pie, rincones ocultos y consejos que convierten la exploración en un juego. Guías para viajeros del equipo de Roam.',
+    'blog.heading': 'Blog',
+    'blog.subheading': 'Guías de exploración urbana, rutas y rincones ocultos.',
+    'blog.readmore': 'Leer más',
+    'blog.published': 'Publicado',
+    'blog.backtoblog': '← Todos los artículos',
+    'blog.minread': 'min de lectura',
+    'blog.cta.title': 'Convierte esta ruta en un juego',
+    'blog.cta.desc':
+      'Con Roam estos lugares se convierten en misiones: ve, haz check-in, gana insignias. Únete a la lista de espera para el lanzamiento.',
+    'blog.related': 'Sigue explorando',
+
+    'footer.tagline': 'Explora la ciudad, completa misiones.',
+    'footer.privacy': 'Política de Privacidad',
+    'footer.blog': 'Blog',
+    'footer.contact': 'Contacto',
+    'footer.rights': 'Todos los derechos reservados.',
+
+    'notfound.title': 'Página no encontrada',
+    'notfound.desc': 'La página que buscas puede haberse movido o no haber existido nunca.',
+    'notfound.home': 'Volver al inicio',
+  },
+  de: {
+    'meta.title': 'Roam — Entdecke die Stadt, Meistere Quests',
+    'meta.description':
+      'Roam ist eine mobile App, die Stadterkundung in ein Spiel verwandelt. Finde Quests auf der Karte, geh zum Ort, checke ein — sammle Punkte, Abzeichen und Sammlungen. Trag dich auf die Warteliste ein!',
+
+    'nav.features': 'Funktionen',
+    'nav.how': 'So Funktioniert’s',
+    'nav.faq': 'FAQ',
+    'nav.blog': 'Blog',
+    'nav.join': 'Mitmachen',
+
+    'hero.badge': 'Bald für iOS und Android',
+    'hero.title': 'Entdecke die Stadt, meistere Quests, sammle Erinnerungen.',
+    'hero.subtitle':
+      'Roam ist eine mobile App, die Stadterkundung in ein Spiel verwandelt. Sieh Quests auf der Karte, geh zum Ort, checke ein — sammle Punkte, Abzeichen und Sammlungen.',
+    'hero.cta': 'Auf die Warteliste',
+    'hero.social_proof': 'Sei beim Launch unter den Ersten.',
+
+    'how.title': 'So funktioniert’s',
+    'how.subtitle': 'In drei Schritten zum Stadtentdecker.',
+    'how.step1.title': 'Öffne die Karte',
+    'how.step1.desc':
+      'Sieh Quests in deiner Nähe: 10 Kategorien, von Gastronomie bis Abenteuer, von Filmkulissen bis zu versteckten Ecken.',
+    'how.step2.title': 'Geh zur Quest',
+    'how.step2.desc':
+      'Mach dich auf den Weg zum Quest-Ort. Jede Quest zeigt dir eine Geschichte oder eine versteckte Ecke der Stadt.',
+    'how.step3.title': 'Einchecken & gewinnen',
+    'how.step3.desc':
+      'Checke vor Ort ein; sammle Punkte, schalte Abzeichen frei und erweitere deine Sammlung.',
+
+    'features.title': 'Funktionen, die Reisen zum Spiel machen',
+    'features.subtitle':
+      'Kein Reiseführer — ein Entdeckungsspiel. Für alle, die eine Stadt wirklich kennenlernen wollen.',
+    'features.map.title': 'Standortbasierte Quest-Karte',
+    'features.map.desc':
+      'Quests sind an echte Orte gebunden. Entdecke, was in deiner Nähe ist, und plane deine eigene Route.',
+    'features.badges.title': 'Punkte, Abzeichen & Sammlungen',
+    'features.badges.desc':
+      'Jede abgeschlossene Quest bringt Punkte. Schalte Abzeichen frei und vervollständige Stadt-Sammlungen.',
+    'features.categories.title': '10 Entdeckungskategorien',
+    'features.categories.desc':
+      'Von Gastronomie bis Abenteuer, von heiligen Routen bis zu Filmkulissen — entdecke, was dich begeistert.',
+    'features.i18n.title': 'In 4 Sprachen verfügbar',
+    'features.i18n.desc': 'Türkisch, Englisch, Spanisch und Deutsch — bereit für alle Reisenden.',
+
+    'categories.title': 'Quest-Kategorien',
+    'categories.gastronomy': 'Gastronomie',
+    'categories.scenery': 'Aussichten',
+    'categories.nature': 'Natur',
+    'categories.craft': 'Handwerk',
+    'categories.nightlife': 'Nachtleben',
+    'categories.hidden': 'Versteckte Ecken',
+    'categories.heritage': 'Kulturerbe',
+    'categories.adventure': 'Abenteuer',
+    'categories.movie': 'Film',
+    'categories.holyroute': 'Heilige Route',
+
+    'waitlist.title': 'Erfahre als Erster vom Launch',
+    'waitlist.subtitle':
+      'Roam kommt bald in den App Store und auf Google Play. Hinterlass deine E-Mail und wir melden uns, sobald es losgeht — kein Spam, nur die Launch-News.',
+    'waitlist.first100':
+      'Die ersten 100 Personen in der App erhalten ein exklusives Treue-Abzeichen — es wird nie an jemand anderen vergeben.',
+    'waitlist.placeholder': 'Deine E-Mail-Adresse',
+    'waitlist.button': 'Eintragen',
+    'waitlist.success': 'Super! Du bist auf der Liste — wir melden uns zum Launch. 🎉',
+    'waitlist.duplicate': 'Diese E-Mail ist schon auf der Liste. Bis bald! 👋',
+    'waitlist.invalid': 'Bitte gib eine gültige E-Mail-Adresse ein.',
+    'waitlist.error': 'Etwas ist schiefgelaufen. Bitte versuch es erneut.',
+
+    'faq.title': 'Häufige Fragen',
+    'faq.q1': 'Ist Roam kostenlos?',
+    'faq.a1': 'Ja. Roam herunterzuladen und Quests abzuschließen wird kostenlos sein.',
+    'faq.q2': 'Auf welchen Plattformen erscheint es?',
+    'faq.a2':
+      'Roam erscheint gleichzeitig für iOS (App Store) und Android (Google Play). Trag dich auf die Warteliste ein und wir sagen dir Bescheid, sobald es verfügbar ist.',
+    'faq.q3': 'In welchen Städten gibt es Quests?',
+    'faq.a3':
+      'Wir starten mit den großen Städten der Türkei; neue Städte und Länder kommen schnell dazu. Das Quest-Netzwerk wächst jede Woche.',
+    'faq.q4': 'Für wen ist Roam gedacht?',
+    'faq.a4':
+      'Für alle, die ihre eigene Stadt tiefer kennenlernen wollen, und für Reisende, die abseits der Touristenpfade unterwegs sein möchten.',
+    'faq.q5': 'Wofür werden meine Standortdaten verwendet?',
+    'faq.a5':
+      'Dein Standort wird nur genutzt, um Quests in deiner Nähe anzuzeigen und Check-ins zu bestätigen. Details findest du in unserer Datenschutzerklärung.',
+    'faq.q6': 'Was ist das Treue-Abzeichen?',
+    'faq.a6':
+      'Die ersten 100 Personen, die Roam beitreten, erhalten ein exklusives Treue-Abzeichen, das für immer in ihrem Profil bleibt. Nur die ersten 100 Nutzer bekommen es — danach ist es auf keinem Weg mehr erhältlich. Trag dich auf die Warteliste ein, um früh dabei zu sein.',
+
+    'blog.title': 'Roam Blog — Guides zur Stadterkundung',
+    'blog.description':
+      'Stadtrouten zu Fuß, versteckte Ecken und Tipps, die Erkundung in ein Spiel verwandeln. Guides für Reisende vom Roam-Team.',
+    'blog.heading': 'Blog',
+    'blog.subheading': 'Guides zur Stadterkundung, Routen und versteckte Ecken.',
+    'blog.readmore': 'Weiterlesen',
+    'blog.published': 'Veröffentlicht',
+    'blog.backtoblog': '← Alle Artikel',
+    'blog.minread': 'Min. Lesezeit',
+    'blog.cta.title': 'Mach aus dieser Route ein Spiel',
+    'blog.cta.desc':
+      'Mit Roam werden diese Orte zu Quests: hingehen, einchecken, Abzeichen sammeln. Trag dich für den Launch auf die Warteliste ein.',
+    'blog.related': 'Weiter entdecken',
+
+    'footer.tagline': 'Entdecke die Stadt, meistere Quests.',
+    'footer.privacy': 'Datenschutzerklärung',
+    'footer.blog': 'Blog',
+    'footer.contact': 'Kontakt',
+    'footer.rights': 'Alle Rechte vorbehalten.',
+
+    'notfound.title': 'Seite nicht gefunden',
+    'notfound.desc': 'Die gesuchte Seite wurde vielleicht verschoben oder hat nie existiert.',
+    'notfound.home': 'Zur Startseite',
   },
 } as const;
 

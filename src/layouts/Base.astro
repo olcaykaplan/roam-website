@@ -50,6 +50,21 @@ const organizationLd = {
 };
 
 const allJsonLd = [organizationLd, ...jsonLd];
+
+const ogLocales: Record<Locale, string> = {
+  tr: 'tr_TR',
+  en: 'en_US',
+  es: 'es_ES',
+  de: 'de_DE',
+};
+
+// RSS keşif linkleri — her dilin kendi beslemesi.
+const rssFeeds: { locale: Locale; path: string }[] = [
+  { locale: 'tr', path: '/rss.xml' },
+  { locale: 'en', path: '/en/rss.xml' },
+  { locale: 'es', path: '/es/rss.xml' },
+  { locale: 'de', path: '/de/rss.xml' },
+];
 ---
 
 <html lang={locale}>
@@ -87,7 +102,7 @@ const allJsonLd = [organizationLd, ...jsonLd];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content={locale === 'tr' ? 'tr_TR' : 'en_US'} />
+    <meta property="og:locale" content={ogLocales[locale]} />
 
     {/* Twitter Card */}
     <meta name="twitter:card" content="summary_large_image" />
@@ -98,18 +113,16 @@ const allJsonLd = [organizationLd, ...jsonLd];
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`${SITE_NAME} Blog (TR)`}
-      href={new URL('/rss.xml', Astro.site)}
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`${SITE_NAME} Blog (EN)`}
-      href={new URL('/en/rss.xml', Astro.site)}
-    />
+    {
+      rssFeeds.map((feed) => (
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME} Blog (${feed.locale.toUpperCase()})`}
+          href={new URL(feed.path, Astro.site)}
+        />
+      ))
+    }
 
     {/* Yapılandırılmış veri (JSON-LD) */}
     {allJsonLd.map((schema) => (

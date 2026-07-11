@@ -43,6 +43,6 @@ Ekipman gerekmez; telefon ve rahat bir ayakkabı yeter. Prensip basit:
 2. Birini seç ve konumuna git,
 3. Oradayken check-in yapıp ödülünü topla.
 
-Biz bu deneyimi [Roam](/) ile inşa ediyoruz: kültürden gastronomiye, manzara noktalarından saklı köşelere 7 kategoride konum tabanlı görevler, puanlar, rozetler ve şehir koleksiyonları. Yakında App Store ve Google Play'de — [bekleme listesine katılırsan](/#katil) lansman günü haber veririz.
+Biz bu deneyimi [Roam](/) ile inşa ediyoruz: gastronomiden kültürel mirasa, manzara noktalarından saklı köşelere 10 kategoride konum tabanlı görevler, puanlar, rozetler ve şehir koleksiyonları. Yakında App Store ve Google Play'de — [bekleme listesine katılırsan](/#katil) lansman günü haber veririz.
 
 İlk keşif rotanı arıyorsan, [İstanbul'da bir günde gezilecek 12 yer](/blog/istanbul-bir-gunde-gezilecek-yerler) yazımız iyi bir başlangıç.

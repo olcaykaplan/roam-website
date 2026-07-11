@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, CONTACT_EMAIL } from '../../consts.js';
+
+const locale = 'es' as const;
+const title = `Política de Privacidad — ${SITE_NAME}`;
+const description =
+  'Política de privacidad de la app móvil y el sitio web de Roam: qué datos recogemos, por qué, cómo los almacenamos y cuáles son tus derechos.';
+const updated = '11 de julio de 2026';
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  translations={{
+    tr: '/gizlilik',
+    en: '/en/privacy',
+    es: '/es/privacidad',
+    de: '/de/datenschutz',
+  }}
+>
+  <section class="bg-white py-14">
+    <div
+      class="prose prose-lg mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-extrabold prose-headings:text-navy prose-a:text-coral-dark"
+    >
+      <h1>Política de Privacidad</h1>
+      <p><em>Última actualización: {updated}</em></p>
+
+      <p>
+        Esta política explica qué datos se recogen, por qué y cómo se protegen cuando usas la app
+        móvil y el sitio web de <strong>{SITE_NAME}</strong>.
+      </p>
+
+      <h2>Datos que recogemos</h2>
+      <ul>
+        <li>
+          <strong>Información de cuenta:</strong> tu correo electrónico o los datos de inicio de
+          sesión con Google al registrarte. La autenticación funciona sobre Supabase.
+        </li>
+        <li>
+          <strong>Datos de ubicación:</strong> se usan solo mientras la app está abierta, para
+          mostrar misiones cercanas y verificar los check-ins. Tu historial de ubicación nunca se
+          usa para publicidad ni se vende a terceros.
+        </li>
+        <li>
+          <strong>Contenido del perfil:</strong> tu foto de perfil y el registro de las misiones
+          que completas.
+        </li>
+        <li>
+          <strong>Analítica de uso:</strong> eventos de uso anonimizados (PostHog, servidores en la
+          UE) e informes de errores (Sentry) para mejorar la app.
+        </li>
+        <li>
+          <strong>Lista de espera:</strong> si te unes a la lista de espera en nuestro sitio web,
+          guardamos únicamente tu correo electrónico y tu preferencia de idioma, usados solo para
+          el anuncio del lanzamiento.
+        </li>
+      </ul>
+
+      <h2>Cómo usamos tus datos</h2>
+      <ul>
+        <li>Para ofrecer las funciones principales de la app (mapa, misiones, puntos e insignias),</li>
+        <li>Para detectar y corregir errores y mejorar la experiencia,</li>
+        <li>Para avisarte por correo del lanzamiento y de novedades importantes, si lo aceptaste.</li>
+      </ul>
+      <p>
+        <strong>No vendemos</strong> tus datos ni los compartimos con redes publicitarias.
+      </p>
+
+      <h2>Almacenamiento y seguridad</h2>
+      <p>
+        Tus datos se almacenan en Supabase (PostgreSQL) con controles de acceso (seguridad a nivel
+        de fila). Todas las transferencias van cifradas con TLS.
+      </p>
+
+      <h2>Tus derechos</h2>
+      <p>
+        Para eliminar tu cuenta y los datos asociados, o para acceder a tus datos o corregirlos,
+        escríbenos a <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Se reservan tus
+        derechos bajo el RGPD y las leyes locales aplicables.
+      </p>
+
+      <h2>Privacidad de menores</h2>
+      <p>{SITE_NAME} no está dirigida a menores de 13 años.</p>
+
+      <h2>Cambios</h2>
+      <p>
+        Publicaremos en esta página cualquier cambio relevante de esta política. Preguntas:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </div>
+  </section>
+</Base>

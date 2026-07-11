@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, CONTACT_EMAIL } from '../../consts.js';
+
+const locale = 'de' as const;
+const title = `Datenschutzerklärung — ${SITE_NAME}`;
+const description =
+  'Datenschutzerklärung für die Roam-App und -Website: welche Daten wir erheben, warum, wie wir sie speichern und welche Rechte du hast.';
+const updated = '11. Juli 2026';
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  translations={{
+    tr: '/gizlilik',
+    en: '/en/privacy',
+    es: '/es/privacidad',
+    de: '/de/datenschutz',
+  }}
+>
+  <section class="bg-white py-14">
+    <div
+      class="prose prose-lg mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-extrabold prose-headings:text-navy prose-a:text-coral-dark"
+    >
+      <h1>Datenschutzerklärung</h1>
+      <p><em>Zuletzt aktualisiert: {updated}</em></p>
+
+      <p>
+        Diese Erklärung beschreibt, welche Daten erhoben werden, warum und wie sie geschützt
+        werden, wenn du die <strong>{SITE_NAME}</strong>-App und -Website nutzt.
+      </p>
+
+      <h2>Daten, die wir erheben</h2>
+      <ul>
+        <li>
+          <strong>Kontoinformationen:</strong> deine E-Mail-Adresse oder deine
+          Google-Anmeldedaten bei der Registrierung. Die Authentifizierung läuft über Supabase.
+        </li>
+        <li>
+          <strong>Standortdaten:</strong> werden nur bei geöffneter App verwendet, um Quests in
+          deiner Nähe anzuzeigen und Check-ins zu bestätigen. Dein Standortverlauf wird niemals
+          für Werbung genutzt oder an Dritte verkauft.
+        </li>
+        <li>
+          <strong>Profilinhalte:</strong> dein Profilbild und deine abgeschlossenen Quests.
+        </li>
+        <li>
+          <strong>Nutzungsanalyse:</strong> anonymisierte Nutzungsereignisse (PostHog, EU-Server)
+          und Absturzberichte (Sentry), um die App zu verbessern.
+        </li>
+        <li>
+          <strong>Warteliste:</strong> wenn du dich auf unserer Website in die Warteliste
+          einträgst, speichern wir nur deine E-Mail-Adresse und deine Spracheinstellung —
+          ausschließlich für die Launch-Ankündigung.
+        </li>
+      </ul>
+
+      <h2>Wie wir deine Daten verwenden</h2>
+      <ul>
+        <li>Um die Kernfunktionen der App bereitzustellen (Karte, Quests, Punkte und Abzeichen),</li>
+        <li>Um Fehler zu finden, zu beheben und das Erlebnis zu verbessern,</li>
+        <li>Um dich per E-Mail über den Launch und wichtige Updates zu informieren, wenn du eingewilligt hast.</li>
+      </ul>
+      <p>
+        Wir <strong>verkaufen deine Daten nicht</strong> und teilen sie nicht mit Werbenetzwerken.
+      </p>
+
+      <h2>Speicherung & Sicherheit</h2>
+      <p>
+        Deine Daten werden bei Supabase (PostgreSQL) mit Zugriffskontrollen (Row-Level Security)
+        gespeichert. Alle Übertragungen sind mit TLS verschlüsselt.
+      </p>
+
+      <h2>Deine Rechte</h2>
+      <p>
+        Um dein Konto und die zugehörigen Daten zu löschen oder auf deine Daten zuzugreifen bzw.
+        sie zu berichtigen, kontaktiere uns unter
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Deine Rechte nach DSGVO und
+        anwendbarem lokalem Recht bleiben vorbehalten.
+      </p>
+
+      <h2>Datenschutz von Kindern</h2>
+      <p>{SITE_NAME} richtet sich nicht an Kinder unter 13 Jahren.</p>
+
+      <h2>Änderungen</h2>
+      <p>
+        Wesentliche Änderungen dieser Erklärung veröffentlichen wir auf dieser Seite. Fragen:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </div>
+  </section>
+</Base>
