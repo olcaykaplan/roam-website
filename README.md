@@ -20,6 +20,7 @@ Ayrıntı: **[docs/BLOG-REHBERI.md](docs/BLOG-REHBERI.md)**
 
 | Doküman | İçerik |
 | --- | --- |
+| [docs/KULLANIM-REHBERI.md](docs/KULLANIM-REHBERI.md) | **Buradan başla:** ne yapıldı, teknolojiler, günlük kullanım akışları |
 | [docs/BLOG-REHBERI.md](docs/BLOG-REHBERI.md) | Yazı yayınlama + SEO yazım kuralları |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Cloudflare Pages kurulumu, domain bağlama, Search Console |
 | [docs/SEO-STRATEJI.md](docs/SEO-STRATEJI.md) | Domain önerileri, içerik stratejisi, tanıtım kanalları |
