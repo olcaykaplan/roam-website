@@ -21,4 +21,4 @@ export const SOCIAL = {
   tiktok: '',
 };
 
-export const CONTACT_EMAIL = 'olcaykaplan62@gmail.com';
+export const CONTACT_EMAIL = 'hello@getroams.com';
