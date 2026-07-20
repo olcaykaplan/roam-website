@@ -44,6 +44,6 @@ Du brauchst keine Ausrüstung; ein Handy und bequeme Schuhe genügen. Das Prinzi
 2. Wähle eine aus und geh zu ihrem Ort,
 3. Checke vor Ort ein und hol dir deine Belohnung.
 
-Genau dieses Erlebnis bauen wir mit [Roam](/de): standortbasierte Quests in 10 Kategorien — von Gastronomie und Kulturerbe bis zu Aussichtspunkten und versteckten Ecken — plus Punkte, Abzeichen und Stadt-Sammlungen. Bald im App Store und bei Google Play; [trag dich auf die Warteliste ein](/de#katil) und wir sagen dir Bescheid, sobald es losgeht.
+Genau dieses Erlebnis bauen wir mit [Roam](/de): standortbasierte Quests in 10 Kategorien — von Gastronomie und Kulturerbe bis zu Aussichtspunkten und versteckten Ecken — plus Punkte, Abzeichen und Stadt-Sammlungen. Bald bei Google Play; [trag dich auf die Warteliste ein](/de#katil) und wir sagen dir Bescheid, sobald es losgeht.
 
 Du suchst deine erste Route? Starte mit [einem Tag in Istanbul: Rundgang mit 12 Stationen](/de/blog/ein-tag-in-istanbul-rundgang).

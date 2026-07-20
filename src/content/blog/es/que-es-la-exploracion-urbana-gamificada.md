@@ -44,6 +44,6 @@ No hace falta equipo; basta un teléfono y calzado cómodo. El principio es simp
 2. Elige una y camina hasta su ubicación,
 3. Haz check-in allí mismo y recoge tu recompensa.
 
-Estamos construyendo esta experiencia con [Roam](/es): misiones geolocalizadas en 10 categorías — de la gastronomía y el patrimonio a los miradores y rincones ocultos — con puntos, insignias y colecciones de ciudades. Muy pronto en el App Store y Google Play; [únete a la lista de espera](/es#katil) y te avisaremos el día del lanzamiento.
+Estamos construyendo esta experiencia con [Roam](/es): misiones geolocalizadas en 10 categorías — de la gastronomía y el patrimonio a los miradores y rincones ocultos — con puntos, insignias y colecciones de ciudades. Muy pronto en Google Play; [únete a la lista de espera](/es#katil) y te avisaremos el día del lanzamiento.
 
 ¿Buscas tu primera ruta? Empieza con [un día en Estambul: itinerario a pie de 12 paradas](/es/blog/un-dia-en-estambul-ruta-a-pie).

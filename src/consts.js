@@ -10,8 +10,12 @@ export const SITE_NAME = 'Roam';
 /** Varsayılan sosyal paylaşım görseli (public/ altına göre). */
 export const OG_IMAGE = '/og-image.png';
 
-/** Uygulama mağaza linkleri — yayınlanınca doldur, boşken waitlist gösterilir. */
-export const APP_STORE_URL = '';
+/**
+ * Google Play linki — uygulama yayınlanınca doldur.
+ * iOS planda yok, o yüzden App Store sabiti bilerek tutulmuyor.
+ * NOT: bu sabit henüz hiçbir bileşende kullanılmıyor; mağaza butonu
+ * eklenirken waitlist ile değişim mantığı da yazılmalı.
+ */
 export const PLAY_STORE_URL = '';
 
 /** Sosyal hesaplar — açtıkça doldur (boş olanlar render edilmez). */

@@ -31,7 +31,7 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.join': 'Katıl',
 
-    'hero.badge': 'Yakında iOS ve Android’de',
+    'hero.badge': 'Yakında Google Play’de',
     'hero.title': 'Şehri keşfet, görevleri tamamla, anıları biriktir.',
     'hero.subtitle':
       'Roam, bulunduğun şehri oyunlaştırılmış görevlerle keşfettiren mobil uygulama. Haritada görevleri gör, konuma git, check-in yap — puan, rozet ve koleksiyonlar kazan.',
@@ -105,7 +105,7 @@ export const ui = {
 
     'waitlist.title': 'Lansmandan ilk sen haberdar ol',
     'waitlist.subtitle':
-      'Roam yakında App Store ve Google Play’de. E-postanı bırak, çıkar çıkmaz haber verelim — spam yok, sadece lansman haberi.',
+      'Roam yakında Google Play’de. E-postanı bırak, çıkar çıkmaz haber verelim — spam yok, sadece lansman haberi.',
     'waitlist.first100':
       'Uygulamadaki ilk 100 kişiye özel Sadakat Rozeti — başka hiç kimseye verilmeyecek.',
     'waitlist.placeholder': 'E-posta adresin',
@@ -121,7 +121,7 @@ export const ui = {
       'Evet. Roam’u indirmek ve görevleri tamamlamak ücretsiz olacak.',
     'faq.q2': 'Hangi platformlarda çıkacak?',
     'faq.a2':
-      'Roam, iOS (App Store) ve Android (Google Play) için aynı anda yayınlanacak. Bekleme listesine katılırsan çıktığı gün haber veririz.',
+      'Roam ilk olarak Android’de (Google Play) yayınlanacak. Bekleme listesine katılırsan çıktığı gün haber veririz.',
     'faq.q3': 'Hangi şehirlerde görev var?',
     'faq.a3':
       'Lansmanda Türkiye’nin büyük şehirlerinden başlıyoruz; yeni şehirler ve ülkeler hızla eklenecek. Görev ağı her hafta büyüyor.',
@@ -170,7 +170,7 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.join': 'Join',
 
-    'hero.badge': 'Coming soon to iOS & Android',
+    'hero.badge': 'Coming soon to Google Play',
     'hero.title': 'Explore the city, complete quests, collect memories.',
     'hero.subtitle':
       'Roam is a mobile app that turns city exploration into a game. See quests on the map, walk to the location, check in — earn points, badges and collections.',
@@ -244,7 +244,7 @@ export const ui = {
 
     'waitlist.title': 'Be the first to know at launch',
     'waitlist.subtitle':
-      'Roam is coming soon to the App Store and Google Play. Leave your email and we’ll ping you the moment it’s live — no spam, launch news only.',
+      'Roam is coming soon to Google Play. Leave your email and we’ll ping you the moment it’s live — no spam, launch news only.',
     'waitlist.first100':
       'The first 100 people in the app earn an exclusive Loyalty Badge — it will never be given to anyone else.',
     'waitlist.placeholder': 'Your email address',
@@ -259,7 +259,7 @@ export const ui = {
     'faq.a1': 'Yes. Downloading Roam and completing quests will be free.',
     'faq.q2': 'Which platforms will it launch on?',
     'faq.a2':
-      'Roam will launch on iOS (App Store) and Android (Google Play) at the same time. Join the waitlist and we’ll tell you the day it ships.',
+      'Roam is launching on Android (Google Play) first. Join the waitlist and we’ll tell you the day it ships.',
     'faq.q3': 'Which cities have quests?',
     'faq.a3':
       'We’re starting with major cities in Türkiye; new cities and countries are added fast. The quest network grows every week.',
@@ -308,7 +308,7 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.join': 'Únete',
 
-    'hero.badge': 'Muy pronto en iOS y Android',
+    'hero.badge': 'Muy pronto en Google Play',
     'hero.title': 'Explora la ciudad, completa misiones, colecciona recuerdos.',
     'hero.subtitle':
       'Roam es una app móvil que convierte la exploración urbana en un juego. Mira las misiones en el mapa, camina hasta el lugar, haz check-in — gana puntos, insignias y colecciones.',
@@ -382,7 +382,7 @@ export const ui = {
 
     'waitlist.title': 'Entérate del lanzamiento antes que nadie',
     'waitlist.subtitle':
-      'Roam llegará muy pronto al App Store y Google Play. Deja tu correo y te avisaremos en cuanto esté disponible — sin spam, solo la noticia del lanzamiento.',
+      'Roam llegará muy pronto a Google Play. Deja tu correo y te avisaremos en cuanto esté disponible — sin spam, solo la noticia del lanzamiento.',
     'waitlist.first100':
       'Las primeras 100 personas en la app ganan una Insignia de Lealtad exclusiva — nunca se dará a nadie más.',
     'waitlist.placeholder': 'Tu correo electrónico',
@@ -397,7 +397,7 @@ export const ui = {
     'faq.a1': 'Sí. Descargar Roam y completar misiones será gratis.',
     'faq.q2': '¿En qué plataformas saldrá?',
     'faq.a2':
-      'Roam se lanzará en iOS (App Store) y Android (Google Play) al mismo tiempo. Únete a la lista de espera y te avisaremos el día que salga.',
+      'Roam se lanzará primero en Android (Google Play). Únete a la lista de espera y te avisaremos el día que salga.',
     'faq.q3': '¿En qué ciudades hay misiones?',
     'faq.a3':
       'Empezamos por las grandes ciudades de Türkiye; nuevas ciudades y países se añaden rápidamente. La red de misiones crece cada semana.',
@@ -446,7 +446,7 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.join': 'Mitmachen',
 
-    'hero.badge': 'Bald für iOS und Android',
+    'hero.badge': 'Bald bei Google Play',
     'hero.title': 'Entdecke die Stadt, meistere Quests, sammle Erinnerungen.',
     'hero.subtitle':
       'Roam ist eine mobile App, die Stadterkundung in ein Spiel verwandelt. Sieh Quests auf der Karte, geh zum Ort, checke ein — sammle Punkte, Abzeichen und Sammlungen.',
@@ -520,7 +520,7 @@ export const ui = {
 
     'waitlist.title': 'Erfahre als Erster vom Launch',
     'waitlist.subtitle':
-      'Roam kommt bald in den App Store und auf Google Play. Hinterlass deine E-Mail und wir melden uns, sobald es losgeht — kein Spam, nur die Launch-News.',
+      'Roam kommt bald zu Google Play. Hinterlass deine E-Mail und wir melden uns, sobald es losgeht — kein Spam, nur die Launch-News.',
     'waitlist.first100':
       'Die ersten 100 Personen in der App erhalten ein exklusives Treue-Abzeichen — es wird nie an jemand anderen vergeben.',
     'waitlist.placeholder': 'Deine E-Mail-Adresse',
@@ -535,7 +535,7 @@ export const ui = {
     'faq.a1': 'Ja. Roam herunterzuladen und Quests abzuschließen wird kostenlos sein.',
     'faq.q2': 'Auf welchen Plattformen erscheint es?',
     'faq.a2':
-      'Roam erscheint gleichzeitig für iOS (App Store) und Android (Google Play). Trag dich auf die Warteliste ein und wir sagen dir Bescheid, sobald es verfügbar ist.',
+      'Roam erscheint zuerst für Android (Google Play). Trag dich auf die Warteliste ein und wir sagen dir Bescheid, sobald es verfügbar ist.',
     'faq.q3': 'In welchen Städten gibt es Quests?',
     'faq.a3':
       'Wir starten mit den großen Städten der Türkei; neue Städte und Länder kommen schnell dazu. Das Quest-Netzwerk wächst jede Woche.',
