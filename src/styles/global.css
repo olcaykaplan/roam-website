@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Self-host değişken fontlar (@fontsource) — Google Fonts isteği yok:
+   GDPR-uyumlu (DE trafiği) ve tek origin'den servis → hızlı LCP. */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/montserrat";
+
 /* Roam marka paleti — mobil uygulamanın constants/tokens.js dosyasıyla senkron.
    Kaynak: coral #f2644a · navy #152638 · canvas #F4F6F8 */
 @theme {
@@ -30,9 +35,11 @@
   --color-pin-gece: #9b72f0;
   --color-pin-sakli: #ff4b7d;
 
-  /* Sistem fontu: sıfır ek istek → daha hızlı LCP, daha iyi Core Web Vitals */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  /* Gövde: Inter — okunaklı ve nötr. Başlık: Montserrat — enerjik marka sesi. */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Montserrat Variable", "Inter Variable", ui-sans-serif,
+    system-ui, sans-serif;
 }
 
 html {
@@ -43,7 +50,89 @@ body {
   @apply bg-white text-ink font-sans antialiased;
 }
 
+/* Başlıklar marka fontuyla — blog prose dahil her yerde tutarlı. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
 /* Klavye kullanıcıları için görünür odak halkası (erişilebilirlik) */
 :focus-visible {
   @apply outline-2 outline-offset-2 outline-coral;
+}
+
+/* ── Animasyonlar ─────────────────────────────────────────────────────────────
+   Abartısız, sürekli hareketler; hepsi prefers-reduced-motion'a saygılı. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ping-soft {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.6;
+    }
+    80%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: float 6.5s ease-in-out 1.2s infinite;
+  }
+  .animate-glow {
+    animation: glow-pulse 9s ease-in-out infinite;
+  }
+  .animate-glow-delayed {
+    animation: glow-pulse 11s ease-in-out 2.5s infinite;
+  }
+
+  /* Harita üzerindeki canlı konum halkası (SVG circle) */
+  .animate-ping-soft {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ping-soft 2.6s ease-out infinite;
+  }
+
+  /* Scroll-reveal: .reveal sınıfı yalnızca JS tarafından eklenir →
+     JS kapalıyken içerik her zaman görünür (progressive enhancement). */
+  .reveal {
+    opacity: 0;
+    translate: 0 24px;
+    transition:
+      opacity 0.6s ease,
+      translate 0.6s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
 }

@@ -37,6 +37,9 @@ export const ui = {
       'Roam, bulunduğun şehri oyunlaştırılmış görevlerle keşfettiren mobil uygulama. Haritada görevleri gör, konuma git, check-in yap — puan, rozet ve koleksiyonlar kazan.',
     'hero.cta': 'Bekleme listesine katıl',
     'hero.social_proof': 'Lansmanda ilk denecekler arasında ol.',
+    'hero.card.badge.title': 'Rozet açıldı!',
+    'hero.card.badge.desc': 'Lezzet Avcısı',
+    'hero.card.nearby': 'Yakınında 3 görev var',
 
     'how.title': 'Nasıl çalışır?',
     'how.subtitle': 'Üç adımda şehir kâşifi ol.',
@@ -65,17 +68,40 @@ export const ui = {
     'features.i18n.title': '4 dilde kullanılabilir',
     'features.i18n.desc': 'Türkçe, İngilizce, İspanyolca ve Almanca desteğiyle her gezgine uygun.',
 
-    'categories.title': 'Görev kategorileri',
+    'categories.eyebrow': 'Moduna göre keşfet',
+    'categories.title': '10 kategori, 10 farklı şehir hâli',
+    'categories.subtitle':
+      'Her görev bir kategoriye ait. Bugün canın ne istiyorsa haritayı ona göre filtrele — gerisi şehrin işi.',
     'categories.gastronomy': 'Gastronomi',
+    'categories.gastronomy.desc':
+      'Sokak lezzetleri, pazar tezgâhları ve yerel tatlar — şehir ne yiyorsa onu yediğin görevler.',
     'categories.scenery': 'Manzara',
+    'categories.scenery.desc':
+      'Seyir tepeleri, panoramalar ve gün batımı noktaları — manzarayla biten görevler.',
     'categories.nature': 'Doğa',
+    'categories.nature.desc':
+      'Ormanlar, şelaleler, adalar ve patikalar — seni yeşile çıkaran görevler.',
     'categories.craft': 'Zanaat',
+    'categories.craft.desc':
+      'Ustalar, atölyeler ve yaşayan gelenekler — el emeğini yerinde izlediğin görevler.',
     'categories.nightlife': 'Gece Hayatı',
+    'categories.nightlife.desc':
+      'Barlar, canlı müzik ve gece pazarları — hava karardıktan sonra başlayan görevler.',
     'categories.hidden': 'Saklı Köşeler',
+    'categories.hidden.desc':
+      'Ara sokaklar ve sadece yerlilerin bildiği köşeler — hiçbir rehberde yazmayan yerler.',
     'categories.heritage': 'Miras',
+    'categories.heritage.desc':
+      'Tapınaklar, saraylar ve eski mahalleler — şehrin tarihinde yürüten görevler.',
     'categories.adventure': 'Macera',
+    'categories.adventure.desc':
+      'Yürüyüş, tırmanış, sörf ve spor — nabzını yükselten görevler.',
     'categories.movie': 'Film',
+    'categories.movie.desc':
+      'Film ve dizi mekânları — ikonik sahnelerin çekildiği noktada durduğun görevler.',
     'categories.holyroute': 'Kutsal Rota',
+    'categories.holyroute.desc':
+      'Kutsal mekânlar ve hac yolları — türbeler, kiliseler ve ritüeller boyunca görevler.',
 
     'waitlist.title': 'Lansmandan ilk sen haberdar ol',
     'waitlist.subtitle':
@@ -150,6 +176,9 @@ export const ui = {
       'Roam is a mobile app that turns city exploration into a game. See quests on the map, walk to the location, check in — earn points, badges and collections.',
     'hero.cta': 'Join the waitlist',
     'hero.social_proof': 'Be among the first to try it at launch.',
+    'hero.card.badge.title': 'Badge unlocked!',
+    'hero.card.badge.desc': 'Flavor Hunter',
+    'hero.card.nearby': '3 quests near you',
 
     'how.title': 'How it works',
     'how.subtitle': 'Become a city explorer in three steps.',
@@ -178,17 +207,40 @@ export const ui = {
     'features.i18n.title': 'Available in 4 languages',
     'features.i18n.desc': 'Turkish, English, Spanish and German — ready for every traveler.',
 
-    'categories.title': 'Quest categories',
+    'categories.eyebrow': 'Explore by mood',
+    'categories.title': '10 categories, 10 sides of the city',
+    'categories.subtitle':
+      'Every quest belongs to a category. Filter the map by whatever you feel like today — the city does the rest.',
     'categories.gastronomy': 'Gastronomy',
+    'categories.gastronomy.desc':
+      'Street food, market stalls and local dishes — quests where you eat what the city eats.',
     'categories.scenery': 'Scenery',
+    'categories.scenery.desc':
+      'Viewpoints, panoramas and golden-hour spots — quests that end with a view.',
     'categories.nature': 'Nature',
+    'categories.nature.desc':
+      'Forests, waterfalls, islands and trails — quests that take you into the green.',
     'categories.craft': 'Craft',
+    'categories.craft.desc':
+      'Artisans, workshops and living traditions — quests where you watch things made by hand.',
     'categories.nightlife': 'Nightlife',
+    'categories.nightlife.desc':
+      'Bars, live music and night markets — quests that start after dark.',
     'categories.hidden': 'Hidden Gems',
+    'categories.hidden.desc':
+      'Back alleys and locals-only corners — quests to places no guidebook lists.',
     'categories.heritage': 'Heritage',
+    'categories.heritage.desc':
+      'Temples, palaces and old quarters — quests that walk you through the city’s history.',
     'categories.adventure': 'Adventure',
+    'categories.adventure.desc':
+      'Hikes, climbs, surf and sport — quests that get your heart rate up.',
     'categories.movie': 'Movie',
+    'categories.movie.desc':
+      'Film and series locations — quests to stand where iconic scenes were shot.',
     'categories.holyroute': 'Holy Route',
+    'categories.holyroute.desc':
+      'Sacred sites and pilgrimage paths — quests along shrines, churches and rituals.',
 
     'waitlist.title': 'Be the first to know at launch',
     'waitlist.subtitle':
@@ -262,6 +314,9 @@ export const ui = {
       'Roam es una app móvil que convierte la exploración urbana en un juego. Mira las misiones en el mapa, camina hasta el lugar, haz check-in — gana puntos, insignias y colecciones.',
     'hero.cta': 'Únete a la lista de espera',
     'hero.social_proof': 'Sé de los primeros en probarla en el lanzamiento.',
+    'hero.card.badge.title': '¡Insignia desbloqueada!',
+    'hero.card.badge.desc': 'Cazador de Sabores',
+    'hero.card.nearby': '3 misiones cerca de ti',
 
     'how.title': 'Cómo funciona',
     'how.subtitle': 'Conviértete en explorador urbano en tres pasos.',
@@ -290,17 +345,40 @@ export const ui = {
     'features.i18n.title': 'Disponible en 4 idiomas',
     'features.i18n.desc': 'Turco, inglés, español y alemán — lista para cualquier viajero.',
 
-    'categories.title': 'Categorías de misiones',
+    'categories.eyebrow': 'Explora a tu manera',
+    'categories.title': '10 categorías, 10 caras de la ciudad',
+    'categories.subtitle':
+      'Cada misión pertenece a una categoría. Filtra el mapa según lo que te apetezca hoy — la ciudad hace el resto.',
     'categories.gastronomy': 'Gastronomía',
+    'categories.gastronomy.desc':
+      'Comida callejera, puestos de mercado y platos locales — misiones donde comes lo que come la ciudad.',
     'categories.scenery': 'Paisajes',
+    'categories.scenery.desc':
+      'Miradores, panorámicas y rincones de hora dorada — misiones que terminan con vistas.',
     'categories.nature': 'Naturaleza',
+    'categories.nature.desc':
+      'Bosques, cascadas, islas y senderos — misiones que te llevan al verde.',
     'categories.craft': 'Artesanía',
+    'categories.craft.desc':
+      'Artesanos, talleres y tradiciones vivas — misiones donde ves crear a mano.',
     'categories.nightlife': 'Vida Nocturna',
+    'categories.nightlife.desc':
+      'Bares, música en vivo y mercados nocturnos — misiones que empiezan al caer la noche.',
     'categories.hidden': 'Rincones Ocultos',
+    'categories.hidden.desc':
+      'Callejones y rincones que solo conocen los locales — lugares que no salen en las guías.',
     'categories.heritage': 'Patrimonio',
+    'categories.heritage.desc':
+      'Templos, palacios y barrios antiguos — misiones que recorren la historia de la ciudad.',
     'categories.adventure': 'Aventura',
+    'categories.adventure.desc':
+      'Senderismo, escalada, surf y deporte — misiones que aceleran tu pulso.',
     'categories.movie': 'Cine',
+    'categories.movie.desc':
+      'Localizaciones de cine y series — misiones para pisar donde se rodaron escenas icónicas.',
     'categories.holyroute': 'Ruta Sagrada',
+    'categories.holyroute.desc':
+      'Lugares sagrados y caminos de peregrinación — misiones entre santuarios, iglesias y rituales.',
 
     'waitlist.title': 'Entérate del lanzamiento antes que nadie',
     'waitlist.subtitle':
@@ -374,6 +452,9 @@ export const ui = {
       'Roam ist eine mobile App, die Stadterkundung in ein Spiel verwandelt. Sieh Quests auf der Karte, geh zum Ort, checke ein — sammle Punkte, Abzeichen und Sammlungen.',
     'hero.cta': 'Auf die Warteliste',
     'hero.social_proof': 'Sei beim Launch unter den Ersten.',
+    'hero.card.badge.title': 'Abzeichen freigeschaltet!',
+    'hero.card.badge.desc': 'Geschmacksjäger',
+    'hero.card.nearby': '3 Quests in deiner Nähe',
 
     'how.title': 'So funktioniert’s',
     'how.subtitle': 'In drei Schritten zum Stadtentdecker.',
@@ -402,17 +483,40 @@ export const ui = {
     'features.i18n.title': 'In 4 Sprachen verfügbar',
     'features.i18n.desc': 'Türkisch, Englisch, Spanisch und Deutsch — bereit für alle Reisenden.',
 
-    'categories.title': 'Quest-Kategorien',
+    'categories.eyebrow': 'Entdecke nach Laune',
+    'categories.title': '10 Kategorien, 10 Gesichter der Stadt',
+    'categories.subtitle':
+      'Jede Quest gehört zu einer Kategorie. Filtere die Karte nach dem, worauf du heute Lust hast — den Rest erledigt die Stadt.',
     'categories.gastronomy': 'Gastronomie',
+    'categories.gastronomy.desc':
+      'Streetfood, Marktstände und lokale Gerichte — Quests, bei denen du isst, was die Stadt isst.',
     'categories.scenery': 'Aussichten',
+    'categories.scenery.desc':
+      'Aussichtspunkte, Panoramen und Golden-Hour-Spots — Quests, die mit einem Ausblick enden.',
     'categories.nature': 'Natur',
+    'categories.nature.desc':
+      'Wälder, Wasserfälle, Inseln und Pfade — Quests, die dich ins Grüne führen.',
     'categories.craft': 'Handwerk',
+    'categories.craft.desc':
+      'Kunsthandwerk, Werkstätten und lebendige Traditionen — Quests, bei denen Handarbeit entsteht.',
     'categories.nightlife': 'Nachtleben',
+    'categories.nightlife.desc':
+      'Bars, Livemusik und Nachtmärkte — Quests, die nach Einbruch der Dunkelheit beginnen.',
     'categories.hidden': 'Versteckte Ecken',
+    'categories.hidden.desc':
+      'Gassen und Ecken, die nur Einheimische kennen — Orte, die in keinem Reiseführer stehen.',
     'categories.heritage': 'Kulturerbe',
+    'categories.heritage.desc':
+      'Tempel, Paläste und Altstadtviertel — Quests durch die Geschichte der Stadt.',
     'categories.adventure': 'Abenteuer',
+    'categories.adventure.desc':
+      'Wandern, Klettern, Surfen und Sport — Quests, die deinen Puls hochtreiben.',
     'categories.movie': 'Film',
+    'categories.movie.desc':
+      'Film- und Seriendrehorte — Quests dorthin, wo ikonische Szenen entstanden.',
     'categories.holyroute': 'Heilige Route',
+    'categories.holyroute.desc':
+      'Heilige Stätten und Pilgerwege — Quests entlang von Schreinen, Kirchen und Ritualen.',
 
     'waitlist.title': 'Erfahre als Erster vom Launch',
     'waitlist.subtitle':
