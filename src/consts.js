@@ -3,7 +3,7 @@
 // robots.txt, RSS ve hreflang etiketlerinin tamamı buradan türetilir.
 
 /** Canlı site adresi (sonda / olmadan). Domain alınınca güncelle. */
-export const SITE_URL = 'https://roam-website.pages.dev';
+export const SITE_URL = 'https://getroams.com';
 
 export const SITE_NAME = 'Roam';
 
