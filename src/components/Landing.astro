@@ -1,8 +1,11 @@
 ---
 // Landing page içeriği — TR ve EN sayfaları bu bileşeni farklı locale ile render eder.
 import { type Locale, useTranslations } from '../i18n/ui';
+import { STATS, CITIES } from '../consts.js';
+import { getCityPages, cityPath } from '../lib/roam-data';
 import Waitlist from './Waitlist.astro';
 import PhoneMockup from './PhoneMockup.astro';
+import FounderBadge from './FounderBadge.astro';
 
 interface Props {
   locale: Locale;
@@ -20,8 +23,21 @@ const steps = [
 const features = [
   { title: t('features.map.title'), desc: t('features.map.desc'), emoji: '📍' },
   { title: t('features.badges.title'), desc: t('features.badges.desc'), emoji: '🏆' },
-  { title: t('features.categories.title'), desc: t('features.categories.desc'), emoji: '🧭' },
+  { title: t('features.curated.title'), desc: t('features.curated.desc'), emoji: '🧭' },
+  { title: t('features.proof.title'), desc: t('features.proof.desc'), emoji: '📸' },
+  { title: t('features.categories.title'), desc: t('features.categories.desc'), emoji: '🗂️' },
   { title: t('features.i18n.title'), desc: t('features.i18n.desc'), emoji: '🌍' },
+];
+
+// Şehir çipleri: sayfası olan şehir kendi sayfasına link verir.
+const cityPages = new Set((await getCityPages(locale)).map((c) => c.slug));
+
+// Hero altındaki rakam şeridi — değerler consts.js'ten (gerçek veritabanı rakamları).
+const stats = [
+  { value: STATS.quests, label: t('stats.quests') },
+  { value: STATS.cities, label: t('stats.cities') },
+  { value: STATS.countries, label: t('stats.countries') },
+  { value: STATS.categories, label: t('stats.categories') },
 ];
 
 // Uygulamadaki gerçek kategoriler — ikonlar public/, renkler ve açıklamalar
@@ -125,21 +141,76 @@ const faqs = [
         {t('hero.subtitle')}
       </p>
 
-      <div class="mt-8">
+      <div class="mt-8 lg:[&_.waitlist-form]:mx-0">
         <Waitlist locale={locale} />
-        <p class="mt-3 text-sm text-white/50">{t('hero.social_proof')}</p>
-        <p
-          class="mx-auto mt-4 inline-flex max-w-md items-start gap-2 rounded-2xl border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-left text-sm font-medium text-amber-200 lg:mx-0"
-        >
-          <span aria-hidden="true">🏅</span>
-          {t('waitlist.first100')}
-        </p>
+        <p class="mt-3 text-sm text-white/60">{t('hero.social_proof')}</p>
+        <FounderBadge locale={locale} class="mt-4" />
       </div>
     </div>
 
-    <div class="hidden justify-center lg:flex">
+    {/* Mockup mobilde de görünür — ziyaretçilerin çoğu telefondan gelir */}
+    <div class="flex justify-center px-10 sm:px-0">
       <PhoneMockup locale={locale} />
     </div>
+  </div>
+
+  {/* Rakam şeridi — "boş uygulama" izlenimine karşı somut içerik kanıtı */}
+  <div class="relative border-t border-white/10">
+    <dl class="mx-auto grid max-w-6xl grid-cols-2 gap-y-6 px-4 py-8 text-center sm:grid-cols-4 sm:px-6">
+      {
+        stats.map((s) => (
+          <div class="flex flex-col-reverse">
+            <dt class="mt-1 text-sm font-medium text-white/60">{s.label}</dt>
+            <dd class="font-heading text-3xl font-extrabold tracking-tight text-white">{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+{/* ── Şehirler ── */}
+<section id="sehirler" class="scroll-mt-20 bg-canvas py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="text-center" data-reveal>
+      <span class="text-xs font-bold uppercase tracking-widest text-coral">
+        {t('cities.eyebrow')}
+      </span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
+        {t('cities.title')}
+      </h2>
+      <p class="mx-auto mt-3 max-w-2xl text-lg text-ink-mid">{t('cities.subtitle')}</p>
+    </div>
+
+    <ul class="mt-10 flex flex-wrap justify-center gap-3" data-reveal>
+      {
+        CITIES.map((c) =>
+          cityPages.has(c.id) ? (
+            <li>
+              <a
+                href={cityPath(locale, c.id)}
+                class="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-base font-semibold text-navy shadow-sm ring-1 ring-navy/5 transition-all hover:-translate-y-0.5 hover:text-coral-dark hover:shadow-md"
+              >
+                <span aria-hidden="true">{c.flag}</span>
+                {c[locale]}
+                <span aria-hidden="true" class="text-coral">→</span>
+              </a>
+            </li>
+          ) : (
+            <li class="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-base font-semibold text-navy shadow-sm ring-1 ring-navy/5">
+              <span aria-hidden="true">{c.flag}</span>
+              {c[locale]}
+            </li>
+          ),
+        )
+      }
+    </ul>
+    <p class="mx-auto mt-8 max-w-xl text-center text-sm text-ink-mid">
+      {t('cities.more')}{' '}
+      <a href="#katil" class="font-semibold text-coral-dark underline underline-offset-2">
+        {t('waitlist.button')} →
+      </a>
+    </p>
   </div>
 </section>
 
@@ -190,7 +261,7 @@ const faqs = [
       </p>
     </div>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         features.map((f, i) => (
           <article
@@ -253,12 +324,7 @@ const faqs = [
       {t('waitlist.title')}
     </h2>
     <p class="mx-auto mt-4 max-w-xl text-lg text-white/75">{t('waitlist.subtitle')}</p>
-    <p
-      class="mx-auto mt-5 inline-flex items-start gap-2 rounded-2xl border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-left text-sm font-medium text-amber-200"
-    >
-      <span aria-hidden="true">🏅</span>
-      {t('waitlist.first100')}
-    </p>
+    <FounderBadge locale={locale} class="mt-5" />
     <div class="mt-8">
       <Waitlist locale={locale} />
     </div>

@@ -72,4 +72,4 @@ Camina de Tünel hacia Taksim: el tranvía nostálgico, los pasajes históricos 
 
 ## ¿Quieres convertir esta ruta en un juego?
 
-Lugares como estos se convierten en **misiones** en [Roam](/es): caminas hasta allí, haces check-in y ganas puntos e insignias. Si prefieres *jugar* la ciudad en vez de solo visitarla — [únete a la lista de espera](/es#katil) y te avisaremos en el lanzamiento.
+Lugares como estos se convierten en **misiones** en [Roam](/es/): caminas hasta allí, haces check-in y ganas puntos e insignias. Si prefieres *jugar* la ciudad en vez de solo visitarla — [únete a la lista de espera](/es/#katil) y te avisaremos en el lanzamiento.

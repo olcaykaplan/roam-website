@@ -72,4 +72,4 @@ Walk from Tünel toward Taksim: the nostalgic tram, historic arcades and Çiçek
 
 ## Want to turn this route into a game?
 
-Places like these become **quests** in [Roam](/en): you walk there, check in, and earn points and badges. If you'd rather *play* the city than just tour it — [join the waitlist](/en#katil) and we'll ping you at launch.
+Places like these become **quests** in [Roam](/en/): you walk there, check in, and earn points and badges. If you'd rather *play* the city than just tour it — [join the waitlist](/en/#katil) and we'll ping you at launch.

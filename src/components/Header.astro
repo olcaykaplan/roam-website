@@ -1,6 +1,13 @@
 ---
 import { SITE_NAME } from '../consts.js';
-import { type Locale, locales, localeNames, useTranslations, localePath } from '../i18n/ui';
+import {
+  type Locale,
+  locales,
+  localeNames,
+  useTranslations,
+  localePath,
+  withSlash,
+} from '../i18n/ui';
 import Logo from './Logo.astro';
 
 interface Props {
@@ -18,9 +25,11 @@ const blog = localePath(locale, '/blog');
 // Dil değiştirici: çevirisi olan sayfada karşılığa, yoksa o dilin ana sayfasına
 const languageLinks = locales
   .filter((l) => l !== locale)
-  .map((l) => ({ code: l, name: localeNames[l], href: translations?.[l] ?? localePath(l) }));
+  .map((l) => ({ code: l, name: localeNames[l], href: withSlash(translations?.[l] ?? localePath(l)),
+  }));
 
 const nav = [
+  { href: `${home}#sehirler`, label: t('nav.cities') },
   { href: `${home}#ozellikler`, label: t('nav.features') },
   { href: `${home}#nasil-calisir`, label: t('nav.how') },
   { href: `${home}#sss`, label: t('nav.faq') },
@@ -78,7 +87,7 @@ const nav = [
       </details>
       <a
         href={`${home}#katil`}
-        class="hidden rounded-full bg-coral px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark sm:inline-block"
+        class="whitespace-nowrap rounded-full bg-coral px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark sm:px-4 sm:text-sm"
       >
         {t('nav.join')}
       </a>

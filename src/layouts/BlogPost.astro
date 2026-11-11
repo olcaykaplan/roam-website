@@ -2,7 +2,7 @@
 // Blog yazısı şablonu — BlogPosting + Breadcrumb JSON-LD, hreflang, alt CTA.
 import Base from './Base.astro';
 import Waitlist from '../components/Waitlist.astro';
-import { SITE_NAME } from '../consts.js';
+import { SITE_NAME, OG_IMAGE } from '../consts.js';
 import { type Locale, useTranslations, localePath, defaultLocale } from '../i18n/ui';
 import {
   type BlogPost,
@@ -49,7 +49,12 @@ const postingLd = {
   ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
   inLanguage: locale,
   author: { '@type': 'Organization', name: post.data.author },
-  publisher: { '@type': 'Organization', name: SITE_NAME },
+  image: new URL(post.data.cover ?? OG_IMAGE, Astro.site).toString(),
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    logo: { '@type': 'ImageObject', url: new URL('/logo.png', Astro.site).toString() },
+  },
   mainEntityOfPage: new URL(postPath(post), Astro.site).toString(),
 };
 

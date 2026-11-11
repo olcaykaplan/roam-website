@@ -4,7 +4,7 @@
 // tek yerden üretilir; sayfalar sadece props geçer.
 import '../styles/global.css';
 import { SITE_NAME, OG_IMAGE, SOCIAL } from '../consts.js';
-import { type Locale, defaultLocale, useTranslations, localePath } from '../i18n/ui';
+import { type Locale, defaultLocale, useTranslations, localePath, withSlash } from '../i18n/ui';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -49,7 +49,20 @@ const organizationLd = {
   sameAs: Object.values(SOCIAL).filter(Boolean),
 };
 
-const allJsonLd = [organizationLd, ...jsonLd];
+// Site şeması — Google'ın arama sonucunda site adını ("Roam") doğru göstermesi için.
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: Astro.site?.toString(),
+  inLanguage: locale,
+};
+
+const allJsonLd = [organizationLd, websiteLd, ...jsonLd];
+
+// x-default: dili eşleşmeyen ziyaretçiye gösterilecek sürüm. Uluslararası kitle
+// için İngilizce; İngilizce karşılığı olmayan sayfada varsayılan dile (TR) düşer.
+const xDefault = translations?.en ?? translations?.[defaultLocale];
 
 const ogLocales: Record<Locale, string> = {
   tr: 'tr_TR',
@@ -82,16 +95,12 @@ const rssFeeds: { locale: Locale; path: string }[] = [
     {
       translations &&
         Object.entries(translations).map(([lang, path]) => (
-          <link rel="alternate" hreflang={lang} href={new URL(path, Astro.site)} />
+          <link rel="alternate" hreflang={lang} href={new URL(withSlash(path), Astro.site)} />
         ))
     }
     {
-      translations?.[defaultLocale] && (
-        <link
-          rel="alternate"
-          hreflang="x-default"
-          href={new URL(translations[defaultLocale]!, Astro.site)}
-        />
+      xDefault && (
+        <link rel="alternate" hreflang="x-default" href={new URL(withSlash(xDefault), Astro.site)} />
       )
     }
 
@@ -102,13 +111,25 @@ const rssFeeds: { locale: Locale; path: string }[] = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={ogLocales[locale]} />
+    {
+      translations &&
+        Object.keys(translations)
+          .filter((lang) => lang !== locale)
+          .map((lang) => (
+            <meta property="og:locale:alternate" content={ogLocales[lang as Locale]} />
+          ))
+    }
 
     {/* Twitter Card */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="theme-color" content="#152638" />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

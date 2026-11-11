@@ -1,0 +1,287 @@
+---
+// Şehir sayfası — Supabase'deki elle seçilmiş görevlerden build anında üretilir.
+// Metinler uygulamanın kendi görev içeriği; sayfa sadece düzenler ve gruplar.
+import Base from '../layouts/Base.astro';
+import Waitlist from './Waitlist.astro';
+import FounderBadge from './FounderBadge.astro';
+import { SITE_NAME } from '../consts.js';
+import { type Locale, useTranslations, localePath, fill } from '../i18n/ui';
+import {
+  type CityPageData,
+  CATEGORY_META,
+  OTHER_CATEGORY,
+  cityPath,
+  cityTranslations,
+  getCityPages,
+} from '../lib/roam-data';
+
+interface Props {
+  locale: Locale;
+  city: CityPageData;
+}
+
+const { locale, city } = Astro.props;
+const t = useTranslations(locale);
+
+const categoryLabel = (id: string) =>
+  id === OTHER_CATEGORY ? t('city.other') : t(CATEGORY_META[id].label);
+
+// Cümle içinde kategori adları: "gastronomi, miras ve manzara" (Almancada isimler büyük kalır)
+const topCategories = city.groups
+  .filter((g) => g.category !== OTHER_CATEGORY)
+  .slice(0, 3)
+  .map((g) => {
+  const label = categoryLabel(g.category);
+  return locale === 'de' ? label : label.toLocaleLowerCase(locale);
+});
+// Az görevli şehirde her kategoride tek kart kalmasın: 12'nin altında tek ızgara.
+const grouped = city.quests.length >= 12;
+const sections = grouped
+  ? city.groups
+  : [{ category: '', quests: city.groups.flatMap((g) => g.quests) }];
+
+const cats = new Intl.ListFormat(locale, { type: 'conjunction' }).format(topCategories);
+
+const vars = { city: city.name, inCity: city.inCity, n: city.quests.length, cats };
+const title = fill(t('city.meta.title'), vars);
+const description = fill(t('city.meta.description'), vars);
+const h1 = fill(t('city.h1'), vars);
+
+const translations = await cityTranslations(city.slug);
+const otherCities = (await getCityPages(locale)).filter((c) => c.slug !== city.slug);
+const pageUrl = new URL(cityPath(locale, city.slug), Astro.site).toString();
+
+const mapsUrl = (lat: number, lng: number) =>
+  `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+
+// Yapılandırılmış veri: görev listesi (ItemList → Place) + breadcrumb
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: h1,
+  url: pageUrl,
+  numberOfItems: city.quests.length,
+  itemListElement: city.groups
+    .flatMap((g) => g.quests)
+    .map((q, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Place',
+        name: q.title,
+        description: q.short,
+        ...(q.lat != null &&
+          q.lng != null && {
+            geo: { '@type': 'GeoCoordinates', latitude: q.lat, longitude: q.lng },
+          }),
+      },
+    })),
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: SITE_NAME,
+      item: new URL(localePath(locale), Astro.site).toString(),
+    },
+    { '@type': 'ListItem', position: 2, name: city.name, item: pageUrl },
+  ],
+};
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  translations={translations}
+  jsonLd={[itemListLd, breadcrumbLd]}
+>
+  {/* ── Başlık ── */}
+  <section class="bg-navy py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <nav aria-label="Breadcrumb" class="text-sm font-medium text-white/60">
+        <a href={localePath(locale)} class="hover:text-white">{SITE_NAME}</a>
+        <span aria-hidden="true"> / </span>
+        <span class="text-white/80">{city.name}</span>
+      </nav>
+      <p class="mt-6 text-xs font-bold uppercase tracking-widest text-coral">
+        <span aria-hidden="true" class="mr-1.5">{city.flag}</span>
+        {t('city.eyebrow')}
+      </p>
+      <h1 class="mt-2 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+        {h1}
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+        {fill(t('city.intro'), vars)}
+      </p>
+      <a
+        href="#katil"
+        class="mt-8 inline-block rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark"
+      >
+        {t('waitlist.button')}
+      </a>
+    </div>
+  </section>
+
+  {/* ── Kategori kısayolları (yalnızca gruplu görünümde) ── */}
+  {grouped && (
+  <nav
+    aria-label={t('city.jump')}
+    class="sticky top-16 z-40 border-b border-navy/5 bg-white/95 backdrop-blur"
+  >
+    <ul class="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3 sm:px-6">
+      {
+        city.groups.map((g) => (
+          <li class="shrink-0">
+            <a
+              href={`#${g.category}`}
+              class="flex items-center gap-1.5 rounded-full border border-navy/10 px-3 py-1.5 text-sm font-semibold text-ink-mid transition-colors hover:border-navy/30 hover:text-navy"
+            >
+              {categoryLabel(g.category)}
+              <span class="text-ink-dim">{g.quests.length}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  )}
+
+  {/* ── Görevler ── */}
+  <div class="bg-canvas py-12 sm:py-16">
+    <div class="mx-auto max-w-6xl space-y-14 px-4 sm:px-6">
+      {
+        sections.map((g) => {
+          const meta = CATEGORY_META[g.category];
+          return (
+            <section id={g.category || undefined} class="scroll-mt-32">
+              {grouped && (
+              <h2 class="flex items-center gap-3 text-2xl font-extrabold tracking-tight text-navy">
+                {meta && (
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-sm"
+                    style={`box-shadow: 0 1px 3px color-mix(in srgb, ${meta.color} 35%, transparent)`}
+                  >
+                    <img src={meta.icon} alt="" width="20" height="20" />
+                  </span>
+                )}
+                {categoryLabel(g.category)}
+                <span class="text-base font-semibold text-ink-dim">{g.quests.length}</span>
+              </h2>
+              )}
+
+              <div class:list={['grid gap-5 sm:grid-cols-2 lg:grid-cols-3', grouped && 'mt-6']}>
+                {g.quests.map((q) => {
+                  const qMeta = CATEGORY_META[q.category];
+                  const color = qMeta?.color ?? '#4a5a70';
+                  return (
+                  <article
+                    class="flex flex-col rounded-3xl border bg-white p-6 shadow-sm"
+                    style={`border-color: color-mix(in srgb, ${color} 18%, transparent)`}
+                  >
+                    {(q.neighborhood || !grouped) && (
+                      <p
+                        class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider"
+                        style={`color: ${color}`}
+                      >
+                        {!grouped && qMeta && <img src={qMeta.icon} alt="" width="14" height="14" />}
+                        {[!grouped && categoryLabel(q.category), q.neighborhood]
+                          .filter(Boolean)
+                          .join(' · ')}
+                      </p>
+                    )}
+                    <h3 class="mt-1 text-lg font-bold leading-snug text-navy">{q.title}</h3>
+                    <p class="mt-2 font-medium leading-relaxed text-ink">{q.short}</p>
+                    {q.description && (
+                      <p class="mt-2 text-sm leading-relaxed text-ink-mid">{q.description}</p>
+                    )}
+
+                    <div class="mt-auto pt-5">
+                      {q.bestTime && (
+                        <p class="mb-3 rounded-2xl bg-canvas px-3 py-2 text-sm text-ink-mid">
+                          <span class="font-semibold text-navy">{t('city.besttime')}:</span>{' '}
+                          {q.bestTime}
+                        </p>
+                      )}
+                      <ul class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-ink-mid">
+                        {q.duration && (
+                          <li>
+                            <span class="sr-only">{t('city.duration')}: </span>
+                            <span aria-hidden="true">⏱ </span>
+                            {q.duration}
+                          </li>
+                        )}
+                        {q.difficulty && <li>{t(`city.difficulty.${q.difficulty}`)}</li>}
+                        {q.points != null && (
+                          <li class="font-semibold text-gold">
+                            +{q.points} {t('city.points')}
+                          </li>
+                        )}
+                        {q.lat != null && q.lng != null && (
+                          <li class="ml-auto">
+                            <a
+                              href={mapsUrl(q.lat, q.lng)}
+                              target="_blank"
+                              rel="noopener"
+                              class="font-semibold text-coral-dark hover:underline"
+                            >
+                              {t('city.map')} ↗
+                            </a>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  </article>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  {/* ── Bekleme listesi ── */}
+  <section id="katil" class="scroll-mt-20 bg-navy py-16">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white">
+        {fill(t('city.cta.title'), vars)}
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-white/75">{t('city.cta.desc')}</p>
+      <FounderBadge locale={locale} class="mt-5" />
+      <div class="mt-8">
+        <Waitlist locale={locale} source={`city-${city.slug}`} />
+      </div>
+    </div>
+  </section>
+
+  {/* ── Diğer şehirler ── */}
+  {
+    otherCities.length > 0 && (
+      <nav class="bg-white py-12" aria-label={t('city.others')}>
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 class="text-xl font-extrabold tracking-tight text-navy">{t('city.others')}</h2>
+          <ul class="mt-5 flex flex-wrap gap-3">
+            {otherCities.map((c) => (
+              <li>
+                <a
+                  href={cityPath(locale, c.slug)}
+                  class="flex items-center gap-2 rounded-full bg-canvas px-4 py-2 font-semibold text-navy ring-1 ring-navy/5 hover:text-coral-dark"
+                >
+                  <span aria-hidden="true">{c.flag}</span>
+                  {c.name}
+                  <span class="text-sm font-medium text-ink-dim">{c.quests.length}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    )
+  }
+</Base>

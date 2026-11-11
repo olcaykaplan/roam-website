@@ -1,0 +1,14 @@
+---
+// Şehir sayfaları (tr) — Supabase'deki görevlerden build anında üretilir (bkz. src/lib/roam-data.ts).
+import CityPage from '../../components/CityPage.astro';
+import { getCityPages } from '../../lib/roam-data';
+
+export async function getStaticPaths() {
+  const cities = await getCityPages('tr');
+  return cities.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props;
+---
+
+<CityPage locale="tr" city={city} />

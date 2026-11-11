@@ -72,4 +72,4 @@ Geh von Tünel Richtung Taksim: die nostalgische Straßenbahn, historische Passa
 
 ## Willst du diese Route in ein Spiel verwandeln?
 
-Orte wie diese werden in [Roam](/de) zu **Quests**: hingehen, einchecken, Punkte und Abzeichen sammeln. Wenn du die Stadt lieber *spielen* willst, statt sie nur zu besichtigen — [trag dich auf die Warteliste ein](/de#katil) und wir melden uns zum Launch.
+Orte wie diese werden in [Roam](/de/) zu **Quests**: hingehen, einchecken, Punkte und Abzeichen sammeln. Wenn du die Stadt lieber *spielen* willst, statt sie nur zu besichtigen — [trag dich auf die Warteliste ein](/de/#katil) und wir melden uns zum Launch.

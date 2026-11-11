@@ -8,9 +8,11 @@ interface Props {
   locale: Locale;
   /** Kompakt varyant (blog altı CTA'da) */
   compact?: boolean;
+  /** waitlist.source değeri — hangi sayfanın kayıt getirdiğini ölçmek için (ör. city-tokyo) */
+  source?: string;
 }
 
-const { locale, compact = false } = Astro.props;
+const { locale, compact = false, source = 'website' } = Astro.props;
 const t = useTranslations(locale);
 
 const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
@@ -22,6 +24,7 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
   data-supabase-url={SUPABASE_URL}
   data-supabase-key={SUPABASE_ANON_KEY}
   data-locale={locale}
+  data-source={source}
   data-msg-success={t('waitlist.success')}
   data-msg-duplicate={t('waitlist.duplicate')}
   data-msg-invalid={t('waitlist.invalid')}
@@ -40,7 +43,7 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
       autocomplete="email"
       inputmode="email"
       placeholder={t('waitlist.placeholder')}
-      class="h-12 flex-1 rounded-full border border-navy/15 bg-white px-5 text-base text-ink placeholder:text-ink-dim focus:border-coral"
+      class="h-12 w-full shrink-0 rounded-full border border-navy/15 bg-white px-5 text-base text-ink placeholder:text-ink-dim focus:border-coral sm:w-auto sm:flex-1"
     />
     {/* Honeypot — botlar doldurur, insanlar görmez */}
     <input
@@ -90,6 +93,13 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
         return;
       }
 
+      // Kaynak takibi: ?utm_source=instagram ile gelen kayıt "instagram" olarak yazılır
+      // (yalnızca harf/rakam/tire, en fazla 40 karakter). Parametre yoksa formun kendi
+      // kaynağı (ör. şehir sayfasında "city-tokyo"), o da yoksa "website".
+      const utm = new URLSearchParams(location.search).get('utm_source') ?? '';
+      const source =
+        utm.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || d.source || 'website';
+
       button.disabled = true;
       try {
         const res = await fetch(`${d.supabaseUrl}/rest/v1/waitlist`, {
@@ -100,7 +110,7 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
             Authorization: `Bearer ${d.supabaseKey}`,
             Prefer: 'return=minimal',
           },
-          body: JSON.stringify({ email, locale: d.locale, source: 'website' }),
+          body: JSON.stringify({ email, locale: d.locale, source }),
         });
 
         if (res.status === 201) {

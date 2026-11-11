@@ -45,4 +45,4 @@ Kurbağalıdere boyunca uzanan Yoğurtçu Parkı, Kadıköylülerin sabah koşus
 
 Bu tarz az bilinen noktalar, [Roam](/)'ın **"Saklı"** kategorisinin tam konusu: haritada bir pin görürsün, konuma gidersin, check-in yapıp rozetini alırsın. Kadıköy gibi semtleri sokak sokak keşfetmek için tasarlandı. Uygulama yakında çıkıyor — [bekleme listesine buradan katıl](/#katil).
 
-Şehrin genelini görmek istersen: [İstanbul'da bir günde gezilecek 12 yer](/blog/istanbul-bir-gunde-gezilecek-yerler).
+Şehrin genelini görmek istersen: [İstanbul'da bir günde gezilecek 12 yer](/blog/istanbul-bir-gunde-gezilecek-yerler/).

@@ -1,0 +1,72 @@
+---
+// Kurucu Kâşif rozeti tanıtımı + dürüst sayaç.
+// "Son N rozet kaldı" satırı yalnızca veritabanındaki GERÇEK kalan sayı
+// FOUNDER_COUNTER_SHOW_AT ve altındayken görünür; hepsi dağıtılınca metin değişir.
+// Sayı okunamazsa (fonksiyon yok, ağ hatası) sayaç hiç görünmez — tahmin yok.
+import { type Locale, useTranslations } from '../i18n/ui';
+import { FOUNDER_COUNTER_SHOW_AT } from '../consts.js';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const t = useTranslations(locale);
+
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
+---
+
+<div
+  class:list={['founder-badge', className]}
+  data-supabase-url={SUPABASE_URL}
+  data-supabase-key={SUPABASE_ANON_KEY}
+  data-show-at={FOUNDER_COUNTER_SHOW_AT}
+  data-msg-left={t('founder.left')}
+  data-msg-gone={t('founder.gone')}
+>
+  <p
+    class="inline-flex max-w-md items-start gap-2 rounded-2xl border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-left text-sm font-medium text-amber-200"
+  >
+    <span aria-hidden="true">🧭</span>
+    <span class="founder-text">{t('waitlist.founder')}</span>
+  </p>
+  <p class="founder-left mt-2 hidden text-sm font-bold text-amber-300" role="status"></p>
+</div>
+
+<script>
+  // Sayfadaki tüm rozet kutuları için tek istek.
+  const boxes = [...document.querySelectorAll<HTMLElement>('.founder-badge')];
+  const url = boxes[0]?.dataset.supabaseUrl;
+  const key = boxes[0]?.dataset.supabaseKey;
+
+  if (url && key) {
+    fetch(`${url}/rest/v1/rpc/founder_badges_remaining`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+      },
+      body: '{}',
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((left: unknown) => {
+        if (typeof left !== 'number' || !Number.isInteger(left) || left < 0) return;
+        for (const box of boxes) {
+          const d = box.dataset;
+          if (left === 0) {
+            box.querySelector('.founder-text')!.textContent = d.msgGone!;
+          } else if (left <= Number(d.showAt)) {
+            const el = box.querySelector<HTMLElement>('.founder-left')!;
+            el.textContent = d.msgLeft!.replace('{left}', String(left));
+            el.classList.remove('hidden');
+          }
+        }
+      })
+      .catch(() => {
+        /* sayaç gösterilmez */
+      });
+  }
+</script>
