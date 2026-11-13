@@ -1,0 +1,21 @@
+# Günlük otomatik yayın.
+# Site statik olduğu için "yeni yazı çıksın" = siteyi yeniden derlemek. Bu iş akışı her gün
+# Cloudflare Pages "Deploy Hook"unu tetikler; yayın tarihi gelen ve onaylanmış (reviewed: true)
+# yazılar o derlemeyle siteye girer. Kurulum: docs/BLOG-OTOMASYON.md
+name: Günlük yayın
+on:
+  schedule:
+    - cron: '0 5 * * *' # 05:00 UTC = 08:00 İstanbul
+  workflow_dispatch: {}
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloudflare Pages deploy hook'unu tetikle
+        env:
+          HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "CF_PAGES_DEPLOY_HOOK secret'ı tanımlı değil — docs/BLOG-OTOMASYON.md'ye bak."; exit 1
+          fi
+          curl --fail --silent --show-error -X POST "$HOOK"

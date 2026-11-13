@@ -19,11 +19,19 @@ export function postPath(post: BlogPost): string {
   return localePath(postLocale(post), `/blog/${postSlug(post)}`);
 }
 
+/**
+ * Yazı yayında mı? Üç şart birden: taslak değil, onaylanmış (reviewed) ve yayın tarihi gelmiş.
+ * Günlük otomatik yayın = her gün site yeniden derlenir, tarihi gelen yazılar kendiliğinden çıkar.
+ */
+export function isLive(post: BlogPost, now: Date = new Date()): boolean {
+  return !post.data.draft && post.data.reviewed && post.data.pubDate.valueOf() <= now.valueOf();
+}
+
 /** Bir dilin yayımlanmış yazıları, yeniden eskiye sıralı. */
 export async function getPublishedPosts(locale: Locale): Promise<BlogPost[]> {
   const posts = await getCollection(
     'blog',
-    (post) => postLocale(post) === locale && !post.data.draft,
+    (post) => postLocale(post) === locale && isLive(post),
   );
   return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
@@ -35,7 +43,7 @@ export async function findTranslations(post: BlogPost): Promise<BlogPost[]> {
   const all = await getCollection(
     'blog',
     (p) =>
-      !p.data.draft &&
+      isLive(p) &&
       p.data.translationKey === post.data.translationKey &&
       postLocale(p) !== own,
   );

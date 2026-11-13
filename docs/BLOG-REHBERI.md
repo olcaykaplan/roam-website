@@ -29,6 +29,8 @@ draft: false                        # true → yazı siteye çıkmaz (taslak)
 - `translationKey`: Aynı yazının farklı dillerdeki (TR/EN/ES/DE) versiyonlarını birbirine bağlar (Google'a
   "bu ikisi aynı içeriğin çevirisi" der — hreflang). Çeviri yoksa hiç yazma.
 - `draft: true` ile taslak tutabilirsin; build'e girmez.
+- `reviewed: false` → yazı onaylanana kadar çıkmaz; `pubDate` ileri bir tarihse o gün otomatik yayına girer.
+  Toplu yazılar için akış: [BLOG-OTOMASYON.md](./BLOG-OTOMASYON.md)
 - Build, kurallara uymayan frontmatter'ı **hata vererek** reddeder (ör. 165 karakterden
   uzun description) — yani yanlış yayınlayamazsın.
 

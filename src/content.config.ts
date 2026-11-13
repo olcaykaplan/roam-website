@@ -15,6 +15,9 @@ const blog = defineCollection({
     // İki dildeki karşılıklarında AYNI translationKey kullanılır. Çevirisi yoksa boş bırak.
     translationKey: z.string().optional(),
     draft: z.boolean().default(false),
+    // Onay kapısı: false ise yazı, pubDate gelse bile YAYINLANMAZ. Yeni toplu yazılar false gelir;
+    // okuyup onaylayınca `npm run onayla` true yapar ve yayın tarihlerini günlere dağıtır.
+    reviewed: z.boolean().default(true),
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
     author: z.string().default('Roam Ekibi'),
