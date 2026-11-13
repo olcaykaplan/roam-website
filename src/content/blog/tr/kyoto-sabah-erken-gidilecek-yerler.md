@@ -1,10 +1,10 @@
 ---
 title: "Kyoto'da Kalabalıktan Kaçış: Sabah Erken Gidilecek 5 Yer"
 description: "Arashiyama bambu ormanı, Fushimi Inari, Ryōan-ji… Kyoto'nun ünlü duraklarını kalabalık başlamadan gezmek için saat saat bir rehber."
-pubDate: 2026-12-01
+pubDate: 2026-11-14
 tags: ["Kyoto", "Japonya", "gezi rehberi"]
 translationKey: kyoto-early-morning
-reviewed: false
+reviewed: true
 ---
 
 Kyoto'nun ünlü yerleri öğleye doğru başka bir şehre dönüşüyor: aynı bambu yolu, aynı kırmızı kapılar, ama yüzlerce telefon ekranı arasında. İyi haber şu: Kyoto'nun en kalabalık duraklarının çoğu, sabahın erken saatlerinde hâlâ eski sessizliğini koruyor. Roam'daki Kyoto görevlerini tek tek gözden geçirdik; işte erken kalkana ödül veren 5 durak.

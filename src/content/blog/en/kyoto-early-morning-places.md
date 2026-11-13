@@ -1,10 +1,10 @@
 ---
 title: "Beat the Crowds in Kyoto: 5 Places to See Early in the Morning"
 description: "Arashiyama bamboo, Fushimi Inari, Ryōan-ji and more: a time-by-time guide to seeing Kyoto's famous sights before the crowds arrive."
-pubDate: 2026-12-01
+pubDate: 2026-11-14
 tags: ["Kyoto", "Japan", "travel guide"]
 translationKey: kyoto-early-morning
-reviewed: false
+reviewed: true
 ---
 
 By late morning, Kyoto's best-known sights turn into a different city: the same bamboo path, the same red gates, but seen through a wall of phone screens. The good news is that most of Kyoto's busiest stops are still quiet in the early hours. We went through the Kyoto quests on Roam one by one, and these are the 5 stops that reward an early alarm.

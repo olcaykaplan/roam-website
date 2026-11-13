@@ -1,10 +1,10 @@
 ---
 title: "4 Things You Can Do in Rome in 30 Minutes (When Time Is Tight)"
 description: "A coin in Trevi, the Aventine keyhole, a gran caffè at Sant'Eustachio: 4 unforgettable Rome experiences that fit into a half-hour gap, with the best times."
-pubDate: 2026-12-01
+pubDate: 2026-11-16
 tags: ["Rome", "Italy", "short trips"]
 translationKey: rome-in-30-minutes
-reviewed: false
+reviewed: true
 ---
 
 Got a day in Rome but a packed schedule? You don't need days for everything. We collected the quests in Roam's Rome set that take 20 to 30 minutes: perfect for a gap between meetings, before a train or ahead of dinner.

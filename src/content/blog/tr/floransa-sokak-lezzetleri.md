@@ -4,7 +4,7 @@ description: "All'Antico Vinaio'da schiacciata, Santo Spirito'da pizza, Vivoli'd
 pubDate: 2026-12-01
 tags: ["Floransa", "İtalya", "yeme içme"]
 translationKey: florence-street-food
-reviewed: false
+reviewed: true
 ---
 
 Floransa'yı müzelerle anlatmak kolay: Uffizi, Ponte Vecchio, Duomo. Ama şehrin en canlı yüzü, kaldırımda ayakta yenen şeylerde saklı. Roam'ın Floransa görevlerinden yemek odaklı olanları tek bir rotaya dizdik: bir sandviç, bir pizza, iki dondurma ve gün batımı.

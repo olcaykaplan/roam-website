@@ -1,10 +1,10 @@
 ---
 title: "Comer en Roma sin caer en trampas para turistas: 5 paradas"
 description: "Pizza romana crujiente en Testaccio, cacio e pepe en Trastevere, un café con técnica secreta en Sant'Eustachio: 5 paradas gastronómicas de Roma que valen la pena."
-pubDate: 2026-12-01
+pubDate: 2026-11-15
 tags: ["Roma", "Italia", "gastronomía"]
 translationKey: rome-food-route
-reviewed: false
+reviewed: true
 ---
 
 Comer en Roma es fácil. Comer **bien** requiere algo de planificación. Olvida las montañas de helado fosforescente y los menús con fotos de los alrededores de la Fontana de Trevi. Elegimos las misiones gastronómicas del conjunto de Roma en Roam: cada una es un lugar al que iría un romano de verdad.

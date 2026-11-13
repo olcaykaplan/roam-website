@@ -1,10 +1,10 @@
 ---
 title: "Kioto sin multitudes: 5 lugares que visitar a primera hora"
 description: "Bosque de bambú de Arashiyama, Fushimi Inari, Ryōan-ji y más: una guía por horarios para ver lo mejor de Kioto antes de que lleguen las multitudes."
-pubDate: 2026-12-01
+pubDate: 2026-11-14
 tags: ["Kioto", "Japón", "guía de viaje"]
 translationKey: kyoto-early-morning
-reviewed: false
+reviewed: true
 ---
 
 Hacia media mañana, los lugares más famosos de Kioto se convierten en otra ciudad: el mismo sendero de bambú, las mismas puertas rojas, pero vistos a través de un muro de pantallas de móvil. La buena noticia es que casi todas las paradas más concurridas siguen tranquilas en las primeras horas del día. Repasamos una a una las misiones de Kioto en Roam y estas son las 5 paradas que premian al que madruga.

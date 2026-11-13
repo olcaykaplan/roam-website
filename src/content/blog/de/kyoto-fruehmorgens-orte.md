@@ -1,10 +1,10 @@
 ---
 title: "Kyoto ohne Menschenmassen: 5 Orte für den frühen Morgen"
 description: "Bambushain Arashiyama, Fushimi Inari, Ryōan-ji und mehr: ein Leitfaden nach Uhrzeit, um Kyotos bekannteste Sehenswürdigkeiten vor dem Ansturm zu sehen."
-pubDate: 2026-12-01
+pubDate: 2026-11-14
 tags: ["Kyoto", "Japan", "Reiseführer"]
 translationKey: kyoto-early-morning
-reviewed: false
+reviewed: true
 ---
 
 Gegen Vormittag verwandeln sich Kyotos berühmteste Orte in eine andere Stadt: derselbe Bambusweg, dieselben roten Tore, aber gesehen durch eine Wand aus Handydisplays. Die gute Nachricht: Die meisten der vollsten Stationen sind in den frühen Stunden noch ruhig. Wir haben die Kyoto-Quests in Roam einzeln durchgesehen. Das sind die 5 Stationen, die Frühaufsteher belohnen.

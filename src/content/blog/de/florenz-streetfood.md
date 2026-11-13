@@ -4,7 +4,7 @@ description: "Schiacciata bei All'Antico Vinaio, Pizza auf den Stufen von Santo 
 pubDate: 2026-12-01
 tags: ["Florenz", "Italien", "Essen"]
 translationKey: florence-street-food
-reviewed: false
+reviewed: true
 ---
 
 Florenz lässt sich leicht über seine Museen beschreiben: Uffizien, Ponte Vecchio, Dom. Doch die lebendigste Seite der Stadt isst man im Stehen am Bordstein. Wir haben die Essens-Quests aus Roams Florenz-Set zu einer Route verbunden: ein Sandwich, eine Pizza, zwei Eisdielen und ein Sonnenuntergang.

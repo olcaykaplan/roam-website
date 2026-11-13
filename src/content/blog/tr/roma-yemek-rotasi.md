@@ -1,10 +1,10 @@
 ---
 title: "Roma'da Turist Tuzağına Düşmeden Yemek: 5 Durak"
 description: "Testaccio'da çıtır Roma pizzası, Trastevere'de cacio e pepe, Sant'Eustachio'da kahve: Roma'da gerçekten yemeye değer 5 durak ve zamanlama ipuçları."
-pubDate: 2026-12-01
+pubDate: 2026-11-15
 tags: ["Roma", "İtalya", "yeme içme"]
 translationKey: rome-food-route
-reviewed: false
+reviewed: true
 ---
 
 Roma'da yemek yemek kolay; **iyi** yemek yemek ise biraz planlama istiyor. Trevi Çeşmesi'nin çevresindeki floresan renkli dondurma yığınlarına ve fotoğraflı menülere kanma. Roam'ın Roma görevlerinden yemek odaklı olanlarını seçtik; her biri yerel birinin gerçekten gideceği bir adres.

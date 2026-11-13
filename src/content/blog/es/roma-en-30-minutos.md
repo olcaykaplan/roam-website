@@ -1,10 +1,10 @@
 ---
 title: "4 experiencias en Roma que caben en 30 minutos (si vas con prisa)"
 description: "Una moneda en Trevi, el ojo de la cerradura del Aventino, un gran caffè en Sant'Eustachio: 4 experiencias de Roma para medias horas libres y sus mejores horarios."
-pubDate: 2026-12-01
+pubDate: 2026-11-16
 tags: ["Roma", "Italia", "escapadas cortas"]
 translationKey: rome-in-30-minutes
-reviewed: false
+reviewed: true
 ---
 
 ¿Tienes un día en Roma pero la agenda apretada? No hace falta dedicar días a todo. Reunimos las misiones del conjunto de Roma en Roam que duran entre 20 y 30 minutos: ideales para un hueco entre reuniones, antes de un tren o antes de cenar.

@@ -1,10 +1,10 @@
 ---
 title: "Roma'da 30 Dakikaya Sığan 4 Deneyim (Zamanın Kısıtlıysa)"
 description: "Trevi'de bozuk para, Aventino'da anahtar deliği, Sant'Eustachio'da kahve: Roma'da yarım saatlik boşluğa sığan 4 unutulmaz deneyim ve en iyi zamanları."
-pubDate: 2026-12-01
+pubDate: 2026-11-16
 tags: ["Roma", "İtalya", "kısa gezi"]
 translationKey: rome-in-30-minutes
-reviewed: false
+reviewed: true
 ---
 
 Roma'ya bir gün ayırdın ama programın dolu mu? Her şey için günlerce yer gerekmiyor. Roam'ın Roma görevlerinden süresi 20-30 dakika olanları topladık: bir toplantı arası, bir tren öncesi ya da yemekten önceki boşluk için birebir.

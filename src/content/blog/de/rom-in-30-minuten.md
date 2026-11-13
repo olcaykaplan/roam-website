@@ -1,10 +1,10 @@
 ---
 title: "4 Erlebnisse in Rom, die in 30 Minuten passen (bei wenig Zeit)"
 description: "Eine Münze im Trevi, das Schlüsselloch auf dem Aventin, ein Gran Caffè bei Sant'Eustachio: 4 Rom-Erlebnisse für freie halbe Stunden mit den besten Uhrzeiten."
-pubDate: 2026-12-01
+pubDate: 2026-11-16
 tags: ["Rom", "Italien", "Kurztrip"]
 translationKey: rome-in-30-minutes
-reviewed: false
+reviewed: true
 ---
 
 Ein Tag in Rom, aber ein voller Terminkalender? Nicht für alles braucht man Tage. Wir haben die Quests aus Roams Rom-Set gesammelt, die 20 bis 30 Minuten dauern: ideal für eine Lücke zwischen Terminen, vor dem Zug oder vor dem Abendessen.

@@ -1,10 +1,10 @@
 ---
 title: "Eating in Rome Without Falling for Tourist Traps: 5 Stops"
 description: "Crispy Roman pizza in Testaccio, cacio e pepe in Trastevere, a secret-technique coffee at Sant'Eustachio: 5 Rome food stops worth the trip, with timing tips."
-pubDate: 2026-12-01
+pubDate: 2026-11-15
 tags: ["Rome", "Italy", "food"]
 translationKey: rome-food-route
-reviewed: false
+reviewed: true
 ---
 
 Eating in Rome is easy. Eating **well** takes a bit of planning. Skip the fluorescent gelato mountains and the picture menus around the Trevi Fountain. We picked the food-focused quests from Roam's Rome set, each one a place a local would actually go.

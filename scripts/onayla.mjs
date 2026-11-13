@@ -11,8 +11,9 @@
 // Yayın tarihi gelince site, günlük otomatik yeniden derlemede (.github/workflows/gunluk-yayin.yml) yazıyı kendiliğinden gösterir.
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = new URL('../src/content/blog/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const ROOT = fileURLToPath(new URL('../src/content/blog/', import.meta.url));
 const args = process.argv.slice(2);
 const opt = (name, def) => {
   const i = args.indexOf(`--${name}`);

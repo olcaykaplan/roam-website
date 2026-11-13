@@ -4,7 +4,7 @@ description: "Schiacciata at All'Antico Vinaio, pizza on the Santo Spirito steps
 pubDate: 2026-12-01
 tags: ["Florence", "Italy", "food"]
 translationKey: florence-street-food
-reviewed: false
+reviewed: true
 ---
 
 It is easy to describe Florence through its museums: the Uffizi, the Ponte Vecchio, the Duomo. But the city's liveliest side is eaten standing on the curb. We lined up the food quests from Roam's Florence set into a single route: a sandwich, a pizza, two gelato stops and a sunset.

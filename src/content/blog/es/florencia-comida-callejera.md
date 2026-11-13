@@ -4,7 +4,7 @@ description: "Schiacciata en All'Antico Vinaio, pizza en los escalones de Santo 
 pubDate: 2026-12-01
 tags: ["Florencia", "Italia", "gastronomía"]
 translationKey: florence-street-food
-reviewed: false
+reviewed: true
 ---
 
 Es fácil describir Florencia por sus museos: los Uffizi, el Ponte Vecchio, el Duomo. Pero el lado más vivo de la ciudad se come de pie en la acera. Ordenamos las misiones gastronómicas del conjunto de Florencia en Roam en una sola ruta: un bocadillo, una pizza, dos heladerías y un atardecer.

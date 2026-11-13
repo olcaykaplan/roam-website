@@ -1,10 +1,10 @@
 ---
 title: "Essen in Rom ohne Touristenfallen: 5 Stationen"
 description: "Knusprige römische Pizza in Testaccio, Cacio e Pepe in Trastevere, Kaffee mit Geheimtechnik bei Sant'Eustachio: 5 kulinarische Stationen in Rom mit Zeit-Tipps."
-pubDate: 2026-12-01
+pubDate: 2026-11-15
 tags: ["Rom", "Italien", "Essen"]
 translationKey: rome-food-route
-reviewed: false
+reviewed: true
 ---
 
 In Rom zu essen ist leicht. **Gut** zu essen braucht etwas Planung. Lass die neonfarbenen Eisberge und die Bildermenüs rund um den Trevi-Brunnen links liegen. Wir haben die Essens-Quests aus Roams Rom-Set ausgewählt, jede davon ein Ort, an den auch Einheimische gehen würden.
