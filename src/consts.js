@@ -67,4 +67,4 @@ export const MIN_CITY_QUESTS = 5;
  * Sayaç: "Son N rozet kaldı" yalnızca GERÇEK kalan sayı bu eşiğin altına inince görünür.
  * Kalan sayı veritabanındaki founder_badges_remaining() fonksiyonundan canlı okunur.
  */
-export const FOUNDER_COUNTER_SHOW_AT = 33;
+export const FOUNDER_COUNTER_SHOW_AT = 50;
