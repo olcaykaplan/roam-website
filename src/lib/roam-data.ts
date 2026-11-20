@@ -59,10 +59,15 @@ interface NeighborhoodRow {
   city_id: string;
 }
 
+/** Görevin türü: herkesin bildiği klasik ya da yerlilerin sevdiği az bilinen yer. */
+export type PickType = 'classic' | 'local';
+
 interface RoamData {
   cities: CityRow[];
   neighborhoods: NeighborhoodRow[];
   quests: QuestRow[];
+  /** Görev id → Klasik / Yerel favori. Etiketsiz görevler listede yok. */
+  pickTypes?: Record<string, PickType>;
 }
 
 /** Uygulamadaki kategoriler → sitedeki etiket anahtarı, ikon ve renk. */
@@ -95,6 +100,8 @@ export interface LocalQuest {
   lng: number | null;
   neighborhood: string | null;
   category: string;
+  /** Klasik / Yerel favori; etiketsizse null. */
+  pickType: PickType | null;
 }
 
 export interface CityPageData {
@@ -189,7 +196,21 @@ async function fetchFromSupabase(): Promise<RoamData | null> {
     ),
   ]);
 
-  return { cities, neighborhoods, quests };
+  // Klasik / Yerel favori etiketleri ayrı ve hataya dayanıklı okunur: `quests.pick_type`
+  // sütunu henüz yoksa (migration uygulanmadıysa) build durmaz, etiketler görünmez.
+  const pickTypes: Record<string, PickType> = {};
+  try {
+    const rows = await get<{ id: string; pick_type: string | null }[]>(
+      'quests?select=id,pick_type&pick_type=not.is.null',
+    );
+    for (const r of rows) {
+      if (r.pick_type === 'classic' || r.pick_type === 'local') pickTypes[r.id] = r.pick_type;
+    }
+  } catch (err) {
+    console.warn(`[roam] Görev etiketleri okunamadı, etiketsiz devam ediliyor. ${(err as Error).message}`);
+  }
+
+  return { cities, neighborhoods, quests, pickTypes };
 }
 
 // ── Yardımcılar ─────────────────────────────────────────────────────────────
@@ -223,6 +244,7 @@ function localizeQuest(
   q: QuestRow,
   locale: Locale,
   neighborhoods: Map<string, string>,
+  pickTypes: Record<string, PickType>,
 ): LocalQuest | null {
   // Ana metin İngilizce; diğer dillerde çeviri yoksa görev o sayfaya girmez.
   const tr = q.translations.find((t) => t.lang === locale);
@@ -247,6 +269,7 @@ function localizeQuest(
     lng: q.lng ?? q.start_lng,
     neighborhood: q.neighborhood_id ? (neighborhoods.get(q.neighborhood_id) ?? null) : null,
     category,
+    pickType: pickTypes[q.id] ?? null,
   };
 }
 
@@ -273,7 +296,7 @@ async function buildCityPages(locale: Locale): Promise<CityPageData[]> {
   for (const city of data.cities) {
     const quests = data.quests
       .filter((q) => q.city_id === city.id)
-      .map((q) => localizeQuest(q, locale, neighborhoods))
+      .map((q) => localizeQuest(q, locale, neighborhoods, data.pickTypes ?? {}))
       .filter((q): q is LocalQuest => q !== null);
     if (quests.length < MIN_CITY_QUESTS) continue;
 

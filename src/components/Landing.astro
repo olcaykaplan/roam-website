@@ -1,6 +1,6 @@
 ---
 // Landing page içeriği — TR ve EN sayfaları bu bileşeni farklı locale ile render eder.
-import { type Locale, useTranslations } from '../i18n/ui';
+import { type Locale, useTranslations, FAQ_ORDER } from '../i18n/ui';
 import { STATS, CITIES } from '../consts.js';
 import { getCityPages, cityPath } from '../lib/roam-data';
 import Waitlist from './Waitlist.astro';
@@ -22,11 +22,19 @@ const steps = [
 
 const features = [
   { title: t('features.map.title'), desc: t('features.map.desc'), emoji: '📍' },
-  { title: t('features.badges.title'), desc: t('features.badges.desc'), emoji: '🏆' },
-  { title: t('features.curated.title'), desc: t('features.curated.desc'), emoji: '🧭' },
   { title: t('features.proof.title'), desc: t('features.proof.desc'), emoji: '📸' },
+  { title: t('features.badges.title'), desc: t('features.badges.desc'), emoji: '🏆' },
+  { title: t('features.lists.title'), desc: t('features.lists.desc'), emoji: '🔖' },
   { title: t('features.categories.title'), desc: t('features.categories.desc'), emoji: '🗂️' },
   { title: t('features.i18n.title'), desc: t('features.i18n.desc'), emoji: '🌍' },
+];
+
+// "Neden Roam?" — uygulamanın vaadi: klasiklerin yanında yerlilerin sevdiği yerler.
+// İlk iki kart, uygulamadaki etiketin kendisini gösterir (Yerel favori / Klasik).
+const whyPoints = [
+  { chip: 'local' as const, title: t('why.p1.title'), desc: t('why.p1.desc') },
+  { chip: 'classic' as const, title: t('why.p2.title'), desc: t('why.p2.desc') },
+  { emoji: '🤝', title: t('why.p3.title'), desc: t('why.p3.desc') },
 ];
 
 // Şehir çipleri: sayfası olan şehir kendi sayfasına link verir.
@@ -105,14 +113,7 @@ const categories = [
   },
 ];
 
-const faqs = [
-  { q: t('faq.q1'), a: t('faq.a1') },
-  { q: t('faq.q2'), a: t('faq.a2') },
-  { q: t('faq.q3'), a: t('faq.a3') },
-  { q: t('faq.q4'), a: t('faq.a4') },
-  { q: t('faq.q5'), a: t('faq.a5') },
-  { q: t('faq.q6'), a: t('faq.a6') },
-];
+const faqs = FAQ_ORDER.map((i) => ({ q: t(`faq.q${i}`), a: t(`faq.a${i}`) }));
 ---
 
 {/* ── Hero ── */}
@@ -166,6 +167,45 @@ const faqs = [
         ))
       }
     </dl>
+  </div>
+</section>
+
+{/* ── Neden Roam? ── */}
+<section id="neden" class="scroll-mt-20 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <span class="text-xs font-bold uppercase tracking-widest text-coral">{t('why.eyebrow')}</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
+        {t('why.title')}
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-mid">{t('why.body')}</p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      {
+        whyPoints.map((p, i) => (
+          <article
+            class="rounded-3xl bg-canvas p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-navy/10"
+            data-reveal
+            style={`--reveal-delay: ${i * 90}ms`}
+          >
+            {p.chip === 'local' ? (
+              <span class="inline-flex items-center rounded-full border border-amber-300 bg-amber-100 px-3 py-1 text-sm font-bold text-amber-700">
+                ★ {t('pick.local')}
+              </span>
+            ) : p.chip === 'classic' ? (
+              <span class="inline-flex items-center rounded-full border border-navy/10 bg-navy/5 px-3 py-1 text-sm font-bold text-ink-mid">
+                {t('pick.classic')}
+              </span>
+            ) : (
+              <span class="text-3xl" aria-hidden="true">{p.emoji}</span>
+            )}
+            <h3 class="mt-4 text-xl font-bold text-navy">{p.title}</h3>
+            <p class="mt-2 leading-relaxed text-ink-mid">{p.desc}</p>
+          </article>
+        ))
+      }
+    </div>
   </div>
 </section>
 

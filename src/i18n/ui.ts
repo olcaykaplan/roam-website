@@ -29,11 +29,17 @@ export function withSlash(path: string): string {
   return `${path}/`;
 }
 
+/**
+ * SSS'nin gösterim sırası (sayfa + FAQPage JSON-LD aynı listeyi kullanır).
+ * Konumlanmayı anlatan sorular (7: görevler nasıl seçiliyor, 8: yer önerme) öne alındı.
+ */
+export const FAQ_ORDER = [1, 7, 8, 3, 4, 2, 5, 6] as const;
+
 export const ui = {
   tr: {
-    'meta.title': 'Roam — Şehir Keşif Uygulaması: Görev Tamamla, Rozet Kazan',
+    'meta.title': 'Roam — Şehri Yerlisi Gibi Keşfet: Görev Tamamla, Rozet Kazan',
     'meta.description':
-      'Roam, şehirleri görev görev keşfettiren ücretsiz gezi uygulaması. Tokyo, İstanbul, Roma dahil 9 destinasyonda 130+ görev: konuma git, check-in yap, rozet kazan.',
+      'Ünlü yerlerin yanında yerlisinin sevdiği yeri gösteren şehir keşif uygulaması. 9 destinasyonda 130+ elle seçilmiş görev: git, check-in yap, rozet kazan.',
 
     'nav.features': 'Özellikler',
     'nav.how': 'Nasıl Çalışır',
@@ -43,18 +49,33 @@ export const ui = {
     'nav.cities': 'Şehirler',
 
     'hero.badge': 'Yakında Google Play’de',
-    'hero.title': 'Turist rotasının dışına çık. Şehri görev görev keşfet.',
+    'hero.title': 'Turist rotasının dışına çık. Şehri yerlisi gibi keşfet.',
     'hero.subtitle':
-      'Roam, elle seçilmiş gerçek mekânları haritada göreve çeviren şehir keşif uygulaması. Konuma git, fotoğrafınla check-in yap; puan, rozet ve koleksiyon kazan.',
+      'Her şehirde, orada yaşayanların “asıl şuraya git” dediği yerler vardır. Roam bunları ünlü klasiklerin yanında haritaya koyar ve her birini bir göreve çevirir: oraya git, fotoğrafınla check-in yap, rozet kazan.',
     'hero.cta': 'Bekleme listesine katıl',
     'hero.social_proof': 'Ücretsiz · Spam yok · Yalnızca lansman haberi',
     'hero.card.badge.title': 'Rozet açıldı!',
     'hero.card.badge.desc': 'Lezzet Avcısı',
     'hero.card.nearby': 'Yakınında 3 görev var',
-    'stats.quests': 'görev',
+    'stats.quests': 'elle seçilmiş görev',
     'stats.cities': 'destinasyon',
     'stats.countries': 'ülke',
     'stats.categories': 'kategori',
+    'why.eyebrow': 'Neden Roam?',
+    'why.title': 'Asıl güzel yer çoğu zaman bir sokak ötede',
+    'why.body':
+      'Gezi listelerinde hep aynı yerleri görürsün. Oysa her şehirde, orada yaşayanların seve seve tarif ettiği bir tapınak, bir esnaf lokantası, bir manzara vardır. Roam klasikleri atlamaz; ama yanlarına, çoğu gezginin hiç duymadığı bu yerleri koyar.',
+    'why.p1.title': 'Yerel favoriler',
+    'why.p1.desc':
+      'Mahalle hamamı, sabahın simitçisi, öğrencilerin pizzacısı: yerlilerin sevdiği, listelerde çıkmayan yerler.',
+    'why.p2.title': 'Klasikler de var, etiketli',
+    'why.p2.desc':
+      'Ünlü yerleri atlamıyoruz. Hangi görevin “Klasik”, hangisinin “Yerel favori” olduğunu etiketinden anlarsın.',
+    'why.p3.title': 'Birlikte büyüyen harita',
+    'why.p3.desc':
+      'Yakında bildiğin yerleri sen de önerebileceksin. Her öneri gözden geçirilir, onaylanınca adınla haritaya eklenir.',
+    'pick.local': 'Yerel favori',
+    'pick.classic': 'Klasik',
 
     'cities.eyebrow': 'Lansman şehirleri',
     'cities.title': 'Tokyo’dan İstanbul’a: 9 destinasyonda 130+ görev',
@@ -62,9 +83,6 @@ export const ui = {
       'Her görev tek tek seçildi ve gerçek bir konuma bağlı. Şehrin bilinen yüzünü de, bir sokak arkasındaki hâlini de bulursun.',
     'cities.more': 'Yeni şehirler yolda — şehrin listede yoksa bekleme listesine katıl, açıldığında haber verelim.',
 
-    'features.curated.title': 'Elle seçilmiş görevler',
-    'features.curated.desc':
-      'Otomatik üretilmiş mekân listesi değil. Her görev tek tek seçilir; en iyi saat ve kalabalık notuyla birlikte gelir.',
     'features.proof.title': 'Konum ve fotoğrafla doğrulanan check-in',
     'features.proof.desc':
       'Puan yalnızca gerçekten oraya gidince gelir: check-in konumunla doğrulanır, fotoğrafın profilinde anı olarak kalır.',
@@ -73,7 +91,7 @@ export const ui = {
     'how.subtitle': 'Üç adımda şehir kâşifi ol.',
     'how.step1.title': 'Haritayı aç',
     'how.step1.desc':
-      'Çevrendeki görevleri haritada gör: gastronomiden maceraya, film mekânlarından saklı köşelere 10 kategori.',
+      'Çevrendeki görevleri haritada gör: klasiklerin yanında yerel favoriler, gastronomiden film mekânlarına 10 kategori.',
     'how.step2.title': 'Göreve git',
     'how.step2.desc':
       'Seçtiğin görevin konumuna git. Her görev, şehrin bir hikâyesini ya da saklı bir köşesini gösterir.',
@@ -81,9 +99,9 @@ export const ui = {
     'how.step3.desc':
       'Konuma varınca fotoğrafınla check-in yap; puan topla, rozetler aç, koleksiyonunu büyüt.',
 
-    'features.title': 'Gezmeyi oyuna dönüştüren özellikler',
+    'features.title': 'Keşfin eğlenceli tarafı',
     'features.subtitle':
-      'Turist rehberi değil, keşif oyunu. Şehri gerçekten tanımak isteyenler için.',
+      'Görevler keşfi oyuna çevirir: gittiğin her yer puan, rozet ve anı olarak profilinde kalır.',
     'features.map.title': 'Konum tabanlı görev haritası',
     'features.map.desc':
       'Görevler gerçek konumlara bağlı. Yakınındakileri keşfet, rotanı kendin çiz.',
@@ -95,6 +113,9 @@ export const ui = {
       'Gastronomiden maceraya, kutsal rotalardan film mekânlarına — ilgi alanına göre keşfet.',
     'features.i18n.title': '4 dilde kullanılabilir',
     'features.i18n.desc': 'Türkçe, İngilizce, İspanyolca ve Almanca desteğiyle her gezgine uygun.',
+    'features.lists.title': 'Kendi listelerin',
+    'features.lists.desc':
+      'Gitmek istediğin görevleri kaydet, şehir şehir listeler oluştur, rotanı önceden planla.',
 
     'categories.eyebrow': 'Moduna göre keşfet',
     'categories.title': '10 kategori, 10 farklı şehir hâli',
@@ -117,7 +138,7 @@ export const ui = {
       'Barlar, canlı müzik ve gece pazarları — hava karardıktan sonra başlayan görevler.',
     'categories.hidden': 'Saklı Köşeler',
     'categories.hidden.desc':
-      'Ara sokaklar ve sadece yerlilerin bildiği köşeler — hiçbir rehberde yazmayan yerler.',
+      'Ara sokaklar ve çoğu gezginin kaçırdığı köşeler — bir sokak arkadaki şehir.',
     'categories.heritage': 'Miras',
     'categories.heritage.desc':
       'Tapınaklar, saraylar ve eski mahalleler — şehrin tarihinde yürüten görevler.',
@@ -136,7 +157,7 @@ export const ui = {
       'Roam yakında Google Play’de. E-postanı bırak, çıkar çıkmaz haber verelim — spam yok, sadece lansman haberi.',
     'waitlist.founder':
       'Uygulamaya katılan ilk 50 kişiye numaralı Kurucu Kâşif rozeti (#01–#50) — bir daha asla verilmeyecek.',
-    'founder.left': 'Son {left} Kurucu Kâşif rozeti kaldı.',
+    'founder.left': '50 Kurucu Kâşif rozetinden {left} tanesi kaldı.',
     'founder.gone': '50 Kurucu Kâşif rozetinin hepsi sahibini buldu.',
     'waitlist.placeholder': 'E-posta adresin',
     'waitlist.button': 'Listeye katıl',
@@ -157,21 +178,29 @@ export const ui = {
       'Lansmanda 5 ülkede 9 destinasyon var: Tokyo, Kyoto, İstanbul, Roma, Floransa, Cinque Terre, Bangkok, Phuket ve Bali. Toplam 130’dan fazla görev hazır; yeni şehirler düzenli olarak ekleniyor.',
     'faq.q4': 'Roam’u kimler için tasarladınız?',
     'faq.a4':
-      'Yaşadığı şehri daha derin tanımak isteyenler ve gittiği şehirde turist rotasının dışına çıkmak isteyen gezginler için.',
+      'Gittiği şehirde yalnızca turist rotasını değil, orada yaşayanların sevdiği yerleri de görmek isteyen gezginler için. Yaşadığı şehri daha yakından tanımak isteyenler için de.',
     'faq.q5': 'Konum verilerim ne için kullanılıyor?',
     'faq.a5':
       'Konumun yalnızca yakınındaki görevleri göstermek ve check-in doğrulamak için kullanılır. Detaylar için gizlilik politikamıza bakabilirsin.',
     'faq.q6': 'Kurucu Kâşif rozeti nedir?',
     'faq.a6':
       'Roam’a katılan ilk 50 kişi, profilinde ömür boyu taşıyacağı numaralı Kurucu Kâşif rozetini kazanır: ilk katılan #01, ellinci katılan #50 olur. Rozet yalnızca bu 50 kişiye verilir; sonradan hiçbir şekilde kazanılamaz. Bekleme listesindekiler lansmanı herkesten önce öğrenir.',
+    'faq.q7': 'Görevler nasıl seçiliyor?',
+    'faq.a7':
+      'Her görev tek tek seçiliyor; otomatik üretilmiş bir mekân listesi yok. Şehrin herkesin bildiği klasiklerini de koyuyoruz, ama asıl amacımız onların yanında, orada yaşayanların sevdiği az bilinen yerleri göstermek. Uygulamada hangisinin hangisi olduğunu “Klasik” ve “Yerel favori” etiketleri gösterir.',
+    'faq.q8': 'Ben de yer önerebilir miyim?',
+    'faq.a8':
+      'Evet. Öneri özelliği hazır ve yakında açılacak: bildiğin bir yeri önerirsin, gözden geçirildikten sonra görev olarak haritaya eklenir ve adınla anılır. Açıldığında haber almak için bekleme listesine katıl.',
 
     'city.eyebrow': 'Şehir rehberi',
     'city.meta.title': '{inCity} Gezilecek Yerler: {n} Elle Seçilmiş Görev | Roam',
     'city.meta.description':
-      '{inCity} turist rotasının dışında {n} görev: {cats}. Her biri süre ve zorluk bilgisiyle; Roam ile konuma git, check-in yap, rozet kazan.',
+      '{inCity} {n} elle seçilmiş görev: ünlü klasiklerin yanında yerlilerin sevdiği az bilinen yerler ({cats}). Her biri süre ve zorluk bilgisiyle.',
     'city.h1': '{inCity} gezilecek yerler: {n} elle seçilmiş görev',
     'city.intro':
       'Bu liste Roam uygulamasındaki {city} görevlerinden oluşuyor. Her görev gerçek bir konuma bağlı ve tek tek seçildi; ağırlıklı kategoriler: {cats}. Gezerken uygulamada check-in yaparak puan ve rozet toplayabilirsin.',
+    'city.pick.note':
+      'Yıldızlı “Yerel favori” etiketi, yerlilerin sevdiği az bilinen yerleri gösterir.',
     'city.jump': 'Kategoriler',
     'city.besttime': 'En iyi zaman',
     'city.duration': 'Süre',
@@ -212,9 +241,9 @@ export const ui = {
     'notfound.home': 'Ana sayfaya dön',
   },
   en: {
-    'meta.title': 'Roam — City Exploration App: Complete Quests, Earn Badges',
+    'meta.title': 'Roam — Explore Cities Like a Local: Complete Quests, Earn Badges',
     'meta.description':
-      'Roam is a free app that turns city trips into quests. 130+ hand-picked quests in Tokyo, Istanbul, Rome and 6 more places: go there, check in, earn badges.',
+      'The city exploration app that shows the places locals love next to the famous ones. 130+ hand-picked quests in 9 destinations: go, check in, earn badges.',
 
     'nav.features': 'Features',
     'nav.how': 'How It Works',
@@ -224,18 +253,33 @@ export const ui = {
     'nav.cities': 'Cities',
 
     'hero.badge': 'Coming soon to Google Play',
-    'hero.title': 'Step off the tourist trail. Explore cities one quest at a time.',
+    'hero.title': 'Step off the tourist trail. Explore the city like a local.',
     'hero.subtitle':
-      'Roam turns hand-picked real places into quests on a map. Go there, check in with a photo, and earn points, badges and collections.',
+      'Every city has places its people would point you to: “sure, see the famous one, but really, go here.” Roam puts them on the map next to the classics and turns each one into a quest: go there, check in with a photo, earn badges.',
     'hero.cta': 'Join the waitlist',
     'hero.social_proof': 'Free · No spam · Launch news only',
     'hero.card.badge.title': 'Badge unlocked!',
     'hero.card.badge.desc': 'Flavor Hunter',
     'hero.card.nearby': '3 quests near you',
-    'stats.quests': 'quests',
+    'stats.quests': 'hand-picked quests',
     'stats.cities': 'destinations',
     'stats.countries': 'countries',
     'stats.categories': 'categories',
+    'why.eyebrow': 'Why Roam?',
+    'why.title': 'The best spot is often one street over',
+    'why.body':
+      'Travel lists keep showing the same places. Yet every city has a temple, a family-run diner or a view that locals happily send you to. Roam doesn’t skip the classics, but it puts these places right next to them, the ones most travelers never hear about.',
+    'why.p1.title': 'Local favorites',
+    'why.p1.desc':
+      'The neighborhood bathhouse, the morning simit seller, the students’ pizza place: spots locals love that never make the lists.',
+    'why.p2.title': 'Classics too, clearly labeled',
+    'why.p2.desc':
+      'We don’t skip the famous sights. Each quest’s label tells you whether it’s a “Classic” or a “Local favorite”.',
+    'why.p3.title': 'A map that grows with you',
+    'why.p3.desc':
+      'Soon you’ll be able to suggest places you know. Every suggestion is reviewed, and once approved it goes on the map with your name.',
+    'pick.local': 'Local favorite',
+    'pick.classic': 'Classic',
 
     'cities.eyebrow': 'Launch cities',
     'cities.title': 'From Tokyo to Istanbul: 130+ quests in 9 destinations',
@@ -243,9 +287,6 @@ export const ui = {
       'Every quest is hand-picked and tied to a real place. You get the famous side of the city and the one a street behind it.',
     'cities.more': 'More cities are on the way — if yours is missing, join the waitlist and we’ll tell you when it opens.',
 
-    'features.curated.title': 'Hand-picked quests',
-    'features.curated.desc':
-      'Not an auto-generated list of places. Each quest is chosen one by one and comes with a best-time and crowd note.',
     'features.proof.title': 'Check-ins verified by location and photo',
     'features.proof.desc':
       'Points only count when you actually go: your check-in is verified by location, and your photo stays on your profile as a memory.',
@@ -254,7 +295,7 @@ export const ui = {
     'how.subtitle': 'Become a city explorer in three steps.',
     'how.step1.title': 'Open the map',
     'how.step1.desc':
-      'See quests around you: 10 categories, from food to adventure, movie locations to hidden gems.',
+      'See the quests around you on the map: local favorites next to the classics, across 10 categories from food to film locations.',
     'how.step2.title': 'Walk to the quest',
     'how.step2.desc':
       'Head to the quest location. Every quest reveals a story or a hidden corner of the city.',
@@ -262,9 +303,9 @@ export const ui = {
     'how.step3.desc':
       'Check in with a photo once you arrive; collect points, unlock badges, grow your collection.',
 
-    'features.title': 'Features that turn travel into play',
+    'features.title': 'The fun side of exploring',
     'features.subtitle':
-      'Not a tourist guide — an exploration game. For people who want to truly know a city.',
+      'Quests turn exploring into a game: every place you visit stays on your profile as points, badges and memories.',
     'features.map.title': 'Location-based quest map',
     'features.map.desc':
       'Quests are tied to real places. Discover what’s nearby and draw your own route.',
@@ -276,6 +317,9 @@ export const ui = {
       'From food to adventure, holy routes to movie locations — explore what you love.',
     'features.i18n.title': 'Available in 4 languages',
     'features.i18n.desc': 'Turkish, English, Spanish and German — ready for every traveler.',
+    'features.lists.title': 'Your own lists',
+    'features.lists.desc':
+      'Save the quests you want to do, build lists city by city and plan your route ahead.',
 
     'categories.eyebrow': 'Explore by mood',
     'categories.title': '10 categories, 10 sides of the city',
@@ -298,7 +342,7 @@ export const ui = {
       'Bars, live music and night markets — quests that start after dark.',
     'categories.hidden': 'Hidden Gems',
     'categories.hidden.desc':
-      'Back alleys and locals-only corners — quests to places no guidebook lists.',
+      'Back streets and corners most travelers miss — the city one street over.',
     'categories.heritage': 'Heritage',
     'categories.heritage.desc':
       'Temples, palaces and old quarters — quests that walk you through the city’s history.',
@@ -317,7 +361,7 @@ export const ui = {
       'Roam is coming soon to Google Play. Leave your email and we’ll ping you the moment it’s live — no spam, launch news only.',
     'waitlist.founder':
       'The first 50 people to join the app get a numbered Founding Explorer badge (#01–#50) — it will never be given out again.',
-    'founder.left': 'Only {left} Founding Explorer badges left.',
+    'founder.left': '{left} of 50 Founding Explorer badges left.',
     'founder.gone': 'All 50 Founding Explorer badges have been claimed.',
     'waitlist.placeholder': 'Your email address',
     'waitlist.button': 'Join the waitlist',
@@ -337,21 +381,29 @@ export const ui = {
       'At launch there are 9 destinations in 5 countries: Tokyo, Kyoto, Istanbul, Rome, Florence, Cinque Terre, Bangkok, Phuket and Bali. More than 130 quests are ready, and new cities are added regularly.',
     'faq.q4': 'Who is Roam designed for?',
     'faq.a4':
-      'For locals who want to know their city deeper, and travelers who want to step off the tourist trail.',
+      'For travelers who want more than the tourist trail and want to see the places locals love, and for anyone who wants to know their own city better.',
     'faq.q5': 'How is my location data used?',
     'faq.a5':
       'Your location is only used to show nearby quests and verify check-ins. See our privacy policy for details.',
     'faq.q6': 'What is the Founding Explorer badge?',
     'faq.a6':
       'The first 50 people to sign up for Roam earn a numbered Founding Explorer badge they keep on their profile forever: the first gets #01, the fiftieth #50. Only those 50 people will ever have it. Waitlist members hear about the launch before anyone else.',
+    'faq.q7': 'How are quests chosen?',
+    'faq.a7':
+      'Every quest is picked one by one; there’s no auto-generated list of venues. We include the classics everyone knows, but our real aim is to show, right next to them, the lesser-known places the people who live there love. In the app, the “Classic” and “Local favorite” labels tell you which is which.',
+    'faq.q8': 'Can I suggest a place?',
+    'faq.a8':
+      'Yes. Suggestions are built and opening soon: you suggest a place you know, and once it’s reviewed it’s added to the map as a quest, credited to you. Join the waitlist to hear when it opens.',
 
     'city.eyebrow': 'City guide',
     'city.meta.title': 'Things to Do in {city}: {n} Hand-Picked Quests | Roam',
     'city.meta.description':
-      '{n} things to do in {city} beyond the tourist trail: {cats}. Each comes with duration and difficulty — go there, check in with Roam, earn badges.',
+      '{n} hand-picked things to do in {city}: famous classics plus lesser-known places locals love ({cats}). Each with duration and difficulty.',
     'city.h1': 'Things to do in {city}: {n} hand-picked quests',
     'city.intro':
       'This list comes from the {city} quests in the Roam app. Every quest is tied to a real place and was chosen one by one; the main categories are {cats}. As you explore, check in on the app to collect points and badges.',
+    'city.pick.note':
+      'The starred “Local favorite” label marks lesser-known places that locals love.',
     'city.jump': 'Categories',
     'city.besttime': 'Best time',
     'city.duration': 'Duration',
@@ -392,9 +444,9 @@ export const ui = {
     'notfound.home': 'Back to home',
   },
   es: {
-    'meta.title': 'Roam — App para Explorar Ciudades: Misiones e Insignias',
+    'meta.title': 'Roam — Explora la ciudad como un local: misiones e insignias',
     'meta.description':
-      'Roam es una app gratuita que convierte tus viajes en misiones. Más de 130 misiones en Tokio, Estambul, Roma y 6 destinos más: ve, haz check-in y gana insignias.',
+      'La app para explorar ciudades que te muestra, junto a los lugares famosos, los que aman los locales. Más de 130 misiones elegidas a mano en 9 destinos.',
 
     'nav.features': 'Funciones',
     'nav.how': 'Cómo Funciona',
@@ -404,18 +456,33 @@ export const ui = {
     'nav.cities': 'Ciudades',
 
     'hero.badge': 'Muy pronto en Google Play',
-    'hero.title': 'Sal de la ruta turística. Explora la ciudad misión a misión.',
+    'hero.title': 'Sal de la ruta turística. Explora la ciudad como un local.',
     'hero.subtitle':
-      'Roam convierte lugares reales, elegidos a mano, en misiones sobre el mapa. Ve hasta allí, haz check-in con una foto y gana puntos, insignias y colecciones.',
+      'En cada ciudad hay lugares a los que su gente te mandaría: “sí, ve a ver el famoso, pero de verdad, ve aquí”. Roam los pone en el mapa junto a los clásicos y convierte cada uno en una misión: ve, haz check-in con una foto y gana insignias.',
     'hero.cta': 'Únete a la lista de espera',
     'hero.social_proof': 'Gratis · Sin spam · Solo la noticia del lanzamiento',
     'hero.card.badge.title': '¡Insignia desbloqueada!',
     'hero.card.badge.desc': 'Cazador de Sabores',
     'hero.card.nearby': '3 misiones cerca de ti',
-    'stats.quests': 'misiones',
+    'stats.quests': 'misiones elegidas a mano',
     'stats.cities': 'destinos',
     'stats.countries': 'países',
     'stats.categories': 'categorías',
+    'why.eyebrow': '¿Por qué Roam?',
+    'why.title': 'El mejor sitio suele estar a una calle',
+    'why.body':
+      'Las listas de viaje repiten siempre los mismos lugares. Pero en cada ciudad hay un templo, una casa de comidas o un mirador al que los locales te mandan encantados. Roam no se salta los clásicos, pero pone a su lado estos lugares que la mayoría de viajeros nunca conoce.',
+    'why.p1.title': 'Favoritos locales',
+    'why.p1.desc':
+      'El baño público del barrio, el vendedor de simit de la mañana, la pizzería de los estudiantes: sitios que los locales adoran y que nunca salen en las listas.',
+    'why.p2.title': 'También clásicos, bien señalados',
+    'why.p2.desc':
+      'No nos saltamos los lugares famosos. La etiqueta de cada misión te dice si es un “Clásico” o un “Favorito local”.',
+    'why.p3.title': 'Un mapa que crece contigo',
+    'why.p3.desc':
+      'Pronto podrás proponer los lugares que conoces. Cada propuesta se revisa y, una vez aprobada, entra en el mapa con tu nombre.',
+    'pick.local': 'Favorito local',
+    'pick.classic': 'Clásico',
 
     'cities.eyebrow': 'Ciudades de lanzamiento',
     'cities.title': 'De Tokio a Estambul: más de 130 misiones en 9 destinos',
@@ -423,9 +490,6 @@ export const ui = {
       'Cada misión está elegida a mano y ligada a un lugar real. Encuentras la cara famosa de la ciudad y la que está una calle más atrás.',
     'cities.more': 'Vienen más ciudades — si la tuya no está, únete a la lista de espera y te avisamos cuando se abra.',
 
-    'features.curated.title': 'Misiones elegidas a mano',
-    'features.curated.desc':
-      'No es una lista de lugares generada automáticamente. Cada misión se elige una a una e incluye la mejor hora y una nota sobre la afluencia.',
     'features.proof.title': 'Check-in verificado por ubicación y foto',
     'features.proof.desc':
       'Los puntos solo cuentan si vas de verdad: el check-in se verifica con tu ubicación y tu foto queda en tu perfil como recuerdo.',
@@ -434,7 +498,7 @@ export const ui = {
     'how.subtitle': 'Conviértete en explorador urbano en tres pasos.',
     'how.step1.title': 'Abre el mapa',
     'how.step1.desc':
-      'Descubre las misiones a tu alrededor: 10 categorías, de la gastronomía a la aventura, de localizaciones de cine a rincones ocultos.',
+      'Mira en el mapa las misiones a tu alrededor: favoritos locales junto a los clásicos, en 10 categorías, de la gastronomía a los lugares de rodaje.',
     'how.step2.title': 'Ve a la misión',
     'how.step2.desc':
       'Dirígete al lugar de la misión. Cada misión revela una historia o un rincón oculto de la ciudad.',
@@ -442,9 +506,9 @@ export const ui = {
     'how.step3.desc':
       'Al llegar, haz check-in con una foto; suma puntos, desbloquea insignias y amplía tu colección.',
 
-    'features.title': 'Funciones que convierten el viaje en juego',
+    'features.title': 'El lado divertido de explorar',
     'features.subtitle':
-      'No es una guía turística — es un juego de exploración. Para quienes quieren conocer la ciudad de verdad.',
+      'Las misiones convierten la exploración en un juego: cada lugar que visitas queda en tu perfil como puntos, insignias y recuerdos.',
     'features.map.title': 'Mapa de misiones geolocalizado',
     'features.map.desc':
       'Las misiones están ligadas a lugares reales. Descubre lo que tienes cerca y traza tu propia ruta.',
@@ -456,6 +520,9 @@ export const ui = {
       'De la gastronomía a la aventura, de rutas sagradas a localizaciones de cine — explora lo que te gusta.',
     'features.i18n.title': 'Disponible en 4 idiomas',
     'features.i18n.desc': 'Turco, inglés, español y alemán — lista para cualquier viajero.',
+    'features.lists.title': 'Tus propias listas',
+    'features.lists.desc':
+      'Guarda las misiones que quieres hacer, crea listas por ciudad y planifica tu ruta.',
 
     'categories.eyebrow': 'Explora a tu manera',
     'categories.title': '10 categorías, 10 caras de la ciudad',
@@ -478,7 +545,7 @@ export const ui = {
       'Bares, música en vivo y mercados nocturnos — misiones que empiezan al caer la noche.',
     'categories.hidden': 'Rincones Ocultos',
     'categories.hidden.desc':
-      'Callejones y rincones que solo conocen los locales — lugares que no salen en las guías.',
+      'Callejuelas y rincones que la mayoría de viajeros pasa por alto — la ciudad a una calle de distancia.',
     'categories.heritage': 'Patrimonio',
     'categories.heritage.desc':
       'Templos, palacios y barrios antiguos — misiones que recorren la historia de la ciudad.',
@@ -497,7 +564,7 @@ export const ui = {
       'Roam llegará muy pronto a Google Play. Deja tu correo y te avisaremos en cuanto esté disponible — sin spam, solo la noticia del lanzamiento.',
     'waitlist.founder':
       'Las primeras 50 personas en unirse a la app reciben una insignia numerada de Explorador Fundador (#01–#50); nunca se volverá a otorgar.',
-    'founder.left': 'Solo quedan {left} insignias de Explorador Fundador.',
+    'founder.left': 'Quedan {left} de 50 insignias de Explorador Fundador.',
     'founder.gone': 'Las 50 insignias de Explorador Fundador ya tienen dueño.',
     'waitlist.placeholder': 'Tu correo electrónico',
     'waitlist.button': 'Unirme a la lista',
@@ -517,21 +584,29 @@ export const ui = {
       'En el lanzamiento hay 9 destinos en 5 países: Tokio, Kioto, Estambul, Roma, Florencia, Cinque Terre, Bangkok, Phuket y Bali. Hay más de 130 misiones listas y se añaden nuevas ciudades con regularidad.',
     'faq.q4': '¿Para quién está diseñada Roam?',
     'faq.a4':
-      'Para quienes quieren conocer más a fondo su ciudad y para viajeros que quieren salirse de la ruta turística.',
+      'Para viajeros que quieren algo más que la ruta turística y ver los lugares que aman los locales, y para quien quiere conocer mejor su propia ciudad.',
     'faq.q5': '¿Para qué se usan mis datos de ubicación?',
     'faq.a5':
       'Tu ubicación solo se usa para mostrar misiones cercanas y verificar los check-ins. Consulta nuestra política de privacidad para más detalles.',
     'faq.q6': '¿Qué es la insignia de Explorador Fundador?',
     'faq.a6':
       'Las primeras 50 personas que se registren en Roam ganan una insignia numerada de Explorador Fundador que lucirán para siempre en su perfil: la primera recibe la #01 y la quincuagésima, la #50. Solo esas 50 personas la tendrán. Quienes están en la lista de espera se enteran del lanzamiento antes que nadie.',
+    'faq.q7': '¿Cómo se eligen las misiones?',
+    'faq.a7':
+      'Cada misión se elige una por una; no hay listas de lugares generadas automáticamente. Incluimos los clásicos que todos conocen, pero nuestro objetivo real es mostrar, justo a su lado, los lugares menos conocidos que adoran quienes viven allí. En la app, las etiquetas “Clásico” y “Favorito local” te dicen cuál es cuál.',
+    'faq.q8': '¿Puedo proponer un lugar?',
+    'faq.a8':
+      'Sí. La función de propuestas ya está lista y se abrirá pronto: propones un lugar que conoces y, tras revisarlo, se añade al mapa como misión con tu nombre. Únete a la lista de espera para enterarte cuando se abra.',
 
     'city.eyebrow': 'Guía de ciudad',
     'city.meta.title': 'Qué Hacer en {city}: {n} Misiones Elegidas a Mano | Roam',
     'city.meta.description':
-      '{n} planes en {city} fuera de la ruta turística: {cats}. Cada uno con duración y dificultad; ve, haz check-in con Roam y gana insignias.',
+      '{n} planes elegidos a mano en {city}: clásicos famosos y lugares menos conocidos que adoran los locales ({cats}). Cada uno con duración y dificultad.',
     'city.h1': 'Qué hacer en {city}: {n} misiones elegidas a mano',
     'city.intro':
       'Esta lista sale de las misiones de {city} en la app Roam. Cada misión está ligada a un lugar real y se eligió una a una; las categorías principales son {cats}. Mientras exploras, haz check-in en la app para sumar puntos e insignias.',
+    'city.pick.note':
+      'La etiqueta “Favorito local” con estrella señala lugares menos conocidos que adoran los locales.',
     'city.jump': 'Categorías',
     'city.besttime': 'Mejor momento',
     'city.duration': 'Duración',
@@ -572,9 +647,9 @@ export const ui = {
     'notfound.home': 'Volver al inicio',
   },
   de: {
-    'meta.title': 'Roam — Die App für Stadterkundung: Quests & Abzeichen',
+    'meta.title': 'Roam — Entdecke Städte wie Einheimische: Quests und Abzeichen',
     'meta.description':
-      'Roam ist die kostenlose App, die Städtereisen in Quests verwandelt. Über 130 Quests in Tokio, Istanbul, Rom und 6 weiteren Zielen: hingehen, einchecken, sammeln.',
+      'Die App zur Stadterkundung, die dir neben den berühmten Orten die Lieblingsplätze der Einheimischen zeigt. Über 130 handverlesene Quests in 9 Zielen.',
 
     'nav.features': 'Funktionen',
     'nav.how': 'So Funktioniert’s',
@@ -584,18 +659,33 @@ export const ui = {
     'nav.cities': 'Städte',
 
     'hero.badge': 'Bald bei Google Play',
-    'hero.title': 'Runter vom Touristenpfad. Entdecke Städte Quest für Quest.',
+    'hero.title': 'Raus aus der Touristenroute. Entdecke die Stadt wie Einheimische.',
     'hero.subtitle':
-      'Roam macht handverlesene, echte Orte zu Quests auf der Karte. Geh hin, checke mit einem Foto ein und sammle Punkte, Abzeichen und Sammlungen.',
+      'In jeder Stadt gibt es Orte, zu denen dich die Menschen dort schicken würden: „Klar, schau dir das Berühmte an, aber geh vor allem hierhin.“ Roam setzt sie neben die Klassiker auf die Karte und macht aus jedem eine Quest: hingehen, mit Foto einchecken, Abzeichen sammeln.',
     'hero.cta': 'Auf die Warteliste',
     'hero.social_proof': 'Kostenlos · Kein Spam · Nur die Launch-News',
     'hero.card.badge.title': 'Abzeichen freigeschaltet!',
     'hero.card.badge.desc': 'Geschmacksjäger',
     'hero.card.nearby': '3 Quests in deiner Nähe',
-    'stats.quests': 'Quests',
+    'stats.quests': 'handverlesene Quests',
     'stats.cities': 'Reiseziele',
     'stats.countries': 'Länder',
     'stats.categories': 'Kategorien',
+    'why.eyebrow': 'Warum Roam?',
+    'why.title': 'Der schönste Ort liegt oft eine Straße weiter',
+    'why.body':
+      'Reiselisten zeigen immer dieselben Orte. Dabei hat jede Stadt einen Tempel, ein einfaches Lokal oder einen Ausblick, zu dem Einheimische dich gern schicken. Roam lässt die Klassiker nicht weg, stellt ihnen aber diese Orte zur Seite, von denen die meisten Reisenden nie hören.',
+    'why.p1.title': 'Lokale Favoriten',
+    'why.p1.desc':
+      'Das Badehaus im Viertel, der Simit-Verkäufer am Morgen, die Pizzeria der Studierenden: Orte, die Einheimische lieben und die in keiner Liste stehen.',
+    'why.p2.title': 'Auch Klassiker, klar gekennzeichnet',
+    'why.p2.desc':
+      'Berühmte Orte lassen wir nicht weg. Am Label jeder Quest erkennst du, ob sie ein „Klassiker“ oder ein „Lokaler Favorit“ ist.',
+    'why.p3.title': 'Eine Karte, die mitwächst',
+    'why.p3.desc':
+      'Bald kannst du selbst Orte vorschlagen, die du kennst. Jeder Vorschlag wird geprüft und landet nach der Freigabe mit deinem Namen auf der Karte.',
+    'pick.local': 'Lokaler Favorit',
+    'pick.classic': 'Klassiker',
 
     'cities.eyebrow': 'Städte zum Launch',
     'cities.title': 'Von Tokio bis Istanbul: über 130 Quests an 9 Reisezielen',
@@ -603,9 +693,6 @@ export const ui = {
       'Jede Quest ist handverlesen und an einen echten Ort gebunden. Du findest die bekannte Seite der Stadt und die eine Straße dahinter.',
     'cities.more': 'Weitere Städte folgen — fehlt deine, trag dich auf die Warteliste ein und wir melden uns, sobald sie startet.',
 
-    'features.curated.title': 'Handverlesene Quests',
-    'features.curated.desc':
-      'Keine automatisch erzeugte Ortsliste. Jede Quest wird einzeln ausgewählt und kommt mit einem Hinweis zur besten Zeit und zum Andrang.',
     'features.proof.title': 'Check-in per Standort und Foto bestätigt',
     'features.proof.desc':
       'Punkte gibt es nur, wenn du wirklich dort bist: Der Check-in wird über deinen Standort bestätigt, dein Foto bleibt als Erinnerung im Profil.',
@@ -614,7 +701,7 @@ export const ui = {
     'how.subtitle': 'In drei Schritten zum Stadtentdecker.',
     'how.step1.title': 'Öffne die Karte',
     'how.step1.desc':
-      'Sieh Quests in deiner Nähe: 10 Kategorien, von Gastronomie bis Abenteuer, von Filmkulissen bis zu versteckten Ecken.',
+      'Sieh die Quests um dich herum auf der Karte: lokale Favoriten neben den Klassikern, in 10 Kategorien von Essen bis Drehorten.',
     'how.step2.title': 'Geh zur Quest',
     'how.step2.desc':
       'Mach dich auf den Weg zum Quest-Ort. Jede Quest zeigt dir eine Geschichte oder eine versteckte Ecke der Stadt.',
@@ -622,9 +709,9 @@ export const ui = {
     'how.step3.desc':
       'Checke vor Ort mit einem Foto ein; sammle Punkte, schalte Abzeichen frei und erweitere deine Sammlung.',
 
-    'features.title': 'Funktionen, die Reisen zum Spiel machen',
+    'features.title': 'Die spielerische Seite des Entdeckens',
     'features.subtitle':
-      'Kein Reiseführer — ein Entdeckungsspiel. Für alle, die eine Stadt wirklich kennenlernen wollen.',
+      'Quests machen das Entdecken zum Spiel: Jeder Ort, den du besuchst, bleibt als Punkte, Abzeichen und Erinnerung in deinem Profil.',
     'features.map.title': 'Standortbasierte Quest-Karte',
     'features.map.desc':
       'Quests sind an echte Orte gebunden. Entdecke, was in deiner Nähe ist, und plane deine eigene Route.',
@@ -636,6 +723,9 @@ export const ui = {
       'Von Gastronomie bis Abenteuer, von heiligen Routen bis zu Filmkulissen — entdecke, was dich begeistert.',
     'features.i18n.title': 'In 4 Sprachen verfügbar',
     'features.i18n.desc': 'Türkisch, Englisch, Spanisch und Deutsch — bereit für alle Reisenden.',
+    'features.lists.title': 'Deine eigenen Listen',
+    'features.lists.desc':
+      'Speichere die Quests, die du machen willst, lege Listen für jede Stadt an und plane deine Route.',
 
     'categories.eyebrow': 'Entdecke nach Laune',
     'categories.title': '10 Kategorien, 10 Gesichter der Stadt',
@@ -658,7 +748,7 @@ export const ui = {
       'Bars, Livemusik und Nachtmärkte — Quests, die nach Einbruch der Dunkelheit beginnen.',
     'categories.hidden': 'Versteckte Ecken',
     'categories.hidden.desc':
-      'Gassen und Ecken, die nur Einheimische kennen — Orte, die in keinem Reiseführer stehen.',
+      'Seitengassen und Ecken, die die meisten Reisenden übersehen — die Stadt eine Straße weiter.',
     'categories.heritage': 'Kulturerbe',
     'categories.heritage.desc':
       'Tempel, Paläste und Altstadtviertel — Quests durch die Geschichte der Stadt.',
@@ -677,7 +767,7 @@ export const ui = {
       'Roam kommt bald zu Google Play. Hinterlass deine E-Mail und wir melden uns, sobald es losgeht — kein Spam, nur die Launch-News.',
     'waitlist.founder':
       'Die ersten 50 Personen in der App erhalten ein nummeriertes Gründungs-Entdecker-Abzeichen (#01–#50) — es wird nie wieder vergeben.',
-    'founder.left': 'Nur noch {left} Gründungs-Entdecker-Abzeichen übrig.',
+    'founder.left': 'Noch {left} von 50 Gründungs-Entdecker-Abzeichen übrig.',
     'founder.gone': 'Alle 50 Gründungs-Entdecker-Abzeichen sind vergeben.',
     'waitlist.placeholder': 'Deine E-Mail-Adresse',
     'waitlist.button': 'Eintragen',
@@ -697,21 +787,29 @@ export const ui = {
       'Zum Launch gibt es 9 Reiseziele in 5 Ländern: Tokio, Kyoto, Istanbul, Rom, Florenz, Cinque Terre, Bangkok, Phuket und Bali. Über 130 Quests sind fertig, neue Städte kommen regelmäßig dazu.',
     'faq.q4': 'Für wen ist Roam gedacht?',
     'faq.a4':
-      'Für alle, die ihre eigene Stadt tiefer kennenlernen wollen, und für Reisende, die abseits der Touristenpfade unterwegs sein möchten.',
+      'Für Reisende, die mehr wollen als die Touristenroute und die Lieblingsorte der Einheimischen sehen möchten, und für alle, die ihre eigene Stadt besser kennenlernen wollen.',
     'faq.q5': 'Wofür werden meine Standortdaten verwendet?',
     'faq.a5':
       'Dein Standort wird nur genutzt, um Quests in deiner Nähe anzuzeigen und Check-ins zu bestätigen. Details findest du in unserer Datenschutzerklärung.',
     'faq.q6': 'Was ist das Gründungs-Entdecker-Abzeichen?',
     'faq.a6':
       'Die ersten 50 Personen, die sich bei Roam registrieren, erhalten ein nummeriertes Gründungs-Entdecker-Abzeichen, das für immer in ihrem Profil bleibt: die erste Person bekommt #01, die fünfzigste #50. Nur diese 50 Personen werden es je besitzen. Wer auf der Warteliste steht, erfährt als Erstes vom Launch.',
+    'faq.q7': 'Wie werden die Quests ausgewählt?',
+    'faq.a7':
+      'Jede Quest wird einzeln ausgewählt; es gibt keine automatisch erzeugten Ortslisten. Wir nehmen die Klassiker auf, die alle kennen, aber unser eigentliches Ziel ist, gleich daneben die weniger bekannten Orte zu zeigen, die die Menschen vor Ort lieben. In der App zeigen die Labels „Klassiker“ und „Lokaler Favorit“, was was ist.',
+    'faq.q8': 'Kann ich selbst einen Ort vorschlagen?',
+    'faq.a8':
+      'Ja. Die Vorschlagsfunktion ist fertig und startet bald: Du schlägst einen Ort vor, den du kennst, und nach der Prüfung kommt er als Quest mit deinem Namen auf die Karte. Trag dich in die Warteliste ein, um zu erfahren, wann es losgeht.',
 
     'city.eyebrow': 'Stadtführer',
     'city.meta.title': '{city} Sehenswürdigkeiten: {n} handverlesene Quests | Roam',
     'city.meta.description':
-      '{n} Tipps für {city} abseits der Touristenpfade: {cats}. Mit Dauer und Schwierigkeit — hingehen, mit Roam einchecken, Abzeichen sammeln.',
+      '{n} handverlesene Tipps für {city}: berühmte Klassiker und weniger bekannte Lieblingsorte der Einheimischen ({cats}). Jeweils mit Dauer und Schwierigkeit.',
     'city.h1': '{city} entdecken: {n} handverlesene Quests',
     'city.intro':
       'Diese Liste stammt aus den {city}-Quests der Roam-App. Jede Quest ist an einen echten Ort gebunden und wurde einzeln ausgewählt; die wichtigsten Kategorien: {cats}. Unterwegs checkst du in der App ein und sammelst Punkte und Abzeichen.',
+    'city.pick.note':
+      'Das Label „Lokaler Favorit“ mit Stern markiert weniger bekannte Orte, die Einheimische lieben.',
     'city.jump': 'Kategorien',
     'city.besttime': 'Beste Zeit',
     'city.duration': 'Dauer',
